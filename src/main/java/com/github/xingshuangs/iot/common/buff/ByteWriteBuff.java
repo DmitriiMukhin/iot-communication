@@ -384,7 +384,7 @@ public class ByteWriteBuff {
      * @return ByteWriteBuff itself
      */
     public ByteWriteBuff putString(String src) {
-        return this.putString(src, StandardCharsets.US_ASCII, this.offset);
+        return this.putString(src, StandardCharsets.UTF_8, this.offset);
     }
 
     /**

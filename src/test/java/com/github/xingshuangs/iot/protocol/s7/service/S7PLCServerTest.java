@@ -36,6 +36,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -56,7 +57,7 @@ public class S7PLCServerTest {
         this.server = new S7PLCServer();
         server.addDBArea(1, 2, 3, 4);
         this.server.start(8888);
-        this.s7PLC = new S7PLC(EPlcType.S1200, "127.0.0.1", 8888);
+        this.s7PLC = new S7PLC(EPlcType.S1200, "127.0.0.1", 8888, Charset.forName("GB2312"));
         this.s7PLC.setComCallback((tag, bytes) -> System.out.printf("%s[%d] %s%n", tag, bytes.length, HexUtil.toHexString(bytes)));
 //        this.s7PLC.setPersistence(false);
 //        this.s7PLC.connect();

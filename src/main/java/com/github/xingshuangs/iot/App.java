@@ -24,13 +24,21 @@
 
 package com.github.xingshuangs.iot;
 
+import com.github.xingshuangs.iot.protocol.modbus.service.ModbusTcpServer;
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Hello world!
  *
  * @author xingshuang
  */
+@Slf4j
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        ModbusTcpServer modbusTcpServer = new ModbusTcpServer();
+        modbusTcpServer.start();
+        while (true) {
+            log.info("Modbus TCP server is alive : {}", modbusTcpServer.isAlive());
+        }
     }
 }

@@ -490,7 +490,7 @@ public class ByteReadBuff {
      * @return string data
      */
     public String getString(int index, int length) {
-        return this.getString(index, length, StandardCharsets.US_ASCII);
+        return this.getString(index, length, StandardCharsets.UTF_8);
     }
 
     /**

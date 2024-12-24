@@ -95,7 +95,7 @@ public enum EFileBlockType {
 
     EFileBlockType(String code) {
         this.code = code;
-        this.byteArray = code.getBytes(StandardCharsets.US_ASCII);
+        this.byteArray = code.getBytes(StandardCharsets.UTF_8);
     }
 
     public String getCode() {

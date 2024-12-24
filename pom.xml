@@ -6,7 +6,7 @@
 
     <groupId>com.github.xingshuangs</groupId>
     <artifactId>iot-communication</artifactId>
-    <version>1.5.3</version>
+    <version>1.5.4-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>iot-communication</name>
@@ -135,20 +135,20 @@
                         </executions>
                     </plugin>
                     <!--公钥私钥插件，也就是上传需要进行验证用户名和密码过程中需要用到的插件-->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-gpg-plugin</artifactId>-->
+<!--                        <version>1.6</version>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>sign-artifacts</id>-->
+<!--                                <phase>verify</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>sign</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
                     <!--部署插件-->
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
@@ -164,18 +164,16 @@
                 </plugins>
             </build>
             <distributionManagement>
-                <snapshotRepository>
-                    <!--这个id和settings.xml中servers.server.id要相同，因为上传jar需要登录才有权限-->
-                    <id>${serverId}</id>
-                    <name>OSS Snapshots Repository</name>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-                </snapshotRepository>
                 <repository>
-                    <!--这个id和settings.xml中servers.server.id要相同，因为上传jar需要登录才有权限-->
-                    <id>${serverId}</id>
-                    <name>OSS Staging Repository</name>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                    <id>iiot-maven-release</id>
+                    <name>Хранилище артефактов IIOT-releases</name>
+                    <url>https://repos.dp.nlmk.com/artifactory/iiot-maven/</url>
                 </repository>
+                <snapshotRepository>
+                    <id>iiot-maven-snapshot</id>
+                    <name>Хранилище артефактов IIOT-snapshots</name>
+                    <url>https://repos.dp.nlmk.com/artifactory/iiot-maven/</url>
+                </snapshotRepository>
             </distributionManagement>
         </profile>
         <profile>

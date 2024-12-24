@@ -298,7 +298,7 @@ public class ByteArraySerializer implements IByteArraySerializable {
                 buff.putDouble((Double) data, variable.byteOffset() + index * variable.type().getByteLength(), variable.littleEndian(), variable.format());
                 break;
             case STRING:
-                buff.putString((String) data, StandardCharsets.US_ASCII, variable.byteOffset());
+                buff.putString((String) data, StandardCharsets.UTF_8, variable.byteOffset());
                 break;
             default:
                 // 填充数据的时候无法识别数据类型
@@ -316,7 +316,7 @@ public class ByteArraySerializer implements IByteArraySerializable {
      */
     private void fillListData(ByteArrayVariable variable, Object data, ByteWriteBuff buff) {
         if (variable.type() == STRING) {
-            buff.putString((String) data, StandardCharsets.US_ASCII, variable.byteOffset());
+            buff.putString((String) data, StandardCharsets.UTF_8, variable.byteOffset());
         } else {
             List<Object> list = (List<Object>) data;
             for (int i = 0; i < list.size(); i++) {

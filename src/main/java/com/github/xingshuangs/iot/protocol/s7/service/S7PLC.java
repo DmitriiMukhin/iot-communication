@@ -27,6 +27,7 @@ package com.github.xingshuangs.iot.protocol.s7.service;
 
 import com.github.xingshuangs.iot.common.buff.ByteReadBuff;
 import com.github.xingshuangs.iot.common.buff.ByteWriteBuff;
+import com.github.xingshuangs.iot.exceptions.S7CommException;
 import com.github.xingshuangs.iot.protocol.s7.enums.*;
 import com.github.xingshuangs.iot.protocol.s7.model.DataItem;
 import com.github.xingshuangs.iot.protocol.s7.model.RequestItem;
@@ -36,6 +37,7 @@ import com.github.xingshuangs.iot.protocol.s7.utils.AddressUtil;
 import com.github.xingshuangs.iot.utils.*;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -52,32 +54,59 @@ import static com.github.xingshuangs.iot.common.constant.GeneralConst.S7_PORT;
  */
 public class S7PLC extends PLCNetwork {
 
+    private final Charset defaultCharset;
+
     public S7PLC() {
-        this(EPlcType.S1200, LOCALHOST, S7_PORT, EPlcType.S1200.getRack(), EPlcType.S1200.getSlot(), EPlcType.S1200.getPduLength());
+        this(EPlcType.S1200, LOCALHOST, S7_PORT, EPlcType.S1200.getRack(), EPlcType.S1200.getSlot(), EPlcType.S1200.getPduLength(), StandardCharsets.UTF_8);
     }
 
     public S7PLC(EPlcType plcType) {
-        this(plcType, LOCALHOST, S7_PORT, plcType.getRack(), plcType.getSlot(), plcType.getPduLength());
+        this(plcType, LOCALHOST, S7_PORT, plcType.getRack(), plcType.getSlot(), plcType.getPduLength(), StandardCharsets.UTF_8);
     }
 
     public S7PLC(EPlcType plcType, String ip) {
-        this(plcType, ip, S7_PORT, plcType.getRack(), plcType.getSlot(), plcType.getPduLength());
+        this(plcType, ip, S7_PORT, plcType.getRack(), plcType.getSlot(), plcType.getPduLength(), StandardCharsets.UTF_8);
     }
 
     public S7PLC(EPlcType plcType, String ip, int port) {
-        this(plcType, ip, port, plcType.getRack(), plcType.getSlot(), plcType.getPduLength());
+        this(plcType, ip, port, plcType.getRack(), plcType.getSlot(), plcType.getPduLength(), StandardCharsets.UTF_8);
     }
 
     public S7PLC(EPlcType plcType, String ip, int port, int rack, int slot) {
-        this(plcType, ip, port, rack, slot, plcType.getPduLength());
+        this(plcType, ip, port, rack, slot, plcType.getPduLength(), StandardCharsets.UTF_8);
     }
 
-    public S7PLC(EPlcType plcType, String ip, int port, int rack, int slot, int pduLength) {
+    public S7PLC(Charset charset) {
+        this(EPlcType.S1200, LOCALHOST, S7_PORT, EPlcType.S1200.getRack(), EPlcType.S1200.getSlot(), EPlcType.S1200.getPduLength(), charset);
+    }
+
+    public S7PLC(EPlcType plcType, Charset charset) {
+        this(plcType, LOCALHOST, S7_PORT, plcType.getRack(), plcType.getSlot(), plcType.getPduLength(), charset);
+    }
+
+    public S7PLC(EPlcType plcType, String ip, Charset charset) {
+        this(plcType, ip, S7_PORT, plcType.getRack(), plcType.getSlot(), plcType.getPduLength(), charset);
+    }
+
+    public S7PLC(EPlcType plcType, String ip, int port, Charset charset) {
+        this(plcType, ip, port, plcType.getRack(), plcType.getSlot(), plcType.getPduLength(), charset);
+    }
+
+    public S7PLC(EPlcType plcType, String ip, int port, int rack, int slot, Charset charset) {
+        this(plcType, ip, port, rack, slot, plcType.getPduLength(), charset);
+    }
+
+    public S7PLC(EPlcType plcType, String ip, int port, int rack, int slot, int pduLength, Charset charset) {
         super(ip, port);
         this.plcType = plcType;
         this.rack = rack;
         this.slot = slot;
         this.pduLength = pduLength;
+        this.defaultCharset = charset == null ? StandardCharsets.UTF_8 : charset;
+    }
+
+    public Charset getDefaultCharset() {
+        return defaultCharset;
     }
 
     //region 读取数据
@@ -447,11 +476,20 @@ public class S7PLC extends PLCNetwork {
      * @return string
      */
     public String readString(String address) {
-        int offset = this.plcType == EPlcType.S200_SMART ? 1 : 2;
-        DataItem dataItem = this.readS7Data(AddressUtil.parseByte(address, offset));
-        int length = ByteUtil.toUInt8(dataItem.getData(), offset - 1);
-        dataItem = this.readS7Data(AddressUtil.parseByte(address, offset + length));
-        return ByteUtil.toStr(dataItem.getData(), offset, length, Charset.forName("GB2312"));
+        return readString(address, 254);
+    }
+
+    /**
+     * 读取字符串
+     * String（字符串）数据类型存储一串单字节字符，
+     * S1200（非S200SMART）:String提供了多大256个字节，前两个字节分别表示字节中最大的字符数和当前的字符数，定义字符串的最大长度可以减少它的占用存储空间
+     * S200SMART:字符串由变量存储时，字符串长度为0至254个字符，最长为255个字节，其中第一个字符为长度字节
+     *
+     * @param address 地址
+     * @return 字符串
+     */
+    public String readString(String address, Charset charset) {
+        return readString(address, 254, charset);
     }
 
     /**
@@ -465,33 +503,47 @@ public class S7PLC extends PLCNetwork {
      * @return string
      */
     public String readString(String address, int length) {
+        return readString(address, length, StandardCharsets.UTF_8);
+    }
+
+    public String readString(String address, int length, Charset charset) {
         if (length <= 0 || length > 254) {
             throw new IllegalArgumentException("length <= 0 || length > 254");
         }
         int offset = this.plcType == EPlcType.S200_SMART ? 1 : 2;
         DataItem dataItem = this.readS7Data(AddressUtil.parseByte(address, offset + length));
         int actLength = ByteUtil.toUInt8(dataItem.getData(), offset - 1);
-        return ByteUtil.toStr(dataItem.getData(), offset, Math.min(actLength, length), Charset.forName("GB2312"));
+        return ByteUtil.toStr(dataItem.getData(), offset, Math.min(actLength, length), charset);
     }
 
-//    /**
-//     * 读取字符串
-//     * Wsting数据类型与sting数据类型接近，支持单字值的较长字符串，
-//     * 第一个字包含最大总字符数，下一个字包含的是当前的总字符数，接下来的字符串可含最多65534个字
-//     *
-//     * @param address address string
-//     * @return 字符串
-//     */
-//    public String readWString(String address) {
-//        DataItem dataItem = this.readS7Data(AddressUtil.parseByte(address, 4));
-//        int type = ShortUtil.toUInt16(dataItem.getData());
-//        if (type == 0 || type == 65535) {
-//            throw new S7CommException("该地址的值不是字符串WString类型");
-//        }
-//        int length = ShortUtil.toUInt16(dataItem.getData(), 2);
-//        dataItem = this.readS7Data(AddressUtil.parseByte(address, 4 + length * 2));
-//        return ByteUtil.toStr(dataItem.getData(), 4);
-//    }
+    /**
+     * 读取字符串
+     * Wsting数据类型与sting数据类型接近，支持单字值的较长字符串，
+     * 第一个字包含最大总字符数，下一个字包含的是当前的总字符数，接下来的字符串可含最多65534个字
+     *
+     * @param address address string
+     * @return 字符串
+     */
+    public String readWString(String address) {
+        DataItem dataItem = this.readS7Data(AddressUtil.parseByte(address, 4));
+        int type = ShortUtil.toUInt16(dataItem.getData());
+        if (type == 0 || type == 65535) {
+            throw new S7CommException("The value of the address is not a string WString type");
+        }
+        int length = ShortUtil.toUInt16(dataItem.getData(), 2);
+        dataItem = this.readS7Data(AddressUtil.parseByte(address, 4 + length * 2));
+        return ByteUtil.toStr(dataItem.getData(), 4);
+    }
+
+    public String readWString(String address, int length) {
+        DataItem dataItem = this.readS7Data(AddressUtil.parseByte(address, 4));
+        int type = ShortUtil.toUInt16(dataItem.getData());
+        if (type == 0 || type == 65535) {
+            throw new S7CommException("The value of the address is not a string WString type");
+        }
+        dataItem = this.readS7Data(AddressUtil.parseByte(address, 4 + length * 2));
+        return ByteUtil.toStr(dataItem.getData(), 4);
+    }
 
     /**
      * Read time: milliseconds, ms, for example, 1000ms, 4-bytes.
@@ -720,12 +772,16 @@ public class S7PLC extends PLCNetwork {
      * @param data    string data
      */
     public void writeString(String address, String data) {
+        writeString(address, data, StandardCharsets.UTF_8);
+    }
+
+    public void writeString(String address, String data, Charset charset) {
         if (data == null) {
             throw new IllegalArgumentException("data=null");
         }
         int offset = this.plcType == EPlcType.S200_SMART ? 0 : 1;
         // 填充字节长度数据
-        byte[] dataBytes = data.length() == 0 ? new byte[0] : data.getBytes(Charset.forName("GB2312"));
+        byte[] dataBytes = data.isEmpty() ? new byte[0] : data.getBytes(charset);
         byte[] tmp = new byte[1 + dataBytes.length];
         tmp[0] = ByteUtil.toByte(dataBytes.length);
         System.arraycopy(dataBytes, 0, tmp, 1, dataBytes.length);
@@ -736,28 +792,28 @@ public class S7PLC extends PLCNetwork {
         this.writeS7Data(requestItem, DataItem.createReqByByte(tmp));
     }
 
-//    /**
-//     * 写入字符串数据
-//     * Wsting数据类型与sting数据类型接近，支持单字值的较长字符串，
-//     * 第一个字包含最大总字符数，下一个字包含的是当前的总字符数，接下来的字符串可含最多65534个字
-//     *
-//     * @param address address string
-//     * @param data    字符串数据
-//     */
-//    public void writeWString(String address, String data) {
-//        if (data.length() > (65534*2-4)) {
-//            throw new IllegalArgumentException("data字符串参数过长");
-//        }
-//        byte[] dataBytes = data.getBytes(StandardCharsets.US_ASCII);
-//        byte[] tmp = new byte[2 + dataBytes.length];
-//        byte[] lengthBytes = ShortUtil.toByteArray(dataBytes.length / 2);
-//        tmp[0] = (byte) 0xFF;
-//        tmp[1] = (byte) 0xFE;
-//        tmp[2] = lengthBytes[0];
-//        tmp[3] = lengthBytes[1];
-//        System.arraycopy(dataBytes, 0, tmp, 4, dataBytes.length);
-//        this.writeByte(address, tmp);
-//    }
+    /**
+     * 写入字符串数据
+     * Wsting数据类型与sting数据类型接近，支持单字值的较长字符串，
+     * 第一个字包含最大总字符数，下一个字包含的是当前的总字符数，接下来的字符串可含最多65534个字
+     *
+     * @param address address string
+     * @param data    字符串数据
+     */
+    public void writeWString(String address, String data) {
+        if (data.length() > (65534*2-4)) {
+            throw new IllegalArgumentException("data=null");
+        }
+        byte[] dataBytes = data.getBytes(StandardCharsets.UTF_16BE);
+        byte[] tmp = new byte[2 + dataBytes.length];
+        byte[] lengthBytes = ShortUtil.toByteArray(dataBytes.length / 2);
+        tmp[0] = (byte) 0xFF;
+        tmp[1] = (byte) 0xFE;
+        tmp[2] = lengthBytes[0];
+        tmp[3] = lengthBytes[1];
+        System.arraycopy(dataBytes, 0, tmp, 4, dataBytes.length);
+        this.writeByte(address, tmp);
+    }
 
     /**
      * Write time, the time is milliseconds, ms, 4-bytes.

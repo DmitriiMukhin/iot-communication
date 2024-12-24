@@ -32,6 +32,7 @@ import com.github.xingshuangs.iot.utils.*;
 import lombok.Data;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -220,7 +221,19 @@ public class MultiAddressWrite {
      * @return this object
      */
     public MultiAddressWrite addString(String address, String data) {
-        this.addStringCustom(address, data, 1);
+        return this.addString(address, data, StandardCharsets.UTF_8);
+    }
+
+    /**
+     * 添加字符串，针对非200smart的PLC
+     *
+     * @param address 地址
+     * @param data    字符串数据
+     * @param charset 字符集
+     * @return 对象本身
+     */
+    public MultiAddressWrite addString(String address, String data, Charset charset) {
+        this.addStringCustom(address, data, 1, charset);
         return this;
     }
 
@@ -233,7 +246,19 @@ public class MultiAddressWrite {
      * @return this object
      */
     public MultiAddressWrite addStringIn200Smart(String address, String data) {
-        this.addStringCustom(address, data, 0);
+        return this.addStringIn200Smart(address, data, StandardCharsets.UTF_8);
+    }
+
+    /**
+     * 添加字符串，针对200smart的PLC
+     *
+     * @param address 地址
+     * @param data    字符串数据
+     * @param charset 字符集
+     * @return 对象本身
+     */
+    public MultiAddressWrite addStringIn200Smart(String address, String data, Charset charset) {
+        this.addStringCustom(address, data, 0, charset);
         return this;
     }
 
@@ -246,8 +271,8 @@ public class MultiAddressWrite {
      * @param offset  index offset
      */
     @SuppressWarnings("DuplicatedCode")
-    private void addStringCustom(String address, String data, int offset) {
-        byte[] dataBytes = data.getBytes(Charset.forName("GB2312"));
+    private void addStringCustom(String address, String data, int offset, Charset charset) {
+        byte[] dataBytes = data.getBytes(charset);
         byte[] tmp = new byte[1 + dataBytes.length];
         tmp[0] = ByteUtil.toByte(dataBytes.length);
         System.arraycopy(dataBytes, 0, tmp, 1, dataBytes.length);

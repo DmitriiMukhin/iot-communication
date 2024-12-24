@@ -56,6 +56,8 @@ public enum EDataType {
 
     STRING("string", 1),
 
+    WSTRING("wstring", 2),
+
     /**
      * It is used only for the S7 protocol currently, and the corresponding JAVA type is long.
      * (目前只对S7协议使用，对应的JAVA类型long)

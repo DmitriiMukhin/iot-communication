@@ -25,11 +25,11 @@
 package com.github.xingshuangs.iot.protocol.s7.serializer;
 
 
-import com.github.xingshuangs.iot.exceptions.S7CommException;
 import com.github.xingshuangs.iot.common.buff.ByteReadBuff;
 import com.github.xingshuangs.iot.common.buff.ByteWriteBuff;
 import com.github.xingshuangs.iot.common.enums.EDataType;
 import com.github.xingshuangs.iot.common.serializer.IPLCSerializable;
+import com.github.xingshuangs.iot.exceptions.S7CommException;
 import com.github.xingshuangs.iot.protocol.s7.enums.EPlcType;
 import com.github.xingshuangs.iot.protocol.s7.model.DataItem;
 import com.github.xingshuangs.iot.protocol.s7.model.RequestItem;
@@ -38,6 +38,7 @@ import com.github.xingshuangs.iot.protocol.s7.utils.AddressUtil;
 
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -138,10 +139,10 @@ public class S7Serializer implements IPLCSerializable {
             // S7参数中字符串类型类型数据的[count]不能大于254
             throw new S7CommException("The [count] value of the string type in the S7 parameter cannot be greater than 254");
         }
-        if (parameter.getDataType() != EDataType.BYTE && parameter.getDataType() != EDataType.STRING && parameter.getCount() > 1) {
-            // S7参数中只有[type]=字节和字符串类型数据的[count]才能大于1，其他必须等于1
-            throw new S7CommException("In the S7 parameter, only [type]= bytes and [count] of string type data can be greater than 1, and the rest must be equal to 1");
-        }
+//        if (parameter.getDataType() != EDataType.BYTE && parameter.getDataType() != EDataType.STRING && parameter.getCount() > 1) {
+//            // S7参数中只有[type]=字节和字符串类型数据的[count]才能大于1，其他必须等于1
+//            throw new S7CommException("In the S7 parameter, only [type]= bytes and [count] of string type data can be greater than 1, and the rest must be equal to 1");
+//        }
     }
 
     /**
@@ -309,7 +310,11 @@ public class S7Serializer implements IPLCSerializable {
                 break;
             case STRING:
                 int length = buff.getByteToInt(0);
-                item.getField().set(result, buff.getString(1, Math.min(length, item.getCount()), Charset.forName("GB2312")));
+                item.getField().set(result, buff.getString(1, Math.min(length, item.getCount()), s7PLC.getDefaultCharset()));
+                break;
+            case WSTRING:
+                int wlength = buff.getByteToInt(0);
+                item.getField().set(result, buff.getString(1, Math.min(wlength, item.getCount()), StandardCharsets.UTF_16BE));
                 break;
             case DATE:
                 LocalDate date = LocalDate.of(1990, 1, 1).plusDays(buff.getUInt16());
@@ -479,7 +484,7 @@ public class S7Serializer implements IPLCSerializable {
                         .putDouble((Double) data).getData()));
                 break;
             case STRING:
-                byte[] bytes = ((String) data).getBytes(Charset.forName("GB2312"));
+                byte[] bytes = ((String) data).getBytes(s7PLC.getDefaultCharset());
                 int actualLength = Math.min(bytes.length, item.getCount());
                 byte[] targetBytes = new byte[1 + actualLength];
                 targetBytes[0] = (byte) actualLength;
