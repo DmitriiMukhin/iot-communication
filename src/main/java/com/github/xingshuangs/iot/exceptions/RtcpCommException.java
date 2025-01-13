@@ -26,7 +26,7 @@ package com.github.xingshuangs.iot.exceptions;
 
 /**
  * RTCP communication runtime exception class.
- * (RTCP的运行异常)
+ * (RTCP is running abnormally)
  *
  * @author xingshuang
  */

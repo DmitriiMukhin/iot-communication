@@ -36,7 +36,7 @@ public class LongUtil {
 
     /**
      * Convert long to a 8-byte array.
-     * (将long转换为字节数组)
+     * (Convert long to byte array)
      *
      * @param data long data
      * @return byte array
@@ -47,7 +47,7 @@ public class LongUtil {
 
     /**
      * Convert long to a 8-byte array.
-     * (将long转换为字节数组)
+     * (Convert long to byte array)
      *
      * @param data         long data
      * @param littleEndian true: little endian，false：big endian
@@ -80,7 +80,7 @@ public class LongUtil {
 
     /**
      * Convert byte array to int64.
-     * (将字节数组转换为int64)
+     * (Convert byte array to int64)
      *
      * @param data byte array
      * @return int64 data
@@ -91,7 +91,7 @@ public class LongUtil {
 
     /**
      * Convert byte array to int64.
-     * (将字节数组转换为int64)
+     * (Convert byte array to int64)
      *
      * @param data   byte array
      * @param offset offset
@@ -103,7 +103,7 @@ public class LongUtil {
 
     /**
      * Convert byte array to int64.
-     * (将字节数组转换为int64)
+     * (Convert byte array to int64)
      *
      * @param data         byte array
      * @param offset       offset

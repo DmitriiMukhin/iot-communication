@@ -38,7 +38,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * TCP socket服务端的基础类
+ * TCP The basic class of the socket server
  *
  * @author xingshuang
  */
@@ -48,19 +48,19 @@ public class TcpServerBasic {
 
     /**
      * Server socket object.
-     * (服务器对象)
+     * (Server Object)
      */
     private ServerSocket serverSocket;
 
     /**
      * Port Number.
-     * (端口号)
+     * (Port Number)
      */
     protected int port = 8088;
 
     /**
      * Thread pool service.
-     * (线程池)
+     * (Thread Pool)
      */
     protected ExecutorService executorService;
 
@@ -68,11 +68,11 @@ public class TcpServerBasic {
         // NOOP
     }
 
-    //region 服务端
+    //region Server-side
 
     /**
      * start the server
-     * (启动)
+     * (Start-up)
      *
      * @throws SocketRuntimeException Socket Runtime Exception
      */
@@ -82,7 +82,7 @@ public class TcpServerBasic {
 
     /**
      * start the server
-     * (启动)
+     * (Start-up)
      *
      * @param port port number
      * @throws SocketRuntimeException Socket Runtime Exception
@@ -104,7 +104,7 @@ public class TcpServerBasic {
 
     /**
      * Stop the server.
-     * (停止)
+     * (Stop)
      *
      * @throws SocketRuntimeException Socket Runtime Exception
      */
@@ -123,7 +123,7 @@ public class TcpServerBasic {
 
     /**
      * Is the server alive.
-     * (是否活跃着)
+     * (Active or not)
      *
      * @return ture：alive，false：dead
      */
@@ -133,10 +133,10 @@ public class TcpServerBasic {
 
     /**
      * Wait for client come in.
-     * (等待客户端连入)
+     * (Waiting for the client to connect)
      */
     protected void waitForClients() {
-        // 开启等待客户端线程，端口号[{}]
+        // Enable Wait Client Thread, port number [{}]
         log.debug("Open accept thread and waiting for clients, port number [{}]", this.port);
         while (this.isAlive()) {
             try {
@@ -155,11 +155,11 @@ public class TcpServerBasic {
 
     //endregion
 
-    //region 客户端
+    //region Client
 
     /**
      * Valid if the client can come in.
-     * (校验客户端是否允许连入)
+     * (Verify whether the client is allowed to connect)
      *
      * @param client client socket object
      * @return true: valid success，false：valid fail
@@ -170,12 +170,12 @@ public class TcpServerBasic {
 
     /**
      * Do handler after client connected.
-     * (客户端连入后要做的业务)
+     * (What to do after the client is connected)
      *
      * @param client client socket object
      */
     protected void doClientConnected(Socket client) {
-        // 有客户端[{}]连入
+        // A client [{}] is connected
         log.debug("The client [{}] is connected", client.getRemoteSocketAddress());
         this.clientConnected(client);
         try {
@@ -197,13 +197,13 @@ public class TcpServerBasic {
         }
 
         this.clientDisconnected(client);
-        // 有客户端[{}]断开
+        // There is client [{}] disconnected
         log.debug("The client [{}] is disconnected", client.getRemoteSocketAddress());
     }
 
     /**
-     * client connected, can override
-     * (客户端连入)
+     * Client connected, can override
+     * (Client Connection)
      *
      * @param socket client socket object
      */
@@ -213,7 +213,7 @@ public class TcpServerBasic {
 
     /**
      * Client disconnected, can override.
-     * (客户端断开)
+     * (Client Disconnected)
      *
      * @param socket client socket object
      */
@@ -223,7 +223,7 @@ public class TcpServerBasic {
 
     /**
      * Check handshake, true: success, false: fail.
-     * (握手校验)
+     * (Handshake verification)
      *
      * @param socket client socket object
      * @return check result, true: success, false: fail
@@ -234,7 +234,7 @@ public class TcpServerBasic {
 
     /**
      * Do client message handler, can override.
-     * (执行客户端的业务，可重写)
+     * (Execute client-side business, rewritable)
      *
      * @param socket client socket object
      * @throws SocketRuntimeException Socket Runtime Exception
@@ -246,7 +246,7 @@ public class TcpServerBasic {
 
     /**
      * Read client data, can override.
-     * (读取客户端数据)
+     * (Read client data)
      *
      * @param socket client socket object
      * @return the bytes array read into
@@ -271,7 +271,7 @@ public class TcpServerBasic {
 
     /**
      * Write data by byte array.
-     * （写入数据）
+     * (Write Data)
      *
      * @param socket socket object
      * @param data   byte array
@@ -287,7 +287,7 @@ public class TcpServerBasic {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param socket socket object
      * @param data   byte array
@@ -300,7 +300,7 @@ public class TcpServerBasic {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param socket socket object
      * @param data   byte array
@@ -315,7 +315,7 @@ public class TcpServerBasic {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param socket    socket object
      * @param data      byte array
@@ -335,7 +335,7 @@ public class TcpServerBasic {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param socket      socket object
      * @param data        byte array

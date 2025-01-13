@@ -31,7 +31,7 @@ import lombok.Data;
 
 /**
  * Byte array parameter
- * (字节数组参数)
+ * (byte array parameter)
  *
  * @author xingshuang
  */
@@ -40,43 +40,43 @@ public class ByteArrayParameter {
 
     /**
      * Byte offset.
-     * (字节偏移量)
+     * (byte offset)
      */
     protected int byteOffset = 0;
 
     /**
      * Bit offset.
-     * (位偏移量)
+     * (bit offset)
      */
     protected int bitOffset = 0;
 
     /**
      * Count, if count bigger than 1, then must use list type.
-     * (数量，数量大于1的时候对应的数据必须使用list)
+     * (Quantity, when the quantity is greater than 1, the corresponding data must use list)
      */
     protected int count = 1;
 
     /**
      * Data type.
-     * (类型)
+     * (type)
      */
     protected EDataType type = EDataType.BYTE;
 
     /**
      * Is little endian.
-     * (是否小端模式)
+     * (whether little endian mode)
      */
     protected boolean littleEndian = false;
 
     /**
      * 4 - or 8-byte encoding format.
-     * (4字节和8字节的编码格式)
+     * (4-byte and 8-byte encoding formats)
      */
     protected EByteBuffFormat format = EByteBuffFormat.DC_BA;
 
     /**
      * Actual Value
-     * (具体的值)
+     * (specific value)
      */
     protected Object value;
 

@@ -26,7 +26,7 @@ package com.github.xingshuangs.iot.utils;
 
 /**
  * LRC tool.
- * LRC校验工具
+ * LRC Verification Tool
  *
  * @author xingshuang
  */
@@ -38,7 +38,7 @@ public class LRCUtil {
 
     /**
      * Get LRC code.
-     * (获取lrc码)
+     * (Get LRC code)
      *
      * @param src byte array
      * @return byte
@@ -59,7 +59,7 @@ public class LRCUtil {
 
     /**
      * Check LRC.
-     * (lrc校验)
+     * (LRC checksum)
      *
      * @param src    byte array
      * @param target target result

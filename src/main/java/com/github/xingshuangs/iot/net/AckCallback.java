@@ -31,7 +31,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * Response callback class.
- * (响应的回调)
+ * (Callback in response)
  *
  * @author xingshuang
  */
@@ -40,43 +40,43 @@ public class AckCallback<T> {
 
     /**
      * Response data.
-     * (响应数据)
+     * (Response Data)
      */
     protected T ackData;
 
     /**
      * Data listener for callback.
-     * (数据响应监听器)
+     * (Data Response Listener)
      */
     protected final IAckListener<T> listener;
 
     /**
      * Flag, is completed.
-     * (是否完成)
+     * (Completed or not)
      */
     protected boolean completed;
 
     /**
      * Error message for callback.
-     * (错误消息)
+     * (Error Message)
      */
     protected String errorMessage;
 
     /**
      * Timeout in millisecond.
-     * (超时时间ms)
+     * (Timeout ms)
      */
     protected final long timeoutMs;
 
     /**
      * Lock object.
-     * (锁对象)
+     * (Lock Object)
      */
     protected final Object lock = new Object();
 
     /**
      * Object create time.
-     * (创建时间)
+     * (Created)
      */
     protected final LocalDateTime createTime = LocalDateTime.now();
 
@@ -94,7 +94,7 @@ public class AckCallback<T> {
 
     /**
      * Response success.
-     * (成功响应)
+     * (Successful Response)
      *
      * @param ackPackage response package data
      */
@@ -112,7 +112,7 @@ public class AckCallback<T> {
 
     /**
      * Response failed.
-     * (失败响应)
+     * (Failed Response)
      *
      * @param message error message
      */
@@ -130,7 +130,7 @@ public class AckCallback<T> {
 
     /**
      * Wait for more data.
-     * (等待数据)
+     * (Waiting for data)
      */
     public void waitData() {
         try {
@@ -144,7 +144,7 @@ public class AckCallback<T> {
 
     /**
      * Wait for more data.
-     * (等待数据)
+     * (Waiting for data)
      *
      * @param timeout timeout in millisecond
      */

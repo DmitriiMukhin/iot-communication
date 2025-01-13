@@ -51,7 +51,7 @@ public class BooleanUtil {
 
     /**
      * Sets 1 or 0 for the specified bit of the byte.
-     * (对字节的指定位设置1或0)
+     * (Set 1 or 0 to the specified bit of the byte)
      *
      * @param bit bit index, [0,7]
      * @param res true：1，false：0
@@ -63,7 +63,7 @@ public class BooleanUtil {
 
     /**
      * Sets 1 or 0 for the specified bit of the byte.
-     * (对字节的指定位设置1或0)
+     * (Set 1 or 0 to the specified bit of the byte)
      *
      * @param data source byte data
      * @param bit  bit index, [0,7]
@@ -79,7 +79,7 @@ public class BooleanUtil {
 
     /**
      * Gets the value of the byte specified bit. If bit is 1, return true, else false.
-     * (获取字节指定位的值)
+     * (Gets the value of the specified bit of the byte)
      *
      * @param data source byte data
      * @param bit  bit index, [0,7]
@@ -94,7 +94,7 @@ public class BooleanUtil {
 
     /**
      * Gets the value of the byte specified bit. If bit is 1, then return true, else false.
-     * (获取字节指定位的值)
+     * (Gets the value of the specified bit of the byte)
      *
      * @param data source byte data
      * @param bit  bit index, [0,7]
@@ -108,8 +108,9 @@ public class BooleanUtil {
     }
 
     /**
-     * Retrieves the specified number of boolean values from byte array. If the value of bit is 1, it is true, otherwise it is false.
-     * (提取指定数量的boolean值)
+     * Retrieves the specified number of boolean values from byte array.
+     * If the value of bit is 1, it is true, otherwise it is false.
+     * (Extract the specified number of boolean values)
      *
      * @param quantity boolean number
      * @param src      byte array
@@ -120,7 +121,7 @@ public class BooleanUtil {
             throw new NullPointerException("src");
         }
         if (src.length * 8 < quantity) {
-            // quantity数量操作字节数组的位总和
+            // quantity: the sum of the bits of an array of bytes
             throw new IllegalArgumentException("The sum of the bits of the operation byte array");
         }
         int count = 1;
@@ -138,7 +139,7 @@ public class BooleanUtil {
 
     /**
      * Converts a boolean list to byte array.
-     * (将boolean列表转换为字节数组)
+     * (Convert boolean list to byte array)
      *
      * @param list boolean list
      * @return byte array.

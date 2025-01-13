@@ -26,7 +26,7 @@ package com.github.xingshuangs.iot.exceptions;
 
 /**
  * Modbus communication runtime exception class.
- * (Modbus通信异常)
+ * (Modbus communication is abnormal)
  *
  * @author xingshuang
  */

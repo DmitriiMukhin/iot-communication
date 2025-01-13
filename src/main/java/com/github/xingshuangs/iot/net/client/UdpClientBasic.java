@@ -42,19 +42,19 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Server address.
-     * (服务端地址)
+     * (Server Address)
      */
     protected InetSocketAddress serverAddress;
 
     /**
      * UDP socket object.
-     * (socket对象)
+     * (socket object)
      */
     protected DatagramSocket socket;
 
     /**
      * Get local port number
-     * (获取本地端口号)
+     * (Get Local Port Number)
      *
      * @return local port number
      */
@@ -85,7 +85,7 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Bind server.
-     * (绑定服务器)
+     * (Binding Server)
      *
      * @param ip   IP address
      * @param port port number
@@ -96,20 +96,20 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Get connected socket.
-     * (获取连接socket)
+     * (Get Connection Socket)
      *
      * @return socket
      * @throws SocketRuntimeException Socket Runtime Exception
      */
     public DatagramSocket getAvailableSocket() {
-        // 已连接的直接返回socket
+        // Connected ones are returned directly to the socket
         if (this.socket != null) {
             return this.socket;
         }
         try {
-            // 重新创建对象，并连接
+            // Recreate the object and connect it
             this.socket = new DatagramSocket();
-            // connect之后通信地址必须是这个地址
+            // After connecting, the mailing address must be this address
 //            this.socket.connect(this.serverAddress);
             return socket;
         } catch (IOException e) {
@@ -119,7 +119,7 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Write data by byte array.
-     * (写入数据)
+     * (Write Data)
      *
      * @param data byte array
      * @throws SocketRuntimeException Socket Runtime Exception
@@ -131,7 +131,7 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Write data by byte array.
-     * (写入数据)
+     * (Write Data)
      *
      * @param data   byte array
      * @param offset the start offset in the data.
@@ -144,7 +144,7 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Write data by byte array.
-     * (写入数据)
+     * (Write Data)
      *
      * @param data    byte array
      * @param offset  the start offset in the data.
@@ -159,7 +159,7 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Write data by datagram packet.
-     * (写入数据)
+     * (Write Data)
      *
      * @param packet DatagramPacket object
      * @throws SocketRuntimeException Socket Runtime Exception
@@ -175,7 +175,7 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * (读取数据)
+     * (Read Data)
      *
      * @return byte array
      * @throws SocketRuntimeException Socket Runtime Exception
@@ -194,7 +194,7 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * (读取数据)
+     * (Read Data)
      *
      * @param data byte array
      * @return the total number of bytes read into the data
@@ -206,7 +206,7 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * (读取数据)
+     * (Read Data)
      *
      * @param data    byte array
      * @param timeout timeout in millisecond，0：blocked，big than 0：timeout time.
@@ -220,7 +220,7 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * (读取数据)
+     * (Read Data)
      *
      * @param data   byte array
      * @param offset the start offset in the data.
@@ -234,7 +234,7 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * (读取数据)
+     * (Read Data)
      *
      * @param data    byte array
      * @param offset  the start offset in the data.
@@ -249,7 +249,7 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * (读取数据)
+     * (Read Data)
      *
      * @param data    byte array
      * @param address socket address.
@@ -262,7 +262,7 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * (读取数据)
+     * (Read Data)
      *
      * @param data    byte array
      * @param address socket address.
@@ -276,7 +276,7 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * (读取数据)
+     * (Read Data)
      *
      * @param data    byte array
      * @param offset  the start offset in the data.
@@ -294,7 +294,7 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Read data into DatagramPacket object
-     * (读取数据)
+     * (Read Data)
      *
      * @param packet DatagramPacket object
      * @return DatagramPacket object
@@ -306,7 +306,7 @@ public class UdpClientBasic implements ICommunicable {
 
     /**
      * Read data into DatagramPacket object
-     * (读取数据)
+     * (Read Data)
      *
      * @param packet  DatagramPacket object
      * @param timeout timeout in millisecond，0：blocked，big than 0：timeout time.

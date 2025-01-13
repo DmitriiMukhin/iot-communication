@@ -26,7 +26,7 @@ package com.github.xingshuangs.iot.exceptions;
 
 /**
  * Byte array parse runtime exception class.
- * (字节数组解析异常)
+ * (Byte array parsing exception)
  *
  * @author ShuangPC
  */

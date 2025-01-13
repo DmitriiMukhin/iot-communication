@@ -26,7 +26,7 @@ package com.github.xingshuangs.iot.exceptions;
 
 /**
  * Authentication runtime exception class.
- * (认证的运行异常)
+ * (Authentication Runs Abnormally)
  *
  * @author xingshuang
  */

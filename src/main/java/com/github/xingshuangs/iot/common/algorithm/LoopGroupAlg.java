@@ -30,7 +30,7 @@ import java.util.function.BiPredicate;
 
 /**
  * Loop execute by group algorithm utility class
- * (循环处理相关工具)
+ * (Loop processing related tools)
  *
  * @author xingshuang
  */
@@ -42,7 +42,7 @@ public class LoopGroupAlg {
 
     /**
      * Loop execute each item.
-     * (循环执行)
+     * loop execution
      *
      * @param actualLength actual length
      * @param maxLength    the maximum length allowed in each loop
@@ -60,7 +60,7 @@ public class LoopGroupAlg {
 
     /**
      * Loop execute by condition and order, input two group items.
-     * 寻找满足条件的索引和长度，存在两个组
+     * Find the index and length that meet the conditions, there are two groups
      *
      * @param item1       group item1
      * @param item2       group item2
@@ -73,7 +73,7 @@ public class LoopGroupAlg {
 
         while (item1.inRange() || item2.inRange()) {
             if (item1.getOff() < item1.getActualLength() && item1.inRange()) {
-                // 全在第1项中
+                // All in item 1
                 if (biPredicate.test(item1, item2)) {
                     biConsumer.accept(item1, item2);
                     item1.setOff(item1.getOff() + item1.getLen());
@@ -82,7 +82,7 @@ public class LoopGroupAlg {
                     item1.setLen(item1.getLen() + 1);
                 }
             } else if (item1.getOff() < item1.getActualLength() && !item1.inRange() && item2.inRange()) {
-                // 既在第1项中，又在第2项中
+                // Both in item 1 and item 2
                 if (biPredicate.test(item1, item2)) {
                     biConsumer.accept(item1, item2);
                     item1.setOff(item1.getActualLength());
@@ -93,7 +93,7 @@ public class LoopGroupAlg {
                     item2.setLen(item2.getLen() + 1);
                 }
             } else if (item2.getOff() < item2.getActualLength() && item2.inRange()) {
-                // 全在第2项中
+                // All in item 2
                 if (biPredicate.test(item1, item2)) {
                     biConsumer.accept(item1, item2);
                     item2.setOff(item2.getOff() + item2.getLen());

@@ -38,7 +38,7 @@ public class FloatUtil {
 
     /**
      * Convert double to 8-byte array, in big-endian mode by default.
-     * (将double转换为字节数组，默认采用大端模式)
+     * (Convert double to byte array, big-endian mode by default)
      *
      * @param data double data
      * @return byte array
@@ -49,7 +49,7 @@ public class FloatUtil {
 
     /**
      * Convert double to 8-byte array.
-     * (将double转换为字节数组)
+     * (Convert double to byte array)
      *
      * @param data         double data
      * @param littleEndian is little endian
@@ -61,7 +61,7 @@ public class FloatUtil {
 
     /**
      * Convert float to 4-byte array, in big-endian mode by default.
-     * (将float转换为字节数组，默认采用大端模式)
+     * (Convert float to byte array, big-endian mode by default)
      *
      * @param data float data.
      * @return byte array
@@ -72,7 +72,7 @@ public class FloatUtil {
 
     /**
      * Convert float to 4-byte array.
-     * (将float转换为字节数组)
+     * (Convert float to byte array)
      *
      * @param data         float data
      * @param littleEndian true：little endian，false：big endian
@@ -84,7 +84,7 @@ public class FloatUtil {
 
     /**
      * Converts a byte array to float32.
-     * （将字节数组转换为float32）
+     * (Convert byte array to float32)
      *
      * @param data byte array
      * @return float32 data
@@ -95,7 +95,7 @@ public class FloatUtil {
 
     /**
      * Converts a byte array to float32.
-     * (将字节数组转换为float32)
+     * (Convert byte array to float32)
      *
      * @param data   byte array
      * @param offset index offset
@@ -107,7 +107,7 @@ public class FloatUtil {
 
     /**
      * Converts a byte array to float32.
-     * (将字节数组转换为float32)
+     * (Convert byte array to float32)
      *
      * @param data         byte array
      * @param offset       offset
@@ -132,7 +132,7 @@ public class FloatUtil {
 
     /**
      * Converts a byte array to float64.
-     * (将字节数组转换为float64)
+     * (Convert byte array to float64)
      *
      * @param data byte array
      * @return float64 data
@@ -143,7 +143,7 @@ public class FloatUtil {
 
     /**
      * Converts a byte array to float64.
-     * (将字节数组转换为float64)
+     * (Convert byte array to float64)
      *
      * @param data   byte array
      * @param offset index offset
@@ -155,7 +155,7 @@ public class FloatUtil {
 
     /**
      * Converts a byte array to float64.
-     * (将字节数组转换为float64)
+     * (Convert byte array to float64)
      *
      * @param data         byte array
      * @param offset       offset

@@ -32,7 +32,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * MD5 tool.
- * (MD5工具)
+ * (MD5 tool)
  *
  * @author xingshuang
  */

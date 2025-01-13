@@ -38,7 +38,7 @@ public class CRCUtil {
 
     /**
      * Table of CRC high byte values.
-     * (CRC高位字节值表)
+     * (CRC High Byte Value Table)
      */
     private static final byte[] HIGH_BYTES = {
             (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0,
@@ -71,7 +71,7 @@ public class CRCUtil {
 
     /**
      * Table of CRC low byte values.
-     * (CRC低位字节值表)
+     * (CRC Low Byte Value Table)
      */
     private static final byte[] LOW_BYTES = {
             (byte) 0x00, (byte) 0xC0, (byte) 0xC1, (byte) 0x01, (byte) 0xC3, (byte) 0x03, (byte) 0x02, (byte) 0xC2, (byte) 0xC6, (byte) 0x06,
@@ -104,7 +104,7 @@ public class CRCUtil {
 
     /**
      * Evaluates crc16, resulting in a 2-byte array.
-     * (计算crc16，结果为2字节数组)
+     * (Compute crc16 and result in a 2-byte array)
      *
      * @param data byte array
      * @return 2-byte array
@@ -122,7 +122,7 @@ public class CRCUtil {
 
     /**
      * Check CRC16
-     * (校验crc16)
+     * (Verify CRC16)
      *
      * @param data   source, byte array
      * @param target target 2-byte array
@@ -138,7 +138,7 @@ public class CRCUtil {
 
     /**
      * Calculate crc16.
-     * (计算crc16，结果为大端模式的int)
+     * (Compute CRC16 and result is int for big-endian mode)
      *
      * @param data source data
      * @return crc16 result
@@ -150,7 +150,7 @@ public class CRCUtil {
 
     /**
      * Check CRC16.
-     * (校验crc16)
+     * (Verify CRC16)
      *
      * @param data   source data
      * @param target target int data

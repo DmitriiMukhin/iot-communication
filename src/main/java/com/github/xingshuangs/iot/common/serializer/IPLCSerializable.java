@@ -27,7 +27,7 @@ package com.github.xingshuangs.iot.common.serializer;
 
 /**
  * PLC serialize interface.
- * (PLC序列化接口)
+ * (PLC Serialization Interface)
  *
  * @author xingshuang
  */
@@ -35,7 +35,7 @@ public interface IPLCSerializable {
 
     /**
      * Read data.
-     * (读数据)
+     * (Read Data)
      *
      * @param targetClass target class
      * @param <T>         type
@@ -45,7 +45,7 @@ public interface IPLCSerializable {
 
     /**
      * Write data.
-     * (写数据)
+     * (Write Data)
      *
      * @param targetBean target object.
      * @param <T>        type

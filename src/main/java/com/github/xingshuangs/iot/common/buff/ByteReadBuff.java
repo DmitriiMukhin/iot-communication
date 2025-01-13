@@ -34,7 +34,7 @@ import java.util.Arrays;
 
 /**
  * Read byte array buffer class.
- * (字节读取缓存)
+ * (byte read cache)
  *
  * @author xingshuang
  */
@@ -43,31 +43,31 @@ public class ByteReadBuff {
 
     /**
      * 4 - or 8-byte encoding format.
-     * (4字节或8字节的编码格式)
+     * (4-byte or 8-byte encoding format)
      */
     private final EByteBuffFormat format;
 
     /**
      * Data source.
-     * (数据)
+     * (data)
      */
     private final byte[] data;
 
     /**
      * Current offset.
-     * (偏移量)
+     * (offset)
      */
     private int offset;
 
     /**
      * Is little endian. The default is not, big endian mode.
-     * (是否为小端模式，默认不是，为大端模式)
+     * (Whether it is little endian mode, the default is not, it is big endian mode)
      */
     private final boolean littleEndian;
 
     /**
      * Gets the number of remaining bytes
-     * (获取剩余字节数量)
+     * (get the remaining number of bytes)
      *
      * @return the number of remaining bytes
      */
@@ -131,26 +131,26 @@ public class ByteReadBuff {
         return new ByteReadBuff(data, offset, littleEndian, format);
     }
 
-    /**
+   /**
      * Check condition.
-     * (校验条件）
+     * (verification conditions)
      *
      * @param index index number
      */
     private void checkCondition(int index) {
         if (index < 0) {
-            // 索引不能小于0
+            //The index cannot be less than 0
             throw new IndexOutOfBoundsException("Index less than 0");
         }
         if (index >= data.length) {
-            // 超过字节数组最大容量
+            //Exceeds the maximum capacity of the byte array
             throw new IndexOutOfBoundsException("Exceeds the maximum capacity of the byte array");
         }
     }
 
     /**
      * Gets boolean type data.
-     * (获取boolean类型数据)
+     * (Get boolean type data)
      *
      * @param bit bit index
      * @return boolean type data
@@ -163,7 +163,7 @@ public class ByteReadBuff {
 
     /**
      * Get one byte data.
-     * (获取1个字节数据)
+     * (Get 1 byte of data)
      *
      * @return byte data
      */
@@ -175,7 +175,7 @@ public class ByteReadBuff {
 
     /**
      * Gets all remaining bytes.
-     * (获取剩余所有字节)
+     * (get all remaining bytes)
      *
      * @return byte array
      */
@@ -186,7 +186,7 @@ public class ByteReadBuff {
 
     /**
      * Get byte array data by length.
-     * (获取字节数组数据)
+     * (Get byte array data)
      *
      * @param length length
      * @return byte array
@@ -199,7 +199,7 @@ public class ByteReadBuff {
 
     /**
      * Get int data from one byte.
-     * (获取1个字节的整形数据
+     * (Get 1 byte of integer data
      *
      * @return int data
      */
@@ -211,7 +211,7 @@ public class ByteReadBuff {
 
     /**
      * Get one int16 data.
-     * (获取int16数据)
+     * (Get int16 data)
      *
      * @return int16 data
      */
@@ -223,7 +223,7 @@ public class ByteReadBuff {
 
     /**
      * Get one uint16 data.
-     * (获取uint16数据)
+     * (Get uint16 data)
      *
      * @return uint16 data
      */
@@ -235,7 +235,7 @@ public class ByteReadBuff {
 
     /**
      * Get one int32 data.
-     * (获取int32数据)
+     * (Get int32 data)
      *
      * @return int32 data
      */
@@ -247,7 +247,7 @@ public class ByteReadBuff {
 
     /**
      * Get one uint32 data.
-     * (获取uint32数据)
+     * (Get uint32 data)
      *
      * @return uint32 data
      */
@@ -259,7 +259,7 @@ public class ByteReadBuff {
 
     /**
      * Get one int64 data.
-     * (获取int32数据)
+     * (Get int32 data)
      *
      * @return int64 data
      */
@@ -271,7 +271,7 @@ public class ByteReadBuff {
 
     /**
      * Get one float32 data.
-     * (获取float32数据)
+     * (Get float32 data)
      *
      * @return float32 data
      */
@@ -283,7 +283,7 @@ public class ByteReadBuff {
 
     /**
      * Get one uint64 data.
-     * (获取float64数据)
+     * (Get float64 data)
      *
      * @return float64 data
      */
@@ -295,7 +295,7 @@ public class ByteReadBuff {
 
     /**
      * Get string by length
-     * (获取字符串数据)
+     * (Get string data)
      *
      * @param length string length
      * @return string data
@@ -308,7 +308,7 @@ public class ByteReadBuff {
 
     /**
      * Get string with charset by length
-     * (获取字符串数据)
+     * (Get string data)
      *
      * @param length  string length
      * @param charset target charset
@@ -322,7 +322,7 @@ public class ByteReadBuff {
 
     /**
      * Get one boolean data by byte index and bit index.
-     * (获取boolean数据)
+     * (Get boolean data)
      *
      * @param index byte index
      * @param bit   bit index
@@ -335,7 +335,7 @@ public class ByteReadBuff {
 
     /**
      * Get one int data from boolean data by byte index and bit index.
-     * (获取一位的int值数据)
+     * (Get one-bit int value data)
      *
      * @param index byte index
      * @param bit   bit index
@@ -348,7 +348,7 @@ public class ByteReadBuff {
 
     /**
      * Get one byte by byte index
-     * (获取字节数据)
+     * (Get byte data)
      *
      * @param index byte index
      * @return byte data
@@ -360,7 +360,7 @@ public class ByteReadBuff {
 
     /**
      * Get byte array by byte index and length
-     * (获取字节数组数据)
+     * (Get byte array data)
      *
      * @param index  byte index
      * @param length byte length
@@ -373,7 +373,7 @@ public class ByteReadBuff {
 
     /**
      * Get one int data from one byte by byte index
-     * (获取一个字节的整形数据)
+     * (Get one byte of integer data)
      *
      * @param index byte index
      * @return int data
@@ -385,7 +385,7 @@ public class ByteReadBuff {
 
     /**
      * Gets the combination of several bits in a byte
-     * (获取一个字节中几个位组合而成的数据)
+     * (Get data composed of several bits in a byte)
      *
      * @param index         byte index
      * @param startBitIndex start bit index
@@ -399,7 +399,7 @@ public class ByteReadBuff {
 
     /**
      * Get int16 data by byte index.
-     * (获取int16数据)
+     * (Get int16 data)
      *
      * @param index byte index
      * @return int16 data
@@ -411,7 +411,7 @@ public class ByteReadBuff {
 
     /**
      * Get uint16 data by byte index.
-     * (获取uint16数据)
+     * (Get uint16 data)
      *
      * @param index byte index
      * @return uint16 data
@@ -423,7 +423,7 @@ public class ByteReadBuff {
 
     /**
      * Get int32 data by byte index.
-     * (获取int32数据)
+     * (Get int32 data)
      *
      * @param index byte index
      * @return int32 data
@@ -435,7 +435,7 @@ public class ByteReadBuff {
 
     /**
      * Get uint32 data by byte index.
-     * (获取uint32数据)
+     * (Get uint32 data)
      *
      * @param index byte index
      * @return uint32 data
@@ -447,7 +447,7 @@ public class ByteReadBuff {
 
     /**
      * Get int64 data by byte index.
-     * (获取int64数据)
+     * (Get int64 data)
      *
      * @param index byte index
      * @return int64 data
@@ -459,7 +459,7 @@ public class ByteReadBuff {
 
     /**
      * Get float32 data by byte index.
-     * (获取float32数据)
+     * (Get float32 data)
      *
      * @param index byte index
      * @return float32 data
@@ -471,7 +471,7 @@ public class ByteReadBuff {
 
     /**
      * Get float64 data by byte index.
-     * (获取float64数据)
+     * (Get float64 data)
      *
      * @param index byte index
      * @return float64 data
@@ -483,7 +483,7 @@ public class ByteReadBuff {
 
     /**
      * Get string by condition.
-     * (获取字符串)
+     * (Get string)
      *
      * @param index  byte index
      * @param length byte length
@@ -495,7 +495,7 @@ public class ByteReadBuff {
 
     /**
      * Get string by condition.
-     * (获取字符串)
+     * (Get string)
      *
      * @param index   byte index
      * @param length  byte length

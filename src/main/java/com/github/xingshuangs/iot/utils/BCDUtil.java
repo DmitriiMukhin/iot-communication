@@ -27,7 +27,7 @@ package com.github.xingshuangs.iot.utils;
 
 /**
  * BCD code conversion tool.
- * (BCD码转换工具)
+ * (BCD Code Conversion Tool)
  *
  * @author xingshuang
  */
@@ -39,7 +39,7 @@ public class BCDUtil {
 
     /**
      * Byte to int by BCD.
-     * 转换为int
+     * Convert to int
      *
      * @param data byte data
      * @return int result

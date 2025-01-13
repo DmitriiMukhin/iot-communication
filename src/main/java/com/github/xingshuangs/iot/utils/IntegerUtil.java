@@ -38,7 +38,7 @@ public class IntegerUtil {
 
     /**
      * Convert int to a 4-byte array.
-     * (将int转换为字节数组)
+     * (Convert int to byte array)
      *
      * @param data         int data
      * @param littleEndian true: little endian，false：big endian
@@ -63,7 +63,7 @@ public class IntegerUtil {
 
     /**
      * Converts int to a 4-byte array, using big-endian mode by default.
-     * (将int转换为字节数组，默认采用大端模式)
+     * (Convert int to byte array, big-endian mode by default)
      *
      * @param data int data
      * @return byte array
@@ -74,7 +74,7 @@ public class IntegerUtil {
 
     /**
      * Converts long to a 4-byte array, using big-endian mode by default
-     * (将long转换为字节数组，默认采用大端模式)
+     * (Convert long to byte array, big-endian mode by default)
      *
      * @param data long data
      * @return byte array
@@ -85,7 +85,7 @@ public class IntegerUtil {
 
     /**
      * Convert long to a 4-byte array and obtain a customized number of bytes. The default mode is big-endian.
-     * (将long转换为字节数组，并自定义获取字节数，默认采用大端模式)
+     * (Convert long to byte array, and customize the number of bytes, default to big-endian mode)
      *
      * @param data   long data
      * @param offset offset
@@ -98,7 +98,7 @@ public class IntegerUtil {
 
     /**
      * Convert long to a 4-byte array and obtain a customized number of bytes.
-     * (将long转换为字节数组，并自定义获取字节数)
+     * (Convert long to byte array, and get the number of bytes customically)
      *
      * @param data         long data
      * @param offset       offset
@@ -118,7 +118,7 @@ public class IntegerUtil {
 
     /**
      * Converts the byte array to int32.
-     * (将字节数组转换为int32)
+     * (Convert byte array to int32)
      *
      * @param data byte array
      * @return int32 data
@@ -129,7 +129,7 @@ public class IntegerUtil {
 
     /**
      * Converts the byte array to int32.
-     * (将字节数组转换为int32)
+     * (Convert byte array to int32)
      *
      * @param data   byte array
      * @param offset offset
@@ -141,7 +141,7 @@ public class IntegerUtil {
 
     /**
      * Converts the byte array to int32.
-     * (将字节数组转换为int32)
+     * (Convert byte array to int32)
      *
      * @param data         byte array
      * @param offset       offset
@@ -165,7 +165,7 @@ public class IntegerUtil {
 
     /**
      * Converts 3 bytes of the byte array to int32.
-     * (将字节数组中的3个字节转换为int32)
+     * (Convert 3 bytes in the byte array to int32)
      *
      * @param data   byte array
      * @param offset offset
@@ -177,7 +177,7 @@ public class IntegerUtil {
 
     /**
      * Converts 3 bytes of the byte array to int32.
-     * (将字节数组中的3个字节转换为int32)
+     * (Convert 3 bytes in the byte array to int32)
      *
      * @param data         byte array
      * @param offset       offset
@@ -200,7 +200,7 @@ public class IntegerUtil {
 
     /**
      * Convert byte array to uint32.
-     * (将字节数组转换为uint32)
+     * (Convert byte array to uint32)
      *
      * @param data byte array
      * @return uint32 data
@@ -211,7 +211,7 @@ public class IntegerUtil {
 
     /**
      * Convert byte array to uint32.
-     * (将字节数组转换为uint32)
+     * (Convert byte array to uint32)
      *
      * @param data   byte array
      * @param offset offset
@@ -223,7 +223,7 @@ public class IntegerUtil {
 
     /**
      * Convert byte array to uint32.
-     * (将字节数组转换为uint32)
+     * (Convert byte array to uint32)
      *
      * @param data         byte array
      * @param offset       offset

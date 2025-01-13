@@ -29,32 +29,32 @@ import com.github.xingshuangs.iot.exceptions.HexParseException;
 
 /**
  * 4 - or 8-byte encoding format.
- * (字节缓存格式)
+ * (Byte cache format)
  *
  * @author xingshuang
  */
 public enum EByteBuffFormat {
     /**
      * In the original order.
-     * (按照原始顺序排列)
+     * (Arranged in original order)
      */
     AB_CD("AB_CD"),
 
     /**
      * Invert as a single byte.
-     * (按照单字节反转)
+     * (Reverse according to single byte)
      */
     BA_DC("BA_DC"),
 
     /**
      * Reverse by double byte.
-     * (按照双字节反转)
+     * (Follow double-byte reversal)
      */
     CD_AB("CD_AB"),
 
     /**
      * In reverse order.
-     * (按照倒序排列)
+     * (Arranged in reverse order)
      */
     DC_BA("DC_BA");
 
@@ -66,7 +66,7 @@ public enum EByteBuffFormat {
 
     /**
      * The 4-byte data is reformatted in EByteBuffFormat.
-     * (4字节数据按EByteBuffFormat重新格式化)
+     * (Press E for 4-byte data in EByteBuffFormat (reformatted))
      *
      * @param data byte array
      * @return new 4-byte array.
@@ -77,7 +77,7 @@ public enum EByteBuffFormat {
 
     /**
      * The 4-byte data is reformatted in EByteBuffFormat.
-     * (4字节数据按EByteBuffFormat重新格式化)
+     * (Press E for 4-byte data in EByteBuffFormat (reformatted))
      *
      * @param data  byte array
      * @param index index
@@ -90,28 +90,28 @@ public enum EByteBuffFormat {
                 res[0] = data[index + 3];
                 res[1] = data[index + 2];
                 res[2] = data[index + 1];
-                res[3] = data[index + 0];
+                res[3] = data[index];
                 break;
             case "BA_DC":
                 res[0] = data[index + 2];
                 res[1] = data[index + 3];
-                res[2] = data[index + 0];
+                res[2] = data[index];
                 res[3] = data[index + 1];
                 break;
             case "CD_AB":
                 res[0] = data[index + 1];
-                res[1] = data[index + 0];
+                res[1] = data[index];
                 res[2] = data[index + 3];
                 res[3] = data[index + 2];
                 break;
             case "DC_BA":
-                res[0] = data[index + 0];
+                res[0] = data[index];
                 res[1] = data[index + 1];
                 res[2] = data[index + 2];
                 res[3] = data[index + 3];
                 break;
             default:
-                // 未实现该数据格式
+                // This data format is not implemented
                 throw new HexParseException("The data format is not implemented");
         }
         return res;
@@ -119,7 +119,7 @@ public enum EByteBuffFormat {
 
     /**
      * The 8-byte data is reformatted in EByteBuffFormat.
-     * (8字节数据按EByteBuffFormat重新格式化)
+     * (Press E for 8-byte data in EByteBuffFormat (reformatted))
      *
      * @param data 数据源
      * @return new 8-byte array.
@@ -130,7 +130,7 @@ public enum EByteBuffFormat {
 
     /**
      * The 4-byte data is reformatted in EByteBuffFormat.
-     * (8字节数据按EByteBuffFormat重新格式化)
+     * (Press E for 8-byte data in EByteBuffFormat (reformatted))
      *
      * @param data  byte array
      * @param index index
@@ -147,7 +147,7 @@ public enum EByteBuffFormat {
                 res[4] = data[index + 3];
                 res[5] = data[index + 2];
                 res[6] = data[index + 1];
-                res[7] = data[index + 0];
+                res[7] = data[index];
                 break;
             case "BA_DC":
                 res[0] = data[index + 6];
@@ -156,12 +156,12 @@ public enum EByteBuffFormat {
                 res[3] = data[index + 5];
                 res[4] = data[index + 2];
                 res[5] = data[index + 3];
-                res[6] = data[index + 0];
+                res[6] = data[index];
                 res[7] = data[index + 1];
                 break;
             case "CD_AB":
                 res[0] = data[index + 1];
-                res[1] = data[index + 0];
+                res[1] = data[index];
                 res[2] = data[index + 3];
                 res[3] = data[index + 2];
                 res[4] = data[index + 5];
@@ -170,7 +170,7 @@ public enum EByteBuffFormat {
                 res[7] = data[index + 6];
                 break;
             case "DC_BA":
-                res[0] = data[index + 0];
+                res[0] = data[index];
                 res[1] = data[index + 1];
                 res[2] = data[index + 2];
                 res[3] = data[index + 3];

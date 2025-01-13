@@ -33,7 +33,7 @@ import java.net.DatagramSocket;
 import java.net.SocketAddress;
 
 /**
- * UDP 服务端通信基础类
+ * UDP Basic server-side communication
  *
  * @author xingshuang
  */
@@ -41,13 +41,13 @@ public class UdpServerBasic {
 
     /**
      * Port Number.
-     * (端口号)
+     * (Port Number)
      */
     private final int port;
 
     /**
      * Udp socket object.
-     * (socket对象)
+     * (socket object)
      */
     private DatagramSocket socket;
 
@@ -65,7 +65,7 @@ public class UdpServerBasic {
 
     /**
      * Close UDP transport.
-     * (关闭)
+     * (Close)
      */
     public void close() {
         if (this.socket != null && !this.socket.isClosed()) {
@@ -75,13 +75,13 @@ public class UdpServerBasic {
 
     /**
      * Get connected socket.
-     * (获取连接socket)
+     * (Get Connection Socket)
      *
      * @return socket
      * @throws SocketRuntimeException Socket Runtime Exception
      */
     public DatagramSocket getAvailableSocket() {
-        // 已创建的直接返回socket
+        // The created socket is returned directly
         if (this.socket != null) {
             return this.socket;
         }
@@ -95,7 +95,7 @@ public class UdpServerBasic {
 
     /**
      * Write data by byte array.
-     * (写入数据)
+     * (Write Data)
      *
      * @param data    byte array
      * @param address socket address.
@@ -107,7 +107,7 @@ public class UdpServerBasic {
 
     /**
      * Write data by byte array.
-     * (写入数据)
+     * (Write Data)
      *
      * @param data    byte array
      * @param offset  the start offset in the data.
@@ -122,7 +122,7 @@ public class UdpServerBasic {
 
     /**
      * Write data by datagram packet.
-     * (写入数据)
+     * (Write Data)
      *
      * @param packet DatagramPacket object
      * @throws SocketRuntimeException Socket Runtime Exception
@@ -137,10 +137,10 @@ public class UdpServerBasic {
     }
 
     /**
-     * 读取数据
+     * Read the data
      *
-     * @param data 字节数组
-     * @return DatagramPacket数据对象
+     * @param data Byte arrays
+     * @return DatagramPacket data object
      */
     public DatagramPacket read(final byte[] data) {
         return this.read(data, 0, data.length);
@@ -148,7 +148,7 @@ public class UdpServerBasic {
 
     /**
      * Read data into DatagramPacket object
-     * (读取数据)
+     * (Read Data)
      *
      * @param data   byte array
      * @param offset the start offset in the data.
@@ -163,7 +163,7 @@ public class UdpServerBasic {
 
     /**
      * Read data into DatagramPacket object
-     * (读取数据)
+     * (Read Data)
      *
      * @param packet DatagramPacket object
      * @return DatagramPacket object

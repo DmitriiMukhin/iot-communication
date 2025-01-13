@@ -43,7 +43,7 @@ import static com.github.xingshuangs.iot.common.enums.EDataType.STRING;
 
 /**
  * Tool of byte array serialize class.
- * (字节数组序列化工具)
+ * (byte array serialization tool)
  *
  * @author xingshuang
  */
@@ -69,14 +69,14 @@ public class ByteArraySerializer implements IByteArraySerializable {
             }
             return bean;
         } catch (Exception e) {
-            // 解析成对象错误，原因：
+            // Parse into object error, reason:
             throw new ByteArrayParseException("parsing to object error, cause:" + e.getMessage(), e);
         }
     }
 
     /**
      * To object and extract parameter.
-     * (转换为对象，提取参数数据)
+     * (Convert to object, extract parameter data)
      *
      * @param parameter byte array parameter
      * @param src       byte array source
@@ -88,7 +88,7 @@ public class ByteArraySerializer implements IByteArraySerializable {
 
     /**
      * To list, and extract parameter.
-     * (转换为list对象，提取参数数据)
+     * (Convert to list object and extract parameter data)
      *
      * @param parameters list parameter.
      * @param src        byte array data.
@@ -114,7 +114,7 @@ public class ByteArraySerializer implements IByteArraySerializable {
     @Override
     public <T> byte[] toByteArray(final T targetBean) {
         try {
-            // 组装数据，同时计算最大的字节长度
+            // Assemble data while calculating maximum byte length
             int buffSize = 0;
             List<ByteArrayParseData> parseDataList = new ArrayList<>();
             for (final Field field : targetBean.getClass().getDeclaredFields()) {
@@ -134,7 +134,7 @@ public class ByteArraySerializer implements IByteArraySerializable {
             if (buffSize == 0 || parseDataList.isEmpty()) {
                 return new byte[0];
             }
-            // 填充字节数组的内容
+            // Fill the contents of the byte array
             ByteWriteBuff buff = ByteWriteBuff.newInstance(buffSize);
             for (ByteArrayParseData item : parseDataList) {
                 item.getField().setAccessible(true);
@@ -156,7 +156,7 @@ public class ByteArraySerializer implements IByteArraySerializable {
 
     /**
      * Extract target data by condition.
-     * (提取数据)
+     * (extract data)
      *
      * @param src      byte array
      * @param bean     bean object
@@ -230,35 +230,35 @@ public class ByteArraySerializer implements IByteArraySerializable {
                 field.set(bean, buff.getString(variable.getByteOffset(), variable.getCount()));
                 break;
             default:
-                // 提取数据的时候无法识别数据类型
+                // Unable to identify data type when extracting data
                 throw new ByteArrayParseException("The data type can not be recognized when extracting the data");
         }
     }
 
     /**
      * Check byte array variable.
-     * (校验字节数组注解的参数)
+     * (Verify parameters of byte array annotation)
      *
      * @param variable variable
      */
     private void checkByteArrayVariable(ByteArrayParameter variable) {
         if (variable.getByteOffset() < 0) {
-            // 字节偏移量不能为负数
+            // The byte offset cannot be negative
             throw new ByteArrayParseException("The byte offset can't be negative");
         }
         if (variable.getCount() < 0) {
-            // 数据个数不能为负数
+            // The number of data cannot be negative
             throw new ByteArrayParseException("The number of data can't be negative");
         }
         if (variable.getType() == BOOL && (variable.getBitOffset() > 7 || variable.getBitOffset() < 0)) {
-            // 当数据类型为bool时，位偏移量只能是[0,7]
+            // When the data type is bool, the offset can only be [0,7]
             throw new ByteArrayParseException("When the data type is bool, the bit offset can only be [0,7].");
         }
     }
 
     /**
      * Fill with one data.
-     * (填充一个数据)
+     * (Populate a data)
      *
      * @param variable annotation of byte array variable
      * @param data     data object
@@ -301,14 +301,14 @@ public class ByteArraySerializer implements IByteArraySerializable {
                 buff.putString((String) data, StandardCharsets.UTF_8, variable.byteOffset());
                 break;
             default:
-                // 填充数据的时候无法识别数据类型
+                // The data type is not recognized when the data is populated
                 throw new ByteArrayParseException("The data type can not be recognized when populating the data");
         }
     }
 
     /**
      * Fill with list data.
-     * (填充多个数据，必须是list的数据)
+     * (Populated with multiple data, must be list data)
      *
      * @param variable annotation of byte array variable
      * @param data     data object

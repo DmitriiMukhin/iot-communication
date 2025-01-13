@@ -32,7 +32,7 @@ import java.lang.annotation.*;
 
 /**
  * Annotation of byte array variable.
- * (字节数组变量参数)
+ * (byte array variable parameter)
  */
 @Target(value = {ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
@@ -41,7 +41,7 @@ public @interface ByteArrayVariable {
 
     /**
      * Byte offset.
-     * (字节偏移量)
+     * (Byte Offset)
      *
      * @return byte offset
      */
@@ -49,7 +49,7 @@ public @interface ByteArrayVariable {
 
     /**
      * Bit offset.
-     * (位偏移量)
+     * (Bit Offset)
      *
      * @return the bit offset
      */
@@ -57,14 +57,14 @@ public @interface ByteArrayVariable {
 
     /**
      * Count, if count bigger than 1, then must use list type.
-     * (数量，数量大于1的时候对应的数据必须使用list)
+     * (Quantity, when the quantity is greater than 1, the corresponding data must use list)
      *
      * @return count
      */
     int count() default 1;
 
     /**
-     * 类型
+     * Type
      *
      * @return type
      */
@@ -72,7 +72,7 @@ public @interface ByteArrayVariable {
 
     /**
      * Is little endian.
-     * (是否小端模式)
+     * (Little-endian mode)
      *
      * @return is little endian
      */
@@ -80,7 +80,7 @@ public @interface ByteArrayVariable {
 
     /**
      * 4 - or 8-byte encoding format.
-     * (数据格式)
+     * (Data Format)
      *
      * @return format
      */

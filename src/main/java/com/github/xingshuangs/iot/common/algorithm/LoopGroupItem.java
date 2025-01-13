@@ -29,7 +29,7 @@ import lombok.Data;
 
 /**
  * Loop group item, include basic parameter.
- * (基础数据参数)
+ * (Basic data parameters)
  *
  * @author xingshuang
  */
@@ -38,19 +38,19 @@ public class LoopGroupItem {
 
     /**
      * Actual length.
-     * (实际长度)
+     * (actual length)
      */
     private int actualLength = 0;
 
     /**
      * Current offset.
-     * (当前偏移量)
+     * (current offset)
      */
     private int off = 0;
 
     /**
      * Current length.
-     * (当前长度)
+     * (current length)
      */
     private int len = 0;
 
@@ -63,9 +63,9 @@ public class LoopGroupItem {
 
     /**
      * If current data is in valid range.
-     * (判定是否在有效范围内)
+     * (determine whether it is within the valid range)
      *
-     * @return true：in range，false：out range.
+     * @return true: in range, false: out range.
      */
     public boolean inRange() {
         return this.off + this.len < this.actualLength;

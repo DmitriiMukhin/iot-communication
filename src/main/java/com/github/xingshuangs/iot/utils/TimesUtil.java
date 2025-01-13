@@ -31,7 +31,7 @@ import java.time.LocalDateTime;
 
 /**
  * Time tool.
- * (时间工具)
+ * (Time Tool)
  *
  * @author xingshuang
  */
@@ -45,7 +45,7 @@ public class TimesUtil {
 
     /**
      * Get NTP total second.
-     * (获取NTP所有的秒时间)
+     * (Get NTP all seconds time)
      *
      * @param dateTime dateTime
      * @return second
@@ -57,7 +57,7 @@ public class TimesUtil {
 
     /**
      * Get NTP Date.
-     * (获取NTP日期)
+     * (Date of obtaining NTP)
      *
      * @param day long data
      * @return Date
@@ -68,7 +68,7 @@ public class TimesUtil {
 
     /**
      * Get NTP DateTime.
-     * (获取NTP时间)
+     * (Get NTP Time)
      *
      * @param second second
      * @return DateTime
@@ -79,7 +79,7 @@ public class TimesUtil {
 
     /**
      * Get NTP start time.
-     * (获取NTP起始时间)
+     * (Get NTP Start Time)
      *
      * @return start time
      */
@@ -89,7 +89,7 @@ public class TimesUtil {
 
     /**
      * Get NTP start time.
-     * (获取NTP起始时间)
+     * (Get NTP Start Time)
      *
      * @return start time
      */
@@ -104,7 +104,7 @@ public class TimesUtil {
 
     /**
      * Get UTC total second.
-     * (获取UTC所有的秒时间)
+     * (Get all seconds in UTC)
      *
      * @param dateTime dateTime
      * @return second
@@ -116,7 +116,7 @@ public class TimesUtil {
 
     /**
      * Get UTC date.
-     * (获取UTC日期)
+     * (Get UTC Date)
      *
      * @param day long data
      * @return Date
@@ -127,7 +127,7 @@ public class TimesUtil {
 
     /**
      * Get UTC dateTime.
-     * (获取UTC时间)
+     * (Get UTC Time)
      *
      * @param second second
      * @return DateTime
@@ -138,7 +138,7 @@ public class TimesUtil {
 
     /**
      * Get UTC start Date.
-     * (获取UTC起始时间)
+     * (Get UTC Start Time)
      *
      * @return start time
      */
@@ -148,7 +148,7 @@ public class TimesUtil {
 
     /**
      * Get UTC start Date.
-     * (获取UTC起始时间)
+     * (Get UTC Start Time)
      *
      * @return start time
      */

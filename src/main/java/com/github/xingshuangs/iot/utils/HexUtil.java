@@ -38,34 +38,34 @@ public class HexUtil {
         // do nothing
     }
 
-    /**
+/**
      * Verify regular expressions for hexadecimal strings.
-     * 验证16进制字符串的正则表达式
-     * ^ = 开始
-     * $ = 结束
-     * + = 匹配前面的子表达式一次或多次。
-     * [] = 表达式的开始和结束
+     * Validate regular expressions for hexadecimal strings
+     * ^ = start
+     * $ = end
+     * + = Match the preceding subexpression one or more times.
+     * [] = The beginning and end of the expression
      */
     private static final String REGEX = "^[a-f0-9A-F]+$";
 
     /**
      * Converts a string to a hexadecimal array, string like 1a6BdE8c.
-     * (将字符串转换为16进制的数组)
+     * (Convert strings to hexadecimal arrays)
      *
      * @param src string
      * @return byte array
      */
     public static byte[] toHexArray(String src) {
         if (src == null || src.length() == 0) {
-            // 字符串不能为null或长度不能为0
+            // The string cannot be null or the length cannot be 0
             throw new HexParseException("The string cannot be null or the length cannot be 0");
         }
         if ((src.length() & -src.length()) == 1) {
-            // 输入的字符串个数必须为偶数
+            // The number of strings entered must be even
             throw new HexParseException("The number of strings entered must be an even number");
         }
         if (!src.matches(REGEX)) {
-            // 字符串内容必须是[0-9|a-f|A-F]
+            // The string content must be [0-9|a-f|A-F]
             throw new HexParseException("The string content must be [0-9|a-f|A-F].");
         }
 
@@ -81,10 +81,10 @@ public class HexUtil {
 
     /**
      * Converts a byte array to a hexadecimal string, separated by Spaces by default.
-     * (将字节数组转换为16进制字符串，并且默认按空格隔开)
+     * (Converts byte arrays to hexadecimal strings and separates them by spaces by default)
      *
-     * @param src 字节数组
-     * @return 字符串
+     * @param src Byte arrays
+     * @return String
      */
     public static String toHexString(byte[] src) {
         return toHexString(src, " ", true);
@@ -92,7 +92,7 @@ public class HexUtil {
 
     /**
      * Converts a byte array to a hexadecimal string.
-     * (将字节数组转换为16进制字符串)
+     * (Convert byte arrays to hexadecimal strings)
      *
      * @param src      byte array
      * @param splitStr separator string
@@ -104,7 +104,7 @@ public class HexUtil {
 
     /**
      * Converts a byte array to a hexadecimal string.
-     * (将字节数组转换为16进制字符串)
+     * (Convert byte arrays to hexadecimal strings)
      *
      * @param src       byte array
      * @param splitStr  separator string

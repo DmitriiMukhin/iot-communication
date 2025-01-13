@@ -45,46 +45,46 @@ import static com.github.xingshuangs.iot.common.constant.GeneralConst.LOCALHOST;
 @Slf4j
 public class TcpClientBasic implements ICommunicable {
 
-    // region 私有对象
+    // region Private objects
 
     /**
      * TAG name.
-     * (TAG名)
+     * (TAG name)
      */
     protected String tag = "";
 
     /**
      * socket object.
-     * (socket对象)
+     * (socket object)
      */
     protected Socket socket;
 
     /**
      * Connect timeout in millisecond, 10_000ms default.
-     * (连接超时时间，默认是10s)
+     * (Connection timeout period, default is 10s)
      */
     protected int connectTimeout = 10_000;
 
     /**
      * Receive timeout in millisecond, 10_000ms default.
-     * (接收数据超时时间，默认是10s)
+     * (The timeout period for receiving data is 10s by default.)
      */
     protected int receiveTimeout = 10_000;
 
     /**
      * Socket address.
-     * (socket的地址)
+     * (Socket address)
      */
     protected final InetSocketAddress socketAddress;
 
     /**
      * Flag, is socket has error.
-     * (socket是否发生错误)
+     * (Socket error)
      */
     protected final AtomicBoolean socketError;
 
     /**
-     * 自动重连，true:自动重连，false：不自动重连，默认自动重连
+     * Auto-reconnect, true: auto-reconnect, false: does not auto-reconnect, auto-reconnects by default
      */
     protected boolean enableReconnect = true;
 
@@ -118,7 +118,7 @@ public class TcpClientBasic implements ICommunicable {
 
     // endregion
 
-    // region 构造方法
+    // region constructor
     public TcpClientBasic() {
         this(LOCALHOST, 8088);
     }
@@ -129,11 +129,11 @@ public class TcpClientBasic implements ICommunicable {
     }
     // endregion
 
-    //region 公共方法
+    //region Public approach
 
     /**
      * Check connected state.
-     * (校验连接状态，true为连接，false为断开)
+     * (Verify the connection status, true is connected, false is disconnected)
      *
      * @return connected state，true: connected，false: disconnected.
      */
@@ -143,7 +143,7 @@ public class TcpClientBasic implements ICommunicable {
 
     /**
      * Connect server.
-     * (连接)
+     * (Connect)
      *
      * @throws SocketRuntimeException Socket Runtime Exception
      */
@@ -154,31 +154,31 @@ public class TcpClientBasic implements ICommunicable {
 
     /**
      * Get available socket object.
-     * (获取有效的socket对象)
+     * (Get a valid socket object)
      *
      * @return socket object
      * @throws SocketRuntimeException Socket Runtime Exception
      */
     public Socket getAvailableSocket() {
-        // socket连接过了，同时又不支持自动重连，直接返回
+        // The socket has been connected, and it does not support automatic reconnection, so it is returned directly
         if (this.socket != null && !this.enableReconnect) {
             return this.socket;
         }
 
-        // 已连接的直接返回socket
+        // Connected ones are returned directly to the socket
         if (this.checkConnected()) {
             return this.socket;
         }
-        // 未连接，表示已断开，需要手动关闭socket，创建新的socket
+        // If it is not connected, it means that it has been disconnected, and you need to manually close the socket and create a new socket
         this.close();
 
         try {
-            // 重新创建对象，并连接
+            // Recreate the object and connect it
             this.socket = new Socket();
             this.socket.setSoTimeout(this.receiveTimeout);
             this.socket.connect(this.socketAddress, this.connectTimeout);
             this.socketError.set(false);
-            // 创建并连接{}服务端[{}]成功
+            // The {{} server [{}] is created and connected successfully
             log.debug("Create socket and connect to {} server [{}] succeed", this.tag, this.socketAddress);
             this.doAfterConnected();
             return socket;
@@ -189,7 +189,7 @@ public class TcpClientBasic implements ICommunicable {
 
     /**
      * Close socket.
-     * (关闭socket)
+     * (Socket Off)
      *
      * @throws SocketRuntimeException Socket Runtime Exception
      */
@@ -205,17 +205,17 @@ public class TcpClientBasic implements ICommunicable {
 
     /**
      * Do after connected.
-     * 连(接成功之后要做的动作)
+     * Connect (the action to be done after the connection is successful)
      */
     protected void doAfterConnected() {
         // NOOP
     }
 
-    //region 读写方法
+    //region Reading and writing methods
 
     /**
      * Write data by byte array.
-     * （写入数据）
+     * (Write Data)
      *
      * @param data byte array
      * @throws SocketRuntimeException Socket Runtime Exception
@@ -226,7 +226,7 @@ public class TcpClientBasic implements ICommunicable {
 
     /**
      * Write data by byte array.
-     * （写入数据）
+     * (Write Data)
      *
      * @param data   byte array
      * @param offset the start offset in the data.
@@ -239,7 +239,7 @@ public class TcpClientBasic implements ICommunicable {
 
     /**
      * Write data by byte array.
-     * （写入数据）
+     * (Write Data)
      *
      * @param data      byte array
      * @param offset    the start offset in the data.
@@ -259,7 +259,7 @@ public class TcpClientBasic implements ICommunicable {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param data byte array
      * @return the total number of bytes read into the data
@@ -271,7 +271,7 @@ public class TcpClientBasic implements ICommunicable {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param data    byte array
      * @param timeout timeout with ms, 0: no timeout
@@ -284,7 +284,7 @@ public class TcpClientBasic implements ICommunicable {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param data   byte array
      * @param offset the start offset in the data.
@@ -298,7 +298,7 @@ public class TcpClientBasic implements ICommunicable {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param data        byte array
      * @param offset      the start offset in the data.
@@ -313,7 +313,7 @@ public class TcpClientBasic implements ICommunicable {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param data    byte array
      * @param offset  the start offset in the data.
@@ -328,7 +328,7 @@ public class TcpClientBasic implements ICommunicable {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param data      byte array
      * @param offset    the start offset in the data.
@@ -344,7 +344,7 @@ public class TcpClientBasic implements ICommunicable {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param data        byte array
      * @param offset      the start offset in the data.

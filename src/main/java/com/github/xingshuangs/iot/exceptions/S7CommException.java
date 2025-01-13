@@ -26,7 +26,7 @@ package com.github.xingshuangs.iot.exceptions;
 
 /**
  * S7 communication runtime exception class.
- * (S7通信异常)
+ * (S7 communication abnormal)
  *
  * @author xingshuang
  */

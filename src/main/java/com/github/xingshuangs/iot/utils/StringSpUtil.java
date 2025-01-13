@@ -32,7 +32,7 @@ import java.util.Map;
 
 /**
  * String splitting tool.
- * (字符串分割工具)
+ * (String Splitting Tool)
  *
  * @author xingshuang
  */
@@ -44,7 +44,7 @@ public class StringSpUtil {
 
     /**
      * Two-step segmentation, divided by row and converted to Map.
-     * (两步分割，按行分割并转化为Map)
+     * (Split in two steps, split by row and converted to Map)
      *
      * @param src     string
      * @param rowChar row string split character
@@ -65,7 +65,7 @@ public class StringSpUtil {
 
     /**
      * One-step split, split by row converted to List.
-     * (一步分割，按行分割转化为List)
+     * (One-step splitting, row splitting into List)
      *
      * @param src     string
      * @param rowChar row string split character
@@ -85,7 +85,7 @@ public class StringSpUtil {
 
     /**
      * Gets all indexes of string tags.
-     * (获取字符串标记的所有索引)
+     * (Get all indexes for string tags)
      *
      * @param src string
      * @param tag tag string

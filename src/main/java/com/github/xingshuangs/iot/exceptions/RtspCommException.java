@@ -26,7 +26,7 @@ package com.github.xingshuangs.iot.exceptions;
 
 /**
  * RTSP communication runtime exception class.
- * (RTSP的运行异常)
+ * (RTSP is running abnormally)
  *
  * @author xingshuang
  */

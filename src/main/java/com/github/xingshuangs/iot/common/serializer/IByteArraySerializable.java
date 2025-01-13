@@ -27,7 +27,7 @@ package com.github.xingshuangs.iot.common.serializer;
 
 /**
  * Byte array serialize interface
- * (字节数组的序列化接口)
+ * (Serialization interface for byte arrays)
  *
  * @author xingshuang
  */
@@ -35,7 +35,7 @@ public interface IByteArraySerializable {
 
     /**
      * To object.
-     * (转换为对象)
+     * (Convert to Object)
      *
      * @param targetClass target class
      * @param src         byte array
@@ -46,7 +46,7 @@ public interface IByteArraySerializable {
 
     /**
      * To byte array.
-     * (转换为数组)
+     * (Convert to byte array)
      *
      * @param targetBean target object
      * @param <T>        type

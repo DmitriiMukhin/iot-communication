@@ -39,13 +39,13 @@ public class ByteArrayParseData {
 
     /**
      * Annotation of byte array.
-     * (字节数组注解参数)
+     * (byte array annotation parameter)
      */
     ByteArrayVariable variable;
 
     /**
      * Field content.
-     * (字段内容)
+     * (Field content)
      */
     Field field;
 

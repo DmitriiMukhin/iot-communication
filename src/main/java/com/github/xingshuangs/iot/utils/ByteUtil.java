@@ -39,7 +39,7 @@ public class ByteUtil {
 
     /**
      * Int to byte.
-     * (将int转换为byte)
+     * (convert int to byte)
      *
      * @param data int data
      * @return byte dta
@@ -50,7 +50,7 @@ public class ByteUtil {
 
     /**
      * Byte to uint8.
-     * (将byte转换为 uint8)
+     * (Convert byte to uint8)
      *
      * @param data byte data
      * @return uint8 data
@@ -61,7 +61,7 @@ public class ByteUtil {
 
     /**
      * Byte array to int32.
-     * (将字节数组转换为int32）
+     * (Convert byte array to int32)
      *
      * @param data byte array
      * @return int32 data
@@ -72,7 +72,7 @@ public class ByteUtil {
 
     /**
      * Byte array to int32 by byte offset.
-     * (将字节数组转换为int32)
+     * (Convert byte array to int32)
      *
      * @param data   byte array
      * @param offset index offset
@@ -90,7 +90,7 @@ public class ByteUtil {
 
     /**
      * Gets the value of the byte in the specified range bit.
-     * (获取字节指定范围bit的数值)
+     * (Get the value of the byte in the specified range bit)
      *
      * @param data          byte data
      * @param startBitIndex start bit index
@@ -109,7 +109,7 @@ public class ByteUtil {
 
     /**
      * Byte array to String.
-     * (将字节转换为字符串)
+     * (Convert bytes to strings)
      *
      * @param data byte array
      * @return String
@@ -120,7 +120,7 @@ public class ByteUtil {
 
     /**
      * Byte array to String by byte offset.
-     * (将字节转换为字符串)
+     * (Convert bytes to strings)
      *
      * @param data   byte array
      * @param offset index offset
@@ -132,7 +132,7 @@ public class ByteUtil {
 
     /**
      * Byte array to String.
-     * (将字节转换为字符串)
+     * (Convert bytes to strings)
      *
      * @param data   byte array
      * @param offset index offset
@@ -145,7 +145,7 @@ public class ByteUtil {
 
     /**
      * Byte array to String.
-     * (将字节转换为字符串)
+     * (Convert bytes to strings)
      *
      * @param data        byte array
      * @param offset      index offset

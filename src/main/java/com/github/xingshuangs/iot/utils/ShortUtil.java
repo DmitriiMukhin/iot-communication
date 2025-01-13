@@ -36,7 +36,7 @@ public class ShortUtil {
 
     /**
      * Convert int to a 2-byte array.
-     * (将int转换为字节数组)
+     * (Convert int to byte array)
      *
      * @param data         int data
      * @param littleEndian true: little endian，false：big endian
@@ -57,7 +57,7 @@ public class ShortUtil {
 
     /**
      * Convert int to a 2-byte array, using big-endian mode by default.
-     * (将int转换为字节数组)
+     * (Convert int to byte array)
      *
      * @param data int data
      * @return byte array
@@ -68,7 +68,7 @@ public class ShortUtil {
 
     /**
      * Convert short to a 2-byte array, using big-endian mode by default.
-     * (将short转换为字节数组)
+     * (Convert short to byte array)
      *
      * @param data short data
      * @return byte array
@@ -79,7 +79,7 @@ public class ShortUtil {
 
     /**
      * Converts the byte array to int16.
-     * (将字节数组转换为int16)
+     * (Convert byte array to int16)
      *
      * @param data byte array
      * @return int16 data
@@ -90,7 +90,7 @@ public class ShortUtil {
 
     /**
      * Converts the byte array to int16.
-     * (将字节数组转换为int16)
+     * (Convert byte array to int16)
      *
      * @param data   byte array
      * @param offset offset
@@ -102,7 +102,7 @@ public class ShortUtil {
 
     /**
      * Converts the byte array to int16.
-     * (将字节数组转换为int16)
+     * (Convert byte array to int16)
      *
      * @param data         byte array
      * @param offset       offset
@@ -115,7 +115,7 @@ public class ShortUtil {
 
     /**
      * Converts the byte array to uint16.
-     * (将字节数组转换为uint16)
+     * (Convert byte array to uint16)
      *
      * @param data byte array
      * @return int16 data
@@ -126,7 +126,7 @@ public class ShortUtil {
 
     /**
      * Converts the byte array to uint16.
-     * (将字节数组转换为uint16)
+     * (Convert byte array to uint16)
      *
      * @param data   byte array
      * @param offset offset
@@ -138,7 +138,7 @@ public class ShortUtil {
 
     /**
      * Converts the byte array to uint16.
-     * (将字节数组转换为uint16)
+     * (Convert byte array to uint16)
      *
      * @param data         byte array
      * @param offset       offset

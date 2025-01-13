@@ -40,13 +40,13 @@ public class UdpClientSample extends UdpClientBasic {
 
     /**
      * flag, is thread terminal.
-     * (是否终止线程)
+     * (whether to terminate the thread)
      */
     private boolean terminal = false;
 
     /**
      * Custom callback interface.
-     * (数据收发前自定义处理接口)
+     * (Custom processing interface before data sending and receiving)
      */
     private Consumer<byte[]> commCallback;
 
@@ -68,7 +68,7 @@ public class UdpClientSample extends UdpClientBasic {
     }
 
     private void waitForReceiveData() {
-        // 开启接收数据线程，远程的IP:{}，端口号：{}
+        // Start the receiving data thread, remote IP address: {}, port number: {}
         log.debug("Open the receiving thread, remote IP:{}, port number :{}", this.serverAddress.getAddress().getHostAddress(), this.serverAddress.getPort());
         while (!this.terminal) {
             try {

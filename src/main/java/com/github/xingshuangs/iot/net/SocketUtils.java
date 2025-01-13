@@ -34,7 +34,7 @@ import java.net.Socket;
 
 /**
  * Socket communication util.
- * Socket通信工具
+ * Socket communication tools
  *
  * @author xingshuang
  */
@@ -46,7 +46,7 @@ public class SocketUtils {
 
     /**
      * Close socket.
-     * (关闭socket)
+     * (Socket Off)
      *
      * @param socket socket object
      * @throws IOException IO exception
@@ -59,7 +59,7 @@ public class SocketUtils {
 
     /**
      * Get connected status, true：connected，false：disconnected.
-     * (是否连接状态)
+     * (Connection status)
      *
      * @param socket socket object
      * @return true：connected，false：disconnected
@@ -70,7 +70,7 @@ public class SocketUtils {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param socket socket object
      * @param data   byte array
@@ -83,7 +83,7 @@ public class SocketUtils {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param socket socket object
      * @param data   byte array
@@ -98,7 +98,7 @@ public class SocketUtils {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param socket    socket object
      * @param data      byte array
@@ -114,7 +114,7 @@ public class SocketUtils {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param socket    socket object
      * @param data      byte array
@@ -132,7 +132,7 @@ public class SocketUtils {
 
     /**
      * Read data and store it in the position of the specified byte array.
-     * （读取数据）
+     * (Read Data)
      *
      * @param socket      socket object
      * @param data        byte array
@@ -152,23 +152,24 @@ public class SocketUtils {
         if (timeout < 0) {
             throw new IllegalArgumentException("timeout>=0");
         }
-        // 阻塞不是指read的时间长短，可以理解为没有数据可读，线程一直在这等待
+        // Blocking does not refer to the length of time it takes to read,
+        // it can be understood that there is no data to read, and the thread is waiting here
         socket.setSoTimeout(timeout);
-        // 读取个数
+        // Number of reads
         int count = 0;
-        // 读取位置平移量，会变
+        // The amount of translation in the read position will change
         int off = offset;
         InputStream in = socket.getInputStream();
         while (count < length) {
             int len = maxLength <= 0 ? length - count : Math.min(maxLength, length - count);
             int num = in.read(data, off, len);
             if (num < 0) {
-                // 读取数据异常，未读取到数据，连接断开
+                // The read data is abnormal, the data is not read, and the connection is disconnected
                 throw new SocketRuntimeException("The end of the stream has been reached, and disconnected");
             }
             count += num;
             off += num;
-            // 实际读取的数据长度比期望还小，则证明已经读取完了
+            // If the actual length of the data read is smaller than expected, it proves that the read has been completed
             if (!waitForMore && num < len) {
                 break;
             }
@@ -178,7 +179,7 @@ public class SocketUtils {
 
     /**
      * Write data by byte array.
-     * （写入数据）
+     * (Write Data)
      *
      * @param socket socket object
      * @param data   byte array
@@ -190,7 +191,7 @@ public class SocketUtils {
 
     /**
      * Write data by byte array.
-     * （写入数据）
+     * (Write Data)
      *
      * @param socket socket object
      * @param data   byte array
@@ -204,7 +205,7 @@ public class SocketUtils {
 
     /**
      * Write data by byte array.
-     * （写入数据）
+     * (Write Data)
      *
      * @param socket    socket object
      * @param data      byte array
@@ -217,9 +218,9 @@ public class SocketUtils {
         if (offset + length > data.length) {
             throw new IllegalArgumentException("offset+length");
         }
-        // 写入个数
+        // Number of writes
         int count = 0;
-        // 写入位置平移量，会变
+        // The amount of translation of the write position, will change
         int off = offset;
         OutputStream out = socket.getOutputStream();
         while (count < length) {
