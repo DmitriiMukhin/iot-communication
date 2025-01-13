@@ -32,14 +32,14 @@ import java.util.List;
 
 /**
  * NCK request builder.
- * NCK请求构建器
+ * NCK request builder
  *
  * @author xingshuang
  */
 public class NckRequestBuilder {
 
     private NckRequestBuilder() {
-        // NOOP
+        //NOOP
     }
 
     public static S7Data creatNckRequest(RequestNckItem item) {

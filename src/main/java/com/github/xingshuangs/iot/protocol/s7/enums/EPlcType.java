@@ -43,19 +43,19 @@ public enum EPlcType {
 
     /**
      * Rack.
-     * PLC机架号
+     * PLC rack number
      */
     private final int rack;
 
     /**
      * Slot.
-     * PLC槽号
+     * PLC slot number
      */
     private final int slot;
 
     /**
      * PDU max length.
-     * PDU最大允许长度
+     * The maximum allowable length of the PDU
      */
     private final int pduLength;
 

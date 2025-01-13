@@ -49,37 +49,37 @@ public class PlcControlParameter extends Parameter implements IObjectByteArray {
 
     /**
      * Unknown bytes.
-     * 未知字节，固定参数 <br>
-     * 字节大小：7 <br>
-     * 字节序数：1-7
+     * Unknown byte, fixed parameter <br>
+     * Byte size: 7 <br>
+     * Byte ordinal: 1-7
      */
     private byte[] unknownBytes = new byte[]{(byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0xFD};
 
     /**
      * Parameter block length.
-     * 参数块长度 <br>
-     * 字节大小：2 <br>
-     * 字节序数：8-9
+     * Parameter block length <br>
+     * Byte size: 2 <br>
+     * Byte ordinal: 8-9
      */
     private int parameterBlockLength = 0;
 
     /**
      * Parameter block.
-     * 参数块内容
+     * Parameter block content
      */
     private PlcControlParamBlock parameterBlock;
 
     /**
      * Service length, the length of subsequent bytes, excluding itself.
-     * 服务名长度，后续字节长度，不包含自身 <br>
-     * 字节大小：1 <br>
-     * 字节序数：不定
+     * Service name length, subsequent byte length, excluding itself <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: Undefined
      */
     private int lengthPart = 0;
 
     /**
      * Service name.
-     * 程序调用的服务名
+     * The service name called by the program
      */
     private String piService = "";
 
@@ -122,7 +122,7 @@ public class PlcControlParameter extends Parameter implements IObjectByteArray {
      */
     public static PlcControlParameter fromBytes(final byte[] data) {
         if (data.length < 11) {
-            // PlcControlParameter解析有误，PlcControlParameter字节数组长度 < 11
+            // PlcControlParameter There was an error in parsing，PlcControlParameter The length of the byte array < 11
             throw new S7CommException("PlcControlParameter parsing error, PlcControlParameter byte array length < 11");
         }
         ByteReadBuff buff = new ByteReadBuff(data);
@@ -139,7 +139,7 @@ public class PlcControlParameter extends Parameter implements IObjectByteArray {
 
     /**
      * Hot restart.
-     * 热重启
+     * Hot reboot
      *
      * @return startParameter
      */
@@ -152,7 +152,7 @@ public class PlcControlParameter extends Parameter implements IObjectByteArray {
 
     /**
      * Cold restart.
-     * 冷启动
+     * Сold boot
      *
      * @return startParameter
      */
@@ -165,7 +165,7 @@ public class PlcControlParameter extends Parameter implements IObjectByteArray {
 
     /**
      * Copy ram to rom.
-     * 将ram复制到rom中
+     * Copy the RAM into the ROM
      *
      * @return startParameter
      */
@@ -190,7 +190,7 @@ public class PlcControlParameter extends Parameter implements IObjectByteArray {
 
     /**
      * Create insert command.
-     * 创建插入文件指令
+     * Create an insert file directive
      *
      * @param blockType             block type 块类型
      * @param blockNumber           block number 块编号

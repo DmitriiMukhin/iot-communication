@@ -32,7 +32,7 @@ import java.util.List;
 
 /**
  * Merge group Class
- * 合并组
+ * Merge groups
  *
  * @author xingshuang
  */
@@ -41,13 +41,13 @@ public class S7ComGroup {
 
     /**
      * Data item list.
-     * (数据项列表)
+     * (List of Data Items)
      */
     private List<S7ComItem> items = new ArrayList<>();
 
     /**
      * Add data item.
-     * (添加数据)
+     * (Add Data)
      *
      * @param item data item
      */

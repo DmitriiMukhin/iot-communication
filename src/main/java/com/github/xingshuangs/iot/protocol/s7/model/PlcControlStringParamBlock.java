@@ -31,7 +31,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * PLC control, parameter block string.
- * PLC控制参数块，字符串格式
+ * PLC control parameter block, string format
  *
  * @author xingshuang
  */

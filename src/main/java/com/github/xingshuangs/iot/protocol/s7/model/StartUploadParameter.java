@@ -35,7 +35,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * Start upload parameter.
- * 开始上传参数
+ * Start uploading parameters
  *
  * @author xingshuang
  */
@@ -71,7 +71,7 @@ public class StartUploadParameter extends DownloadParameter {
     /**
      * Parses byte array and converts it to object.
      *
-     * @param data   byte array
+     * @param data byte array
      * @param offset index offset
      * @return StartUploadParameter
      */

@@ -30,7 +30,7 @@ import lombok.Data;
 
 /**
  * S7 parameter.
- * S7参数
+ * S7 parameters
  *
  * @author xingshuang
  */
@@ -39,25 +39,25 @@ public class S7Parameter {
 
     /**
      * Address.
-     * (地址)
+     * (address)
      */
     protected String address = "";
 
     /**
      * Data type.
-     * (数据类型)
+     * (Data Type)
      */
     protected EDataType dataType = EDataType.BYTE;
 
     /**
      * Except for Byte and String, the count of other types must be 1
-     * (个数,除字节Byte和String类型外，其他类型对应的count必须为1)
+     * (Number, except for Byte and String types, the count corresponding to other types must be 1)
      */
     protected Integer count = 1;
 
     /**
      * Value
-     * (对应的值)
+     * (corresponding value)
      */
     protected Object value;
 

@@ -32,7 +32,7 @@ import lombok.Data;
 
 /**
  * Parameter.
- * 参数
+ * Parameters
  *
  * @author xingshuang
  */
@@ -41,9 +41,9 @@ public class Parameter implements IObjectByteArray {
 
     /**
      * Function code.
-     * 功能码 <br>
-     * 字节大小：1 <br>
-     * 字节序数：0
+     * Function code <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 0
      */
     protected EFunctionCode functionCode = EFunctionCode.READ_VARIABLE;
 

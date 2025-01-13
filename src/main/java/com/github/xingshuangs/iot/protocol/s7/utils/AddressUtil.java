@@ -33,7 +33,7 @@ import java.util.regex.Pattern;
 
 /**
  * Address parser class.
- * S7协议地址解析工具
+ * S7 protocol address resolution tool
  * DB1.0.1、DB1.1、DB100.DBX0.0、DB100.DBB5、DB100.DBW6
  * M1.1、M1、MB1、MW1、MD1
  * V1.1、V1、VB100、VW100、VD100
@@ -50,7 +50,7 @@ public class AddressUtil {
 
     /**
      * Parse byte.
-     * (字节地址解析)
+     * (Byte address resolution)
      *
      * @param address address string
      * @param count   byte count
@@ -62,7 +62,7 @@ public class AddressUtil {
 
     /**
      * Parse bit.
-     * (位地址解析)
+     * (Bit address resolution)
      *
      * @param address address
      * @return RequestItem
@@ -73,7 +73,7 @@ public class AddressUtil {
 
     /**
      * Parse RequestItem from address.
-     * (解析请求内容)
+     * (Parse the content of the request)
      *
      * @param address      address string
      * @param count        byte count
@@ -87,7 +87,7 @@ public class AddressUtil {
         if (count <= 0) {
             throw new IllegalArgumentException("count must be positive");
         }
-        // 转换为大写
+        // Convert to uppercase
         address = address.toUpperCase();
         String[] addList = address.split("\\.");
 
@@ -99,7 +99,7 @@ public class AddressUtil {
         item.setByteAddress(parseByteAddress(addList));
         item.setBitAddress(parseBitAddress(addList, variableType));
         if (item.getBitAddress() > 7) {
-            // address地址信息格式错误，位索引只能[0-7]
+            // address information is in the wrong format, and the bit index can only be [0-7]
             throw new IllegalArgumentException("address address information format is incorrect, the bit index can only be [0-7]");
         }
         return item;
@@ -107,7 +107,7 @@ public class AddressUtil {
 
     /**
      * Parse area.
-     * (区域解析)
+     * (Region resolution)
      *
      * @param addList address content
      * @return Area data
@@ -122,21 +122,21 @@ public class AddressUtil {
                 return EArea.FLAGS;
             case "D":
             case "V":
-                //****************** 对于200smartPLC的V区，就是DB1.X，例如，V1=DB1.1，V100=DB1.100 **********************/
+                //****************** For the V area of the 200smart PLC, it is DB1.X, for example, V1=DB1.1, V100=DB1.100 **********************/
                 return EArea.DATA_BLOCKS;
             case "T":
                 return EArea.S7_TIMERS;
             case "C":
                 return EArea.S7_COUNTERS;
             default:
-                // 传入的参数有误，无法解析Area
+                // The input parameter is incorrect, and the Area cannot be resolved
                 throw new IllegalArgumentException("The parameter passed in was incorrect and the Area could not be resolved");
         }
     }
 
     /**
      * Parse db number.
-     * (DB块索引解析)
+     * (DB block index parsing)
      *
      * @param addList address content
      * @return DB index
@@ -146,7 +146,7 @@ public class AddressUtil {
             case "D":
                 return extractNumber(addList[0]);
             case "V":
-                //****************** 对于200smartPLC的V区，就是DB1.X，例如，V1=DB1.1，V100=DB1.100 **********************/
+                //****************** For the V area of the 200smart PLC, it is DB1.X, for example, V1=DB1.1, V100=DB1.100 **********************/
                 return 1;
             default:
                 return 0;
@@ -155,7 +155,7 @@ public class AddressUtil {
 
     /**
      * Parse byte address.
-     * (字节索引解析)
+     * (Byte index parsing)
      *
      * @param addList address content
      * @return byte index
@@ -171,7 +171,7 @@ public class AddressUtil {
 
     /**
      * Parse bit index.
-     * (位索引解析)
+     * (Bitwise index parsing)
      *
      * @param addList address content.
      * @return bit index
@@ -179,17 +179,19 @@ public class AddressUtil {
     private static int parseBitAddress(String[] addList, EParamVariableType variableType) {
         switch (addList[0].substring(0, 1)) {
             case "D":
-                // 只有是bit数据类型的时候，才能将bit地址进行赋值，不然都是0；本质上不是bit时，位索引是不是0都不受影响的
+                // Only when it is a bit data type, the bit address can be assigned, otherwise it is 0;
+                // When it is not a bit in nature, the bit index is not affected by whether it is 0 or not
                 return addList.length >= 3 && variableType == EParamVariableType.BIT ? extractNumber(addList[2]) : 0;
             default:
-                // 只有是bit数据类型的时候，才能将bit地址进行赋值，不然都是0；本质上不是bit时，位索引是不是0都不受影响的
+                // Only when it is a bit data type, the bit address can be assigned, otherwise it is 0;
+                // When it is not a bit in nature, the bit index is not affected by whether it is 0 or not
                 return addList.length >= 2 && variableType == EParamVariableType.BIT ? extractNumber(addList[1]) : 0;
         }
     }
 
     /**
      * Parse area by request item.
-     * (根据请求项解析对应的区域)
+     * (Parse the corresponding region based on the request item)
      *
      * @param item request item
      * @return area string
@@ -215,7 +217,7 @@ public class AddressUtil {
 
     /**
      * Extract number from string.
-     * (提取字符串中的数字)
+     * (Extract numbers in strings)
      *
      * @param src source string
      * @return target number

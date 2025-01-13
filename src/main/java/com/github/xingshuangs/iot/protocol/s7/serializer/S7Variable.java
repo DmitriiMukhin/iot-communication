@@ -31,7 +31,7 @@ import java.lang.annotation.*;
 
 /**
  * S7 variable.
- * S7变量参数
+ * S7 variable parameters
  */
 @Target(value = {ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
@@ -40,27 +40,27 @@ public @interface S7Variable {
 
     /**
      * Address.
-     * 地址
+     * address
      *
-     * @return 地址
+     * @return address
      */
     String address() default "";
 
     /**
      * Data type.
-     * 类型
-     * 如果字节，对应是byte[]类型
+     * type
+     * If bytes, the corresponding type is byte[]
      *
-     * @return 类型
+     * @return type
      */
     EDataType type() default EDataType.BYTE;
 
     /**
      * Except for Byte and String, the count of other types must be 1.
-     * 数量
-     * 除字节Byte和String类型外，其他类型对应的count必须为1
+     * quantity
+     * Except for Byte and String types, the count of other types must be 1
      *
-     * @return 数量
+     * @return quantity
      */
     int count() default 1;
 

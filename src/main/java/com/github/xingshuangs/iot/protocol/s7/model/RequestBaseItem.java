@@ -31,7 +31,7 @@ import lombok.Data;
 
 /**
  * Request base item.
- * 请求基础项
+ * Request basic items
  *
  * @author xingshuang
  */
@@ -40,25 +40,25 @@ public class RequestBaseItem implements IObjectByteArray {
 
     /**
      * Specification type.
-     * 变量规范，对于读/写消息，它总是具有值0x12 <br>
-     * 字节大小：1 <br>
-     * 字节序数：0
+     * Variable specification, for read/write messages it always has the value 0x12 <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 0
      */
     protected byte specificationType = (byte) 0x12;
 
     /**
      * Length of following.
-     * 其余部分的长度规范 <br>
-     * 字节大小：1 <br>
-     * 字节序数：1
+     * Length specification of the rest of the part <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 1
      */
     protected int lengthOfFollowing = 0x0A;
 
     /**
      * The format of the addressing mode and the rest of the item structure.
-     * 寻址模式和项结构其余部分的格式，它具有任意类型寻址的常量值0x10 <br>
-     * 字节大小：1 <br>
-     * 字节序数：2
+     * The format of the addressing mode and the rest of the Item structure, which has the constant value 0x10 for any type of addressing <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 2
      */
     protected ESyntaxID syntaxId = ESyntaxID.S7ANY;
 

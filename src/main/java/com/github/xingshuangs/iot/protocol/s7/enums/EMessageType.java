@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Message Type： 消息的一般类型（有时称为ROSCTR类型），消息的其余部分在很大程度上取决于Message Type和功能代码。
+ * Message Type: The general type of message (sometimes called the ROSCTR type). The rest of the message depends largely on the Message Type and Function Code.
  *
  * @author xingshuang
  */
@@ -37,25 +37,25 @@ public enum EMessageType {
 
     /**
      * Start work.
-     * 开工干活的意思，主设备通过job向从设备发出“干活”的命令，具体是读取数据还是写数据由parameter决定
+     * The meaning of starting work is that the master device sends a "work" command to the slave device through the job. Whether it is reading data or writing data is determined by the parameter
      */
     JOB((byte) 0x01),
 
     /**
-     * Confirm Confirm that there are no data fields.
-     * 确认 确认有没有数据字段
+     * Confirm that there are no data fields.
+     * Confirm whether there is a data field
      */
     ACK((byte) 0x02),
 
     /**
      * The slave device responds to the job of the master device.
-     * 从设备回应主设备的job
+     * The slave device responds to the master device's job
      */
     ACK_DATA((byte) 0x03),
 
     /**
      * An extension of the original protocol.
-     * 原始协议的扩展，参数字段包含请求/响应id，（用于编程/调试，SZL读取，安全功能，时间设置，循环读取…）
+     * Extension of the original protocol, parameter field contains request/response id, (for programming/debugging, SZL reading, security functions, time setting, cyclic reading...)
      */
     USER_DATA((byte) 0x07),
     ;

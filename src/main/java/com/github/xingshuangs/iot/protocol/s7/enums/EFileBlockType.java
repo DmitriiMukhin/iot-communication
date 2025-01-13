@@ -31,48 +31,48 @@ import java.util.Map;
 
 /**
  * File block type.
- * 文件地址块类型
+ * File address block type
  *
  * @author xingshuang
  */
 public enum EFileBlockType {
     /**
-     * 对应0x3038
+     * Corresponds to 0x3038
      */
     OB("08"),
 
     /**
-     * 对应0x3039
+     * Corresponds to 0x3039
      */
     CMOD("09"),
 
     /**
-     * 对应0x3041
+     * Corresponds to 0x3041
      */
     DB("0A"),
 
     /**
-     * 对应0x3042
+     * corresponds to 0x3042
      */
     SDB("0B"),
 
     /**
-     * 对应0x3043
+     * corresponds to 0x3043
      */
     FC("0C"),
 
     /**
-     * 对应0x3044
+     * corresponds to 0x3044
      */
     SFC("0D"),
 
     /**
-     * 对应0x3045
+     * Corresponds to 0x3045
      */
     FB("0E"),
 
     /**
-     * 对应0x3046
+     * corresponds to 0x3046
      */
     SFB("0F"),
     ;

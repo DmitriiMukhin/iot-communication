@@ -34,7 +34,7 @@ import java.lang.reflect.Field;
 
 /**
  * S7 parse data
- * S7解析数据
+ * S7 parsing data
  *
  * @author xingshuang
  */
@@ -43,31 +43,31 @@ public class S7ParseData {
 
     /**
      * Data type.
-     * (数据类型)
+     * (Data Type)
      */
     private EDataType dataType;
 
     /**
      * Data count.
-     * (数据个数)
+     * (number of data)
      */
     private int count;
 
     /**
      * Field.
-     * (字段参数)
+     * (field parameter)
      */
     private Field field;
 
     /**
      * Request item.
-     * (请求项)
+     * (Request item)
      */
     private RequestItem requestItem;
 
     /**
      * Data item.
-     * (数据项)
+     * (data item)
      */
     private DataItem dataItem;
 }

@@ -37,7 +37,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * Data item.
- * 返回数据
+ * Returns data
  *
  * @author xingshuang
  */
@@ -47,23 +47,24 @@ public class DataItem extends ReturnItem implements IObjectByteArray {
 
     /**
      * Data variable type.
-     * 变量类型 <br>
-     * 字节大小：1 <br>
-     * 字节序数：1
+     * Variable type <br>
+     * Byte size: 1 <br>
+     * Alphabyte number: 1
      */
     private EDataVariableType variableType = EDataVariableType.BYTE_WORD_DWORD;
 
     /**
      * The data length is calculated by bit. If it is byte data, /8 or *8 operation is required to read it. If it is bit data, no additional operation is required.
-     * 数据长度，按位进行计算的，如果是字节数据读取需要进行 /8 或 *8操作，如果是位数据，不需要任何额外操作 <br>
-     * 字节大小：2 <br>
-     * 字节序数：2-3
+     * The length of the data, calculated in bits, requires /8 or *8 operations for byte data reads,
+     * and does not require any additional operations for bit data <br>
+     * Byte size：2 <br>
+     * Alphanus：2-3
      */
     private int count = 0x0000;
 
     /**
      * Data content.
-     * 数据内容
+     * Data content
      */
     private byte[] data = new byte[0];
 
@@ -78,7 +79,7 @@ public class DataItem extends ReturnItem implements IObjectByteArray {
         ByteWriteBuff buff = ByteWriteBuff.newInstance(length)
                 .putByte(this.returnCode.getCode())
                 .putByte(this.variableType.getCode());
-        // 如果数据类型是位，不需要 * 8，如果是其他类型，需要 * 8
+        // If the data type is bits, *8 is not required, and if it is of other types, *8 is required
         switch (this.variableType) {
             case NULL:
             case BYTE_WORD_DWORD:
@@ -100,7 +101,7 @@ public class DataItem extends ReturnItem implements IObjectByteArray {
 
     /**
      * Copy
-     * (复制一个新对象)
+     * (Copy a new object)
      *
      * @return DataItem
      */
@@ -124,7 +125,7 @@ public class DataItem extends ReturnItem implements IObjectByteArray {
         DataItem dataItem = new DataItem();
         dataItem.returnCode = EReturnCode.from(buff.getByte());
         dataItem.variableType = EDataVariableType.from(buff.getByte());
-        // 如果是bit，正常解析，如果是字节，则需要除8操作
+        // If it's a bit, it's parsed normally, and if it's a byte, you need to divide by 8
         switch (dataItem.variableType) {
             case NULL:
             case BYTE_WORD_DWORD:
@@ -140,7 +141,7 @@ public class DataItem extends ReturnItem implements IObjectByteArray {
             default:
                 throw new S7CommException("Data type can not be recognized");
         }
-        // 返回数据类型为null，那就是没有数据
+        // If the returned data type is null, there is no data
         if (dataItem.variableType != EDataVariableType.NULL) {
             dataItem.data = buff.getBytes(dataItem.count);
         }
@@ -149,7 +150,7 @@ public class DataItem extends ReturnItem implements IObjectByteArray {
 
     /**
      * Create data item by byte.
-     * (通过字节数据类型转换为DataItem数据)
+     * (Converted to DataItem data by byte data type)
      *
      * @param data byte data
      * @return DataItem
@@ -160,7 +161,7 @@ public class DataItem extends ReturnItem implements IObjectByteArray {
 
     /**
      * Create data item by byte array.
-     * (通过字节数组数据类型转换为DataItem数据)
+     * (Converted to DataItem data via byte array data type)
      *
      * @param data byte array
      * @return DataItem
@@ -179,10 +180,10 @@ public class DataItem extends ReturnItem implements IObjectByteArray {
 
     /**
      * Create data item by boolean.
-     * (通过boolean数据类型转换为DataItem数据)
+     * (Converted to DataItem data via boolean data type)
      *
-     * @param data boolean数据
-     * @return DataItem数据
+     * @param data Boolean data
+     * @return DataItem data
      */
     public static DataItem createReqByBoolean(boolean data) {
         DataItem dataItem = new DataItem();
@@ -195,7 +196,7 @@ public class DataItem extends ReturnItem implements IObjectByteArray {
 
     /**
      * Convert to DataItem data by byte array + data type
-     * (通过字节数组+数据类型转换为DataItem数据)
+     * (Convert to DataItem data via byte array + data type)
      *
      * @param data             byte array
      * @param dataVariableType data variable type
@@ -212,7 +213,7 @@ public class DataItem extends ReturnItem implements IObjectByteArray {
 
     /**
      * Convert to DataItem data by byte array + data type
-     * (通过字节数组+数据类型转换为DataItem数据)
+     * (Convert to DataItem data via byte array + data type)
      *
      * @param data             byte array
      * @param dataVariableType data variable type

@@ -33,7 +33,7 @@ import lombok.Data;
 
 /**
  * S7 data.
- * 数据
+ * data
  *
  * @author xingshuang
  */
@@ -52,10 +52,10 @@ public class Datum implements IObjectByteArray {
 
     /**
      * Parse byte array data based on message type and function code
-     * 根据消息类型和功能码，对字节数组数据进行解析
+     * Parse the byte array data according to the message type and function code
      *
-     * @param data         byte array
-     * @param messageType  message type
+     * @param data byte array
+     * @param messageType message type
      * @param functionCode function code
      * @return Datum
      */

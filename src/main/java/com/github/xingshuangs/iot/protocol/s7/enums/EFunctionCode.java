@@ -30,71 +30,71 @@ import java.util.Map;
 
 /**
  * Function code.
- * 功能码 Job request/Ack-Data function codes
+ * Job request/Ack-Data function codes
  *
  * @author xingshuang
  */
 public enum EFunctionCode {
     /**
-     * CPU服务
+     * CPU service
      */
     CPU_SERVICES((byte) 0x00),
 
     /**
-     * 读变量
+     * Read variables
      */
     READ_VARIABLE((byte) 0x04),
 
     /**
-     * 写变量
+     * Write variables
      */
     WRITE_VARIABLE((byte) 0x05),
 
     /**
-     * 开始下载
+     * Start downloading
      */
-//    START_DOWNLOAD((byte) 0x1A),
+// START_DOWNLOAD((byte) 0x1A),
     START_DOWNLOAD((byte) 0xFA),
 
     /**
-     * 下载阻塞
+     * Download blocking
      */
-//    DOWNLOAD((byte) 0x1B),
+// DOWNLOAD((byte) 0x1B),
     DOWNLOAD((byte) 0xFB),
 
     /**
-     * 下载结束
+     * Download completed
      */
-//    END_DOWNLOAD((byte) 0x1C),
+// END_DOWNLOAD((byte) 0x1C),
     END_DOWNLOAD((byte) 0xFC),
 
     /**
-     * 开始上传
+     * Start uploading
      */
     START_UPLOAD((byte) 0x1D),
 
     /**
-     * 上传
+     * Upload
      */
     UPLOAD((byte) 0x1E),
 
     /**
-     * 结束上传
+     * End upload
      */
     END_UPLOAD((byte) 0x1F),
 
     /**
-     * 控制PLC
+     * Control PLC
      */
     PLC_CONTROL((byte) 0x28),
 
     /**
-     * 停止PLC
+     * Stop PLC
      */
     PLC_STOP((byte) 0x29),
 
     /**
-     * 设置通信
+     * Set up communication
      */
     SETUP_COMMUNICATION((byte) 0xF0),
     ;

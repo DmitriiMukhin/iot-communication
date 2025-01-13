@@ -48,7 +48,7 @@ import java.util.stream.Collectors;
 
 /**
  * S7 plc server class.
- * S7的PLC服务端
+ * S7 PLC server
  *
  * @author xingshuang
  */
@@ -57,19 +57,19 @@ public class S7PLCServer extends TcpServerBasic {
 
     /**
      * Locker.
-     * (数据Map操作锁)
+     * (Data Map operation lock)
      */
     private final Object objLock = new Object();
 
     /**
      * Write and read lock.
-     * (读写锁)
+     * (read-write lock)
      */
     private final ReadWriteLock rwLock = new ReentrantReadWriteLock();
 
     /**
      * All data for operating.
-     * (所有数据)
+     * (all data)
      */
     protected final HashMap<String, byte[]> dataMap = new HashMap<>();
 
@@ -89,7 +89,7 @@ public class S7PLCServer extends TcpServerBasic {
 
     /**
      * Gets the currently available area.
-     * (获取目前可用的区域)
+     * (Get currently available regions)
      *
      * @return data areas
      */
@@ -100,12 +100,12 @@ public class S7PLCServer extends TcpServerBasic {
     }
 
     /**
-     * Add DB area when needing.
-     * (添加所需的DB块)
+     * Add DB area when needed.
+     * (Add required DB blocks)
      *
      * @param dbNumbers db number
      */
-    public void addDBArea(int... dbNumbers) {
+    public void addDBArea(int...dbNumbers) {
         log.debug("Add DB{} to server data area", dbNumbers);
         synchronized (this.objLock) {
             for (int x : dbNumbers) {
@@ -117,22 +117,22 @@ public class S7PLCServer extends TcpServerBasic {
 
     @Override
     protected boolean checkHandshake(Socket socket) {
-        // 校验connect request
+        // Verify the connection request
         S7Data s7Data = this.readS7DataFromClient(socket);
         if (!(s7Data.getCotp() instanceof COTPConnection)
                 || s7Data.getCotp().getPduType() != EPduType.CONNECT_REQUEST) {
-            // 客户端[{}]握手失败，不是连接请求
+            // Client [{}] handshake failed, not a connection request
             log.error("Client [{}] Handshake failed, not connection request", socket.getRemoteSocketAddress());
             return false;
         }
         S7Data connectConfirm = S7Data.createConnectConfirm(s7Data);
         this.write(socket, connectConfirm.toByteArray());
 
-        // 校验setup
+        // Verify setup
         s7Data = this.readS7DataFromClient(socket);
         if (!(s7Data.getCotp() instanceof COTPData)
                 || s7Data.getCotp().getPduType() != EPduType.DT_DATA) {
-            // 客户端[{}]握手失败，不是参数设置
+            // Client [{}] handshake failed, not parameter setting
             log.error("Client [{}] handshake failed, not parameter setting", socket.getRemoteSocketAddress());
             return false;
         }
@@ -172,7 +172,7 @@ public class S7PLCServer extends TcpServerBasic {
 
     /**
      * Read data handler.
-     * (读数据处理)
+     * (Read data processing)
      *
      * @param socket socket object
      * @param req    request data
@@ -184,16 +184,16 @@ public class S7PLCServer extends TcpServerBasic {
             this.rwLock.readLock().lock();
             parameter.getRequestItems().forEach(p1 -> {
                 RequestItem p = (RequestItem) p1;
-                // 判定该区域的数据是否存在
+                // Determine whether data exists in the region
                 String area = AddressUtil.parseArea(p);
                 if (!this.dataMap.containsKey(area)) {
-                    // 客户端[{}]读取[{}]数据，区域[{}]，字节索引[{}]，位索引[{}]，长度[{}]，无该区域地址数据
+                    // Client [{}] reads [{}] data, region [{}], byte index [{}], bit index [{}], length [{}], no address data for this region
                     log.error("Client[{}] read [{}] data, area[{}], byte index[{}], bit index[{}], length[{}], no the address data",
                             socket.getRemoteSocketAddress(), p.getVariableType(), area, p.getByteAddress(), p.getBitAddress(), p.getCount());
                     returnItems.add(ReturnItem.createDefault(EReturnCode.OBJECT_DOES_NOT_EXIST));
                     return;
                 }
-                // 提取指定地址的字节数据
+                // Extract byte data for a specified address
                 byte[] bytes = this.dataMap.get(area);
                 ByteReadBuff buff = new ByteReadBuff(bytes);
                 byte[] data;
@@ -203,7 +203,7 @@ public class S7PLCServer extends TcpServerBasic {
                     byte oldData = buff.getByte(p.getByteAddress());
                     data = BooleanUtil.getValue(oldData, p.getBitAddress()) ? new byte[]{(byte) 0x01} : new byte[]{(byte) 0x00};
                 }
-                // 客户端[{}]读取[{}]数据，区域[{}]，字节索引[{}]，位索引[{}]，长度[{}]，区域地址数据{}
+                // Client [{}] reads [{}] data, region [{}], byte index [{}], bit index [{}], length [{}], region address data {}
                 log.debug("Client[{}] read [{}] data, area[{}], byte index[{}], bit index[{}], length[{}], address data{}",
                         socket.getRemoteSocketAddress(), p.getVariableType(), area, p.getByteAddress(), p.getBitAddress(), p.getCount(), data);
                 DataItem dataItem = DataItem.createAckBy(data, p.getVariableType() == EParamVariableType.BYTE ? EDataVariableType.BYTE_WORD_DWORD : EDataVariableType.BIT);
@@ -218,7 +218,7 @@ public class S7PLCServer extends TcpServerBasic {
 
     /**
      * Write data handler.
-     * (写入数据处理)
+     * (Write data processing)
      *
      * @param socket socket object
      * @param req    request data
@@ -233,16 +233,16 @@ public class S7PLCServer extends TcpServerBasic {
             for (int i = 0; i < parameter.getItemCount(); i++) {
                 RequestItem p = (RequestItem) (parameter.getRequestItems().get(i));
                 DataItem d = dataItems.get(i);
-                // 判定该区域的数据是否存在
+                // Determine whether data exists in the region
                 String area = AddressUtil.parseArea(p);
                 if (!this.dataMap.containsKey(area)) {
-                    // 客户端[{}]写入[{}]数据，区域[{}]，字节索引[{}]，位索引[{}]，长度[{}]，无该区域地址
+                    // Client [{}] writes [{}] data, region [{}], byte index [{}], bit index [{}], length [{}], and no region address
                     log.error("Client[{}] write [{}] data, area[{}], byte index[{}], bit index[{}], length[{}], no the address data",
                             socket.getRemoteSocketAddress(), p.getVariableType(), area, p.getByteAddress(), p.getBitAddress(), p.getCount());
                     returnItems.add(ReturnItem.createDefault(EReturnCode.OBJECT_DOES_NOT_EXIST));
                     continue;
                 }
-                // 写入指定地址的数据
+                // Write data to the specified address
                 byte[] bytes = this.dataMap.get(area);
                 if (p.getVariableType() == EParamVariableType.BYTE) {
                     System.arraycopy(d.getData(), 0, bytes, p.getByteAddress(), d.getData().length);
@@ -250,7 +250,7 @@ public class S7PLCServer extends TcpServerBasic {
                     byte newData = BooleanUtil.setBit(bytes[p.getByteAddress()], p.getBitAddress(), d.getData()[0] == 1);
                     System.arraycopy(new byte[]{newData}, 0, bytes, p.getByteAddress(), 1);
                 }
-                // 客户端[{}]写入[{}]数据，区域[{}]，字节索引[{}]，位索引[{}]，长度[{}]，区域地址数据{}
+                // Client[{}] writes [{}] data, region [{}], byte index [{}], bit index [{}], length [{}], region address data {}
                 log.debug("Client[{}] write [{}] data, area[{}], byte index[{}], bit index[{}], length[{}], address data{}",
                         socket.getRemoteSocketAddress(), p.getVariableType(), area, p.getByteAddress(), p.getBitAddress(), p.getCount(), d.getData());
                 returnItems.add(ReturnItem.createDefault(EReturnCode.SUCCESS));
@@ -265,7 +265,7 @@ public class S7PLCServer extends TcpServerBasic {
 
     /**
      * Read S7 data from client.
-     * (读取S7协议的数据)
+     * (Read data from the S7 protocol)
      *
      * @param socket socket object
      * @return S7Data
@@ -277,7 +277,7 @@ public class S7PLCServer extends TcpServerBasic {
 
     /**
      * Rewrite read client data, sticky packet data processing
-     * (重写读取客户端数据，针对粘包的数据处理)
+     * (Rewrite and read client data, data processing for sticky packets)
      *
      * @param socket client socket object
      * @return byte array
@@ -291,12 +291,12 @@ public class S7PLCServer extends TcpServerBasic {
                 SocketUtils.close(socket);
                 throw new SocketRuntimeException("The client is disconnected.");
             }
-            // 先获取TPKT
+            // Get TPKT first
             byte[] tpktData = new byte[4];
             tpktData[0] = (byte) firstByte;
             this.read(socket, tpktData, 1, 3, 1024, 0, true);
             TPKT tpkt = TPKT.fromBytes(tpktData);
-            // 根据内部的长度获取剩余部分内容
+            // Fetch the rest of the content based on the length of the interior
             byte[] data = new byte[tpkt.getLength()];
             System.arraycopy(tpktData, 0, data, 0, tpktData.length);
             this.read(socket, data, 4, data.length - 4, 1024, 0, true);

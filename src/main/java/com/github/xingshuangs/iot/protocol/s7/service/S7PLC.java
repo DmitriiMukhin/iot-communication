@@ -109,18 +109,18 @@ public class S7PLC extends PLCNetwork {
         return defaultCharset;
     }
 
-    //region 读取数据
+    //region read data
 
     /**
      * The most primitive way to read raw data
-     * (最原始的方式读取生数据)
+     * (The most primitive way to read raw data)
      *
-     * @param variableType variable type 参数类型
-     * @param count        byte count 数据个数
-     * @param area         data area 区域
-     * @param dbNumber     DB number DB块编号
-     * @param byteAddress  byte address 字节地址
-     * @param bitAddress   bit address 位地址
+     * @param variableType variable type parameter type
+     * @param count byte count number of data
+     * @param area data area
+     * @param dbNumber DB number DB block number
+     * @param byteAddress byte address byte address
+     * @param bitAddress bit address bit address
      * @return byte array
      */
     public byte[] readRaw(EParamVariableType variableType, int count, EArea area, int dbNumber, int byteAddress, int bitAddress) {
@@ -143,7 +143,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Multi-address reads byte data
-     * (多地址读取字节数据)
+     * (Read byte data from multiple addresses)
      *
      * @param addressRead address wrapper list
      * @return byte array list
@@ -155,7 +155,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read byte.
-     * (单地址字节数据读取)
+     * (Single address byte data read)
      *
      * @param address address string
      * @param count   byte count
@@ -165,10 +165,9 @@ public class S7PLC extends PLCNetwork {
         DataItem dataItem = this.readS7Data(AddressUtil.parseByte(address, count));
         return dataItem.getData();
     }
-
     /**
      * Read byte.
-     * (读取一个字节)
+     * (read one byte)
      *
      * @param address address string
      * @return byte
@@ -179,7 +178,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read boolean.
-     * (读取一个boolean)
+     * (Read a boolean)
      *
      * @param address address string
      * @return boolean
@@ -191,7 +190,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read boolean.
-     * (读取多个个boolean值)
+     * (Read multiple boolean values)
      *
      * @param address address string
      * @return boolean list
@@ -202,7 +201,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read boolean.
-     * (读取boolean列表)
+     * (Read boolean list)
      *
      * @param addresses address strings
      * @return boolean list
@@ -215,7 +214,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read int16, 2-bytes.
-     * (读取一个Int16 2字节数据)
+     * (Read an Int16 2-byte data)
      *
      * @param address address string
      * @return Int16
@@ -227,7 +226,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read int16, 2-bytes.
-     * (读取Int16 2字节数据列表)
+     * (Read Int16 2-byte data list)
      *
      * @param address address string
      * @return Int16 list
@@ -238,7 +237,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read int16, 2-bytes.
-     * (读取Int16 2字节数据列表)
+     * (Read Int16 2-byte data list)
      *
      * @param addresses address strings
      * @return Int16 list
@@ -248,10 +247,9 @@ public class S7PLC extends PLCNetwork {
         List<DataItem> dataItems = this.readS7Data(requestItems);
         return dataItems.stream().map(x -> ShortUtil.toInt16(x.getData())).collect(Collectors.toList());
     }
-
     /**
      * Read uint16, 2-bytes.
-     * (读取一个UInt16 2字节数据)
+     * (Read a UInt16 2-byte data)
      *
      * @param address address string
      * @return UInt16
@@ -263,7 +261,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read uint16, 2-bytes.
-     * (读取UInt16 2字节数据列表)
+     * (Read UInt16 2-byte data list)
      *
      * @param address address string
      * @return UInt16 list
@@ -274,7 +272,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read uint16, 2-bytes.
-     * (读取UInt16 2字节数据列表)
+     * (Read UInt16 2-byte data list)
      *
      * @param addresses address strings
      * @return UInt16 list
@@ -287,7 +285,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read int32, 4-bytes.
-     * (读取一个Int32 4字节数据)
+     * (Read an Int32 4-byte data)
      *
      * @param address address string
      * @return UInt32
@@ -299,7 +297,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read int32, 4-bytes.
-     * (读取UInt32 4字节数据列表)
+     * (Read UInt32 4-byte data list)
      *
      * @param address address string
      * @return UInt32 list
@@ -310,7 +308,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read int32, 4-bytes.
-     * (读取UInt32 4字节数据列表)
+     * (Read UInt32 4-byte data list)
      *
      * @param addresses address strings
      * @return UInt32 list
@@ -323,7 +321,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read uint32, 4-bytes.
-     * (读取一个UInt32 4字节数据)
+     * (Read a UInt32 4-byte data)
      *
      * @param address address string
      * @return UInt32
@@ -335,7 +333,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read uint32, 4-bytes.
-     * (读取UInt32 4字节数据列表)
+     * (Read UInt32 4-byte data list)
      *
      * @param address address string
      * @return UInt32 list
@@ -346,7 +344,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read uint32, 4-bytes.
-     * (读取UInt32 4字节数据列表)
+     * (Read UInt32 4-byte data list)
      *
      * @param addresses address strings
      * @return UInt32 list
@@ -359,7 +357,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read int64, 8-bytes.
-     * (读取一个Int64 8字节数据)
+     * (Read an Int64 8-byte data)
      *
      * @param address address string
      * @return Int64
@@ -371,7 +369,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read int64, 8-bytes.
-     * (读取Int64 8字节数据列表)
+     * (Read Int64 8-byte data list)
      *
      * @param address address string
      * @return Int64 list
@@ -382,7 +380,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read int64, 8-bytes.
-     * (读取Int64 8字节数据列表)
+     * (Read Int64 8-byte data list)
      *
      * @param addresses address strings
      * @return Int64 list
@@ -395,7 +393,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read float32, 4-bytes.
-     * (读取一个Float32的数据)
+     * (Read a Float32 data)
      *
      * @param address address string
      * @return Float32
@@ -407,7 +405,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read float32, 4-bytes.
-     * (读取多个Float32的数据)
+     * (Read multiple Float32 data)
      *
      * @param address address string
      * @return Float32 list
@@ -418,7 +416,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read float32, 4-bytes.
-     * (读取多个Float32的数据)
+     * (Read multiple Float32 data)
      *
      * @param addresses address strings
      * @return Float32 list
@@ -431,7 +429,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read float64, 8-bytes.
-     * (读取一个Float64的数据)
+     * (Read a Float64 data)
      *
      * @param address address string
      * @return Float64
@@ -443,9 +441,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read float64, 8-bytes.
-     * (读取多个Float64的数据)
+     * (Read multiple Float64 data)
      *
-     * @param address 多个地址
+     * @param address multiple addresses
      * @return Float64 list
      */
     public List<Double> readFloat64(String... address) {
@@ -454,7 +452,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read float64, 8-bytes.
-     * (读取多个Float64的数据)
+     * (Read multiple Float64 data)
      *
      * @param addresses address strings
      * @return Float64 list
@@ -467,10 +465,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read string.
-     * (读取字符串)
-     * String（字符串）数据类型存储一串单字节字符，
-     * S1200（非S200SMART）:String提供了最大256个字节，前两个字节分别表示字节中最大的字符数和当前的字符数，定义字符串的最大长度可以减少它的占用存储空间
-     * S200SMART:字符串由变量存储时，字符串长度为0至254个字符，最长为255个字节，其中第一个字符为长度字节
+     * (Read string)
+     * The String data type stores a string of single-byte characters.
+     * S1200 (not S200SMART): String provides a maximum of 256 bytes. The first two bytes represent the maximum number of characters in the byte and the current number of characters. Defining the maximum length of the string can reduce its occupied storage space.
+     * S200SMART: When a string is stored in a variable, the string length is 0 to 254 characters and the longest is 255 bytes, where the first character is the length byte
      *
      * @param address address string
      * @return string
@@ -480,13 +478,13 @@ public class S7PLC extends PLCNetwork {
     }
 
     /**
-     * 读取字符串
-     * String（字符串）数据类型存储一串单字节字符，
-     * S1200（非S200SMART）:String提供了多大256个字节，前两个字节分别表示字节中最大的字符数和当前的字符数，定义字符串的最大长度可以减少它的占用存储空间
-     * S200SMART:字符串由变量存储时，字符串长度为0至254个字符，最长为255个字节，其中第一个字符为长度字节
+     * Read string
+     * The String data type stores a string of single-byte characters.
+     * S1200 (not S200SMART): String provides up to 256 bytes. The first two bytes represent the maximum number of characters in the byte and the current number of characters. Defining the maximum length of the string can reduce its occupied storage space.
+     * S200SMART: When a string is stored in a variable, the string length is 0 to 254 characters and the longest is 255 bytes, where the first character is the length byte
      *
-     * @param address 地址
-     * @return 字符串
+     * @param address address
+     * @return string
      */
     public String readString(String address, Charset charset) {
         return readString(address, 254, charset);
@@ -494,12 +492,12 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read string.
-     * (读取字符串)
-     * S1200（非S200SMART）:数据类型为 string 的操作数可存储多个字符，最多可包括 254 个字符。字符串中的第一个字节为总长度，第二个字节为有效字符数量。
-     * S200SMART:字符串由变量存储时，字符串长度为0至254个字符，最长为255个字节，其中第一个字符为长度字节
+     * (Read string)
+     * S1200 (not S200SMART): An operand of data type string can store multiple characters, up to a maximum of 254 characters. The first byte in the string is the total length, and the second byte is the number of valid characters.
+     * S200SMART: When a string is stored in a variable, the string length is 0 to 254 characters and the longest is 255 bytes, where the first character is the length byte
      *
      * @param address address string
-     * @param length  string length
+     * @param length string length
      * @return string
      */
     public String readString(String address, int length) {
@@ -517,12 +515,12 @@ public class S7PLC extends PLCNetwork {
     }
 
     /**
-     * 读取字符串
-     * Wsting数据类型与sting数据类型接近，支持单字值的较长字符串，
-     * 第一个字包含最大总字符数，下一个字包含的是当前的总字符数，接下来的字符串可含最多65534个字
+     * Read string
+     * The Wsting data type is similar to the sting data type and supports longer strings of single-word values.
+     * The first word contains the maximum total number of characters, the next word contains the current total number of characters, and the following string can contain up to 65534 characters
      *
      * @param address address string
-     * @return 字符串
+     * @return string
      */
     public String readWString(String address) {
         DataItem dataItem = this.readS7Data(AddressUtil.parseByte(address, 4));
@@ -547,10 +545,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read time: milliseconds, ms, for example, 1000ms, 4-bytes.
-     * (读取时间，时间为毫秒时间，ms，例如1000ms)
+     * (Read time, the time is milliseconds, ms, for example 1000ms)
      *
      * @param address address string
-     * @return time，ms
+     * @return time, in milliseconds
      */
     public long readTime(String address) {
         return this.readUInt32(address);
@@ -558,7 +556,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read date, for example, 2023-04-04, 2-bytes.
-     * (读取日期，例如：2023-04-04)
+     * (Read date, for example: 2023-04-04)
      *
      * @param address address string
      * @return date
@@ -570,7 +568,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read the time of day, for example: 23:56:31, 4-bytes.
-     * (读取一天中的时间，例如：23:56:31)
+     * (Read the time of day, for example: 23:56:31)
      *
      * @param address address string
      * @return localTime
@@ -582,7 +580,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read date and time, 12-bytes.
-     * (读取日期和时间的数据类型)
+     * (Data type for reading date and time)
      *
      * @param address address string
      * @return LocalDateTime
@@ -603,20 +601,20 @@ public class S7PLC extends PLCNetwork {
 
     //endregion
 
-    //region 写入数据
+    //region write data
 
     /**
      * The most primitive way to write raw data
-     * (最原始的方式写入生数据)
+     * (The most original way to write raw data)
      *
-     * @param variableType     variable type 参数类型
-     * @param count            byte count 数据个数
-     * @param area             data area区域
-     * @param dbNumber         db number DB块编号
-     * @param byteAddress      byte address 字节地址
-     * @param bitAddress       bit address 位地址
-     * @param dataVariableType data variable type 数据变量类型
-     * @param data             byte array data 数据字节数组
+     * @param variableType variable type parameter type
+     * @param count byte count number of data
+     * @param area data area
+     * @param dbNumber db number DB block number
+     * @param byteAddress byte address byte address
+     * @param bitAddress bit address bit address
+     * @param dataVariableType data variable type data variable type
+     * @param data byte array data data byte array
      */
     public void writeRaw(EParamVariableType variableType, int count, EArea area, int dbNumber, int byteAddress,
                          int bitAddress, EDataVariableType dataVariableType, byte[] data) {
@@ -642,10 +640,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write boolean.
-     * (写入boolean数据)
+     * (write boolean data)
      *
      * @param address address string
-     * @param data    boolean
+     * @param data boolean
      */
     public void writeBoolean(String address, boolean data) {
         this.writeS7Data(AddressUtil.parseBit(address), DataItem.createReqByBoolean(data));
@@ -653,10 +651,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write byte.
-     * (写入字节数据)
+     * (write byte data)
      *
      * @param address address string
-     * @param data    byte
+     * @param data byte
      */
     public void writeByte(String address, byte data) {
         this.writeS7Data(AddressUtil.parseByte(address, 1), DataItem.createReqByByte(data));
@@ -664,10 +662,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write byte.
-     * (写入字节列表数据)
+     * (Write byte list data)
      *
      * @param address address string
-     * @param data    byte array
+     * @param data byte array
      */
     public void writeByte(String address, byte[] data) {
         this.writeS7Data(AddressUtil.parseByte(address, data.length), DataItem.createReqByByte(data));
@@ -675,10 +673,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write uint16, 2-bytes.
-     * (写入UInt16数据)
+     * (Write UInt16 data)
      *
      * @param address address string
-     * @param data    UInt16
+     * @param data UInt16
      */
     public void writeUInt16(String address, int data) {
         this.writeByte(address, ShortUtil.toByteArray(data));
@@ -686,10 +684,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write int16, 2-bytes.
-     * (写入Int16数据)
+     * (Write Int16 data)
      *
      * @param address address string
-     * @param data    Int16
+     * @param data Int16
      */
     public void writeInt16(String address, short data) {
         this.writeByte(address, ShortUtil.toByteArray(data));
@@ -697,10 +695,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write uint32, 4-bytes.
-     * (写入UInt32数据)
+     * (Write UInt32 data)
      *
      * @param address address string
-     * @param data    UInt32
+     * @param data UInt32
      */
     public void writeUInt32(String address, long data) {
         this.writeByte(address, IntegerUtil.toByteArray(data));
@@ -708,10 +706,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write int32, 4-bytes.
-     * (写入Int32数据)
+     * (Write Int32 data)
      *
      * @param address address string
-     * @param data    Int32
+     * @param data Int32
      */
     public void writeInt32(String address, int data) {
         this.writeByte(address, IntegerUtil.toByteArray(data));
@@ -719,10 +717,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write int64, 8-bytes.
-     * (写入Int64数据)
+     * (Write Int64 data)
      *
      * @param address address string
-     * @param data    Int64
+     * @param data Int64
      */
     public void writeInt64(String address, long data) {
         this.writeByte(address, LongUtil.toByteArray(data));
@@ -730,10 +728,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write float32, 4-bytes.
-     * (写入Float32数据)
+     * (Write Float32 data)
      *
      * @param address address string
-     * @param data    Float32
+     * @param data Float32
      */
     public void writeFloat32(String address, float data) {
         this.writeByte(address, FloatUtil.toByteArray(data));
@@ -741,10 +739,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write float64, 8-bytes.
-     * (写入Float64数据)
+     * (Write Float64 data)
      *
      * @param address address string
-     * @param data    Float64
+     * @param data Float64
      */
     public void writeFloat64(String address, double data) {
         this.writeByte(address, FloatUtil.toByteArray(data));
@@ -752,7 +750,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write data to multiple addresses
-     * (多地址写入数据)
+     * (Multiple address write data)
      *
      * @param addressWrite addresses for writing
      */
@@ -762,14 +760,14 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write string.
-     * (写入字符串数据)
-     * String（字符串）数据类型存储一串单字节字符，
-     * String提供了最大256个字节，前两个字节分别表示字节中最大的字符数和当前的字符数，定义字符串的最大长度可以减少它的占用存储空间
-     * S1200:数据类型为 string 的操作数可存储多个字符，最多可包括 254 个字符。字符串中的第一个字节为总长度，第二个字节为有效字符数量。
-     * S200SMART:字符串由变量存储时，字符串长度为0至254个字符，最长为255个字节，其中第一个字符为长度字节
+     * (Write string data)
+     * The String data type stores a string of single-byte characters.
+     * String provides a maximum of 256 bytes. The first two bytes represent the maximum number of characters in the byte and the current number of characters. Defining the maximum length of the string can reduce its occupied storage space.
+     * S1200: An operand with data type string can store multiple characters, up to a maximum of 254 characters. The first byte in the string is the total length, and the second byte is the number of valid characters.
+     * S200SMART: When a string is stored in a variable, the string length is 0 to 254 characters and the longest is 255 bytes, where the first character is the length byte
      *
      * @param address address string
-     * @param data    string data
+     * @param data string data
      */
     public void writeString(String address, String data) {
         writeString(address, data, StandardCharsets.UTF_8);
@@ -780,25 +778,25 @@ public class S7PLC extends PLCNetwork {
             throw new IllegalArgumentException("data=null");
         }
         int offset = this.plcType == EPlcType.S200_SMART ? 0 : 1;
-        // 填充字节长度数据
+        // Fill byte length data
         byte[] dataBytes = data.isEmpty() ? new byte[0] : data.getBytes(charset);
         byte[] tmp = new byte[1 + dataBytes.length];
         tmp[0] = ByteUtil.toByte(dataBytes.length);
         System.arraycopy(dataBytes, 0, tmp, 1, dataBytes.length);
-        // 字节索引+1
+        // Byte index + 1
         RequestItem requestItem = AddressUtil.parseByte(address, tmp.length);
         requestItem.setByteAddress(requestItem.getByteAddress() + offset);
-        // 通信交互
+        // Communication interaction
         this.writeS7Data(requestItem, DataItem.createReqByByte(tmp));
     }
 
     /**
-     * 写入字符串数据
-     * Wsting数据类型与sting数据类型接近，支持单字值的较长字符串，
-     * 第一个字包含最大总字符数，下一个字包含的是当前的总字符数，接下来的字符串可含最多65534个字
+     * Write string data
+     * The Wsting data type is similar to the sting data type and supports longer strings of single-word values.
+     * The first word contains the maximum total number of characters, the next word contains the current total number of characters, and the following string can contain up to 65534 characters
      *
      * @param address address string
-     * @param data    字符串数据
+     * @param data string data
      */
     public void writeWString(String address, String data) {
         if (data.length() > (65534*2-4)) {
@@ -817,10 +815,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write time, the time is milliseconds, ms, 4-bytes.
-     * (写入时间，时间为毫秒时间，ms)
+     * (write time, time is milliseconds, ms)
      *
      * @param address address string
-     * @param time    time，ms
+     * @param time time, ms
      */
     public void writeTime(String address, long time) {
         this.writeUInt32(address, time);
@@ -828,10 +826,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write date, 2-bytes.
-     * (写入日期)
+     * (Date written)
      *
      * @param address address string
-     * @param date    date
+     * @param date date
      */
     public void writeDate(String address, LocalDate date) {
         LocalDate start = LocalDate.of(1990, 1, 1);
@@ -841,10 +839,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write the time of day, 4-bytes.
-     * (写入一天中的时间)
+     * (Write the time of day)
      *
      * @param address address string
-     * @param time    time of day
+     * @param time time of day
      */
     public void writeTimeOfDay(String address, LocalTime time) {
         int value = time.toSecondOfDay();
@@ -853,9 +851,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Write date and time, 12-bytes.
-     * (写入具体的时间)
+     * (Write the specific time)
      *
-     * @param address  address string
+     * @param address address string
      * @param dateTime LocalDateTime
      */
     public void writeDTL(String address, LocalDateTime dateTime) {
@@ -874,11 +872,11 @@ public class S7PLC extends PLCNetwork {
 
     //endregion
 
-    //region 控制部分
+    //region control part
 
     /**
      * Hot restart.
-     * (热重启)
+     * (hot restart)
      */
     public void hotRestart() {
         this.readFromServerByPersistence(S7Data.createHotRestart());
@@ -886,7 +884,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Cold restart.
-     * (冷重启)
+     * (Cold restart)
      */
     public void coldRestart() {
         this.readFromServerByPersistence(S7Data.createColdRestart());
@@ -894,7 +892,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Plc stop.
-     * (PLC停止)
+     * (PLC stop)
      */
     public void plcStop() {
         this.readFromServerByPersistence(S7Data.createPlcStop());
@@ -902,7 +900,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Copy ram to rom.
-     * (将ram复制到rom)
+     * (copy ram to rom)
      */
     public void copyRamToRom() {
         this.readFromServerByPersistence(S7Data.createCopyRamToRom());
@@ -910,7 +908,7 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Compress.
-     * (压缩)
+     * (compressed)
      */
     public void compress() {
         this.readFromServerByPersistence(S7Data.createCompress());
@@ -918,10 +916,10 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Insert file command.
-     * (创建插入文件指令)
+     * (Create insert file command)
      *
-     * @param blockType   block type 块类型
-     * @param blockNumber block number 块编号
+     * @param blockType block type block type
+     * @param blockNumber block number block number
      */
     public void insert(EFileBlockType blockType, int blockNumber) {
         this.readFromServerByPersistence(S7Data.createInsert(blockType, blockNumber, EDestinationFileSystem.P));
@@ -940,9 +938,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read cnc id.
-     * CNC的ID<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 01 46 6E 00 01 1A 01 <br>
-     * 接收[57]：03 00 00 39 02 F0 80 32 03 00 00 00 00 00 02 00 24 00 00 04 01 FF 09 00 20 30 30 30 30 36 30 31 39 33 30 38 38 46 43 30 30 30 30 37 35 00 00 00 00 00 00 00 00 00 00 00 00
+     * CNC ID<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 01 46 6E 00 01 1A 01 <br>
+     * Receive [57]: 03 00 00 39 02 F0 80 32 03 00 00 00 00 00 02 00 24 00 00 04 01 FF 09 00 20 30 30 30 30 36 30 31 39 33 30 38 38 46 43 30 30 30 37 35 00 00 00 00 00 00 00 00 00 00 00 00
      *
      * @return data
      */
@@ -955,9 +953,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read cnc version.
-     * CNC的Version<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 01 46 78 00 01 1A 01 <br>
-     * 接收[45]：03 00 00 2D 02 F0 80 32 03 00 00 00 00 00 02 00 18 00 00 04 01 FF 09 00 14 30 34 2E 30 38 2E 30 37 2E 30 30 2E 30 32 30 20 20 20 20 00
+     * CNC Version<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 01 46 78 00 01 1A 01 <br>
+     * Receive [45]: 03 00 00 2D 02 F0 80 32 03 00 00 00 00 00 02 00 18 00 00 04 01 FF 09 00 14 30 34 2E 30 38 2E 30 37 2E 30 30 2E 30 32 30 20 20 20 20 00
      *
      * @return data
      */
@@ -970,9 +968,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read cnc type1.
-     * 类型<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 01 46 78 00 02 1A 01<br>
-     * 接收[45]：03 00 00 2D 02 F0 80 32 03 00 00 00 00 00 02 00 18 00 00 04 01 FF 09 00 14 38 32 38 44 5F 30 34 2E 30 38 20 20 20 20 20 00 00 00 00 00
+     * Type<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 01 46 78 00 02 1A 01<br>
+     * Receive [45]: 03 00 00 2D 02 F0 80 32 03 00 00 00 00 00 02 00 18 00 00 04 01 FF 09 00 14 38 32 38 44 5F 30 34 2E 30 38 20 20 20 20 20 00 00 00 00 00
      *
      * @return data
      */
@@ -985,9 +983,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read cnc manufacture date.
-     * CNC的生产日期<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 01 46 78 00 01 1A 01<br>
-     * 接收[45]：03 00 00 2D 02 F0 80 32 03 00 00 00 00 00 02 00 18 00 00 04 01 FF 09 00 14 30 34 2E 30 38 2E 30 37 2E 30 30 2E 30 32 30 20 20 20 20 00
+     * CNC production date<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 01 46 78 00 01 1A 01<br>
+     * Receive [45]: 03 00 00 2D 02 F0 80 32 03 00 00 00 00 00 02 00 18 00 00 04 01 FF 09 00 14 30 34 2E 30 38 2E 30 37 2E 30 30 2E 30 32 30 20 20 20 20 00
      *
      * @return data
      */
@@ -1000,9 +998,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read cnc type.
-     * CNC的Type<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 01 46 78 00 04 1A 01<br>
-     * 接收[45]：03 00 00 2D 02 F0 80 32 03 00 00 00 00 00 02 00 18 00 00 04 01 FF 09 00 14 38 32 38 44 2D 4D 45 34 32 00 00 00 00 00 00 00 00 00 00 00
+     * Type of CNC<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 01 46 78 00 04 1A 01<br>
+     * Receive [45]: 03 00 00 2D 02 F0 80 32 03 00 00 00 00 00 02 00 18 00 00 04 01 FF 09 00 14 38 32 38 44 2D 4D 45 34 32 00 00 00 00 00 00 00 00 00 00 00
      *
      * @return data
      */
@@ -1015,13 +1013,13 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read machine position.
-     * 获取机械坐标系<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 02 00 01 74 01<br>
-     * 接收[33]：03 00 00 21 02 F0 80 32 03 00 00 00 13 00 02 00 0C 00 00 04 01 FF 09 00 08 CD CC CC CC CC 6C 61 40<br>
+     * Get the mechanical coordinate system<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 02 00 01 74 01<br>
+     * Receive [33]: 03 00 00 21 02 F0 80 32 03 00 00 00 13 00 02 00 0C 00 00 04 01 FF 09 00 08 CD CC CC CC CC 6C 61 40<br>
      * <p>
-     * 另一种方式也可以一个request，lineCount=3，结果有3个数据<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 02 00 0C 00 00 04 01 12 08 82 41 00 02 00 01 74 03<br>
-     * 接收[49]：03 00 00 31 02 F0 80 32 03 00 00 00 02 00 02 00 1C 00 00 04 01 FF 09 00 18 D8 B6 28 B3 41 26 69 3F 2D 43 1C EB E2 36 3A BF E7 52 5C 55 F6 5D 41 3F
+     * Another way is to make a request with lineCount=3, and the result will be 3 data<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 02 00 0C 00 00 04 01 12 08 82 41 00 02 00 01 74 03<br>
+     * Receive [49]: 03 00 00 31 02 F0 80 32 03 00 00 00 02 00 02 00 1C 00 00 04 01 FF 09 00 18 D8 B6 28 B3 41 26 69 3F 2D 43 1C EB E2 36 3A BF E7 52 5C 55F65D413F
      *
      * @return data
      */
@@ -1039,9 +1037,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read relative position.
-     * 获取相对坐标系<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 19 00 01 70 01<br>
-     * 接收[33]：03 00 00 21 02 F0 80 32 03 00 00 00 13 00 02 00 0C 00 00 04 01 FF 09 00 08 5B B6 D6 17 89 2D C8 40
+     * Get the relative coordinate system<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 19 00 01 70 01<br>
+     * Receive [33]: 03 00 00 21 02 F0 80 32 03 00 00 00 13 00 02 00 0C 00 00 04 01 FF 09 00 08 5B B6 D6 17 89 2D C8 40
      *
      * @return data
      */
@@ -1058,10 +1056,10 @@ public class S7PLC extends PLCNetwork {
     }
 
     /**
-     * Read remain position.
-     * 获取剩余坐标系<br>
-     * 发送[59]：03 00 00 3B 02 F0 80 32 01 00 00 00 00 00 2A 00 00 04 04 12 08 82 41 00 03 00 01 74 01 12 08 82 41 00 03 00 02 74 01 12 08 82 41 00 03 00 03 74 01 12 08 82 41 00 03 00 04 74 01<br>
-     * 接收[69]：03 00 00 45 02 F0 80 32 03 00 00 00 00 00 02 00 30 00 00 04 04 FF 09 00 08 00 00 00 00 00 00 00 00 FF 09 00 08 00 00 00 00 00 00 00 00 FF 09 00 08 00 00 00 00 00 00 00 00 FF 09 00 08 00 00 00 00 00 00 00 00
+     * Read remaining position.
+     * Get the remaining coordinate systems<br>
+     * Send [59]: 03 00 00 3B 02 F0 80 32 01 00 00 00 00 00 2A 00 00 04 04 12 08 82 41 00 03 00 01 74 01 12 08 82 41 00 03 00 02 74 01 12 08 82 41 00 03 00 03 74 01 12 08 82 41 00 03 00 04 74 01<br>
+     * Receive [69]: 03 00 00 45 02 F0 80 32 03 00 00 00 00 00 02 00 30 00 00 04 04 FF 09 00 08 00 00 00 00 00 00 00 00 FF 09 00 08 00 00 00 00 00 00 00 00 FF 09 00 08 00 00 00 00 00 00 00 00 00 FF 09 00 08 00 00 00 00 00 00 00 00
      *
      * @return data
      */
@@ -1079,9 +1077,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read T work piece position.
-     * T工件坐标<br>
-     * 发送[49]：03 00 00 31 02 F0 80 32 01 00 00 00 00 00 20 00 00 04 03 12 08 82 41 00 01 00 04 12 01 12 08 82 41 00 01 00 05 12 01 12 08 82 41 00 01 00 06 12 01<br>
-     * 接收[57]：03 00 00 39 02 F0 80 32 03 00 00 00 00 00 02 00 24 00 00 04 03 FF 09 00 08 00 00 00 00 00 00 00 80 FF 09 00 08 00 00 00 00 00 00 00 80 FF 09 00 08 00 00 00 00 00 00 00 80
+     * T workpiece coordinates<br>
+     * Send [49]: 03 00 00 31 02 F0 80 32 01 00 00 00 00 00 20 00 00 04 03 12 08 82 41 00 01 00 04 12 01 12 08 82 41 00 01 00 05 12 01 12 08 82 41 00 01 00 06 12 01<br>
+     * Receive [57]: 03 00 00 39 02 F0 80 32 03 00 00 00 00 00 02 00 24 00 00 04 03 FF 09 00 08 00 00 00 00 00 00 00 80 FF 09 00 08 00 00 00 00 00 00 00 80 FF 09 00 08 00 00 00 00 00 00 00 80
      *
      * @return data
      */
@@ -1099,9 +1097,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read tool radius compensation number.
-     * 刀具半径补偿编号<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 23 00 01 7F 01<br>
-     * 接收[57]：03 00 00 39 02 F0 80 32 03 00 00 00 13 00 02 00 24 00 00 04 01 FF 09 00 20 32 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+     * Tool radius compensation number<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 23 00 01 7F 01<br>
+     * Receive [57]: 03 00 00 39 02 F0 80 32 03 00 00 00 13 00 02 00 24 00 00 04 01 FF 09 00 20 32 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
      *
      * @return data
      */
@@ -1114,9 +1112,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read tool number.
-     * 刀具编号<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 17 00 01 7F 01<br>
-     * 接收[27]：03 00 00 1B 02 F0 80 32 03 00 00 00 13 00 02 00 06 00 00 04 01 FF 09 00 02 01 00
+     * Tool Number<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 17 00 01 7F 01<br>
+     * Receive [27]: 03 00 00 1B 02 F0 80 32 03 00 00 00 13 00 02 00 06 00 00 04 01 FF 09 00 02 01 00
      *
      * @return data
      */
@@ -1129,9 +1127,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read act spindle speed.
-     * 实际主轴转速<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 02 00 01 72 01<br>
-     * 接收[33]：03 00 00 21 02 F0 80 32 03 00 00 00 13 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 00 00
+     * Actual spindle speed<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 02 00 01 72 01<br>
+     * Receive [33]: 03 00 00 21 02 F0 80 32 03 00 00 00 13 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 00 00
      *
      * @return data
      */
@@ -1144,9 +1142,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read set spindle speed.
-     * 设定主轴转速<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 41 00 04 00 01 72 01<br>
-     * 接收[33]：03 00 00 21 02 F0 80 32 03 00 00 00 00 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 59 40
+     * Set the spindle speed<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 41 00 04 00 01 72 01<br>
+     * Receive [33]: 03 00 00 21 02 F0 80 32 03 00 00 00 00 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 59 40
      *
      * @return data
      */
@@ -1159,9 +1157,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read spindle rate.
-     * 主轴速率<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 41 00 04 00 01 72 01<br>
-     * 接收[33]：03 00 00 21 02 F0 80 32 03 00 00 00 00 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 59 40
+     * Spindle speed<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 41 00 04 00 01 72 01<br>
+     * Receive [33]: 03 00 00 21 02 F0 80 32 03 00 00 00 00 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 59 40
      *
      * @return data
      */
@@ -1174,9 +1172,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read feed rate.
-     * 进给速率<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 03 00 01 7F 01<br>
-     * 接收[33]：03 00 00 21 02 F0 80 32 03 00 00 00 13 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 00 00
+     * Feed rate<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 03 00 01 7F 01<br>
+     * Receive [33]: 03 00 00 21 02 F0 80 32 03 00 00 00 13 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 00 00
      *
      * @return data
      */
@@ -1189,9 +1187,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read set feed rate.
-     * 获取设定进给速率<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 02 00 01 7F 01<br>
-     * 接收[33]：03 00 00 21 02 F0 80 32 03 00 00 00 13 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 00 00
+     * Get the set feed rate<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 02 00 01 7F 01<br>
+     * Receive [33]: 03 00 00 21 02 F0 80 32 03 00 00 00 13 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 00 00
      *
      * @return data
      */
@@ -1204,9 +1202,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read act feed rate.
-     * 获取实际进给速率<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 01 00 01 7F 01<br>
-     * 接收[33]：03 00 00 21 02 F0 80 32 03 00 00 00 13 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 00 00
+     * Get actual feed rate<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 13 00 0C 00 00 04 01 12 08 82 41 00 01 00 01 7F 01<br>
+     * Receive [33]: 03 00 00 21 02 F0 80 32 03 00 00 00 13 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 00 00
      *
      * @return data
      */
@@ -1219,9 +1217,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read work mode.
-     * 工作模式的请求，0:JOG, 1:MDA, 2:AUTO, 其他<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 21 00 03 00 01 7F 01<br>
-     * 接收[27]：03 00 00 1B 02 F0 80 32 03 00 00 00 00 00 02 00 06 00 00 04 01 FF 09 00 02 00 00
+     * Working mode request, 0:JOG, 1:MDA, 2:AUTO, others<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 21 00 03 00 01 7F 01<br>
+     * Receive [27]: 03 00 00 1B 02 F0 80 32 03 00 00 00 00 00 02 00 06 00 00 04 01 FF 09 00 02 00 00
      *
      * @return data
      */
@@ -1234,9 +1232,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read status.
-     * 状态，2:stop, 1:start, 0:reset<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 41 00 0B 00 01 7F 01<br>
-     * 接收[27]：03 00 00 1B 02 F0 80 32 03 00 00 00 00 00 02 00 06 00 00 04 01 FF 09 00 02 02 00
+     * Status, 2: stop, 1: start, 0: reset<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 41 00 0B 00 01 7F 01<br>
+     * Receive [27]: 03 00 00 1B 02 F0 80 32 03 00 00 00 00 00 02 00 06 00 00 04 01 FF 09 00 02 02 00
      *
      * @return data
      */
@@ -1249,9 +1247,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read run time.
-     * 运行时间<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 41 01 29 00 01 7F 01<br>
-     * 接收[33]：03 00 00 21 02 F0 80 32 03 00 00 00 00 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 00 00
+     * Running time<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 41 01 29 00 01 7F 01<br>
+     * Receive [33]: 03 00 00 21 02 F0 80 32 03 00 00 00 00 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 00 00
      *
      * @return data
      */
@@ -1264,9 +1262,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read remain time.
-     * 剩余时间<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 41 01 2A 00 01 7F 01<br>
-     * 接收[33]：03 00 00 21 02 F0 80 32 03 00 00 00 00 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 00 00
+     * Time remaining<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 41 01 2A 00 01 7F 01<br>
+     * Receive [33]: 03 00 00 21 02 F0 80 32 03 00 00 00 00 00 02 00 0C 00 00 04 01 FF 09 00 08 00 00 00 00 00 00 00 00
      *
      * @return data
      */
@@ -1279,9 +1277,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read program name.
-     * 程序名<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 41 00 0C 00 01 7A 01<br>
-     * 接收[185]：03 00 00 B9 02 F0 80 32 03 00 00 00 00 00 02 00 A4 00 00 04 01 FF 09 00 A0 2F 5F 4E 5F 4D 50 46 30 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+     * Program name<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 41 00 0C 00 01 7A 01<br>
+     * Receive [185]: 03 00 00 B9 02 F0 80 32 03 00 00 00 00 00 02 00 A4 00 00 04 01 FF 09 00 A0 2F 5F 4E 5F 4D 50 46 30 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
      *
      * @return data
      */
@@ -1294,9 +1292,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read alarm number.
-     * 报警数量<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 01 00 07 00 01 7F 01<br>
-     * 接收[27]：03 00 00 1B 02 F0 80 32 03 00 00 00 00 00 02 00 06 00 00 04 01 FF 09 00 02 05 00
+     * Number of alarms<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 01 00 07 00 01 7F 01<br>
+     * Receive [27]: 03 00 00 1B 02 F0 80 32 03 00 00 00 00 00 02 00 06 00 00 04 01 FF 09 00 02 05 00
      *
      * @return data
      */
@@ -1309,9 +1307,9 @@ public class S7PLC extends PLCNetwork {
 
     /**
      * Read alarm info.
-     * 报警信息<br>
-     * 发送[29]：03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 01 00 07 00 01 7F 01<br>
-     * 接收[27]：03 00 00 1B 02 F0 80 32 03 00 00 00 00 00 02 00 06 00 00 04 01 FF 09 00 02 05 00
+     * Alarm information<br>
+     * Send [29]: 03 00 00 1D 02 F0 80 32 01 00 00 00 00 00 0C 00 00 04 01 12 08 82 01 00 07 00 01 7F 01<br>
+     * Receive [27]: 03 00 00 1B 02 F0 80 32 03 00 00 00 00 00 02 00 06 00 00 04 01 FF 09 00 02 05 00
      *
      * @return data
      */

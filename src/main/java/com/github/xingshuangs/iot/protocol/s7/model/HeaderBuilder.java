@@ -30,14 +30,14 @@ import com.github.xingshuangs.iot.protocol.s7.enums.EMessageType;
 
 /**
  * Header builder.
- * Header构建器
+ * Header builder
  *
  * @author xingshuang
  */
 public class HeaderBuilder {
 
     private HeaderBuilder() {
-        // NOOP
+        //NOOP
     }
 
     /**

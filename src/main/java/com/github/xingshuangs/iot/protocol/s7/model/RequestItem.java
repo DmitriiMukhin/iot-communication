@@ -36,7 +36,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * Request item.
- * 标准数据读取请求项
+ * Standard data read request items
  *
  * @author xingshuang
  */
@@ -54,47 +54,47 @@ public class RequestItem extends RequestBaseItem {
 
     /**
      * Variable type.
-     * 变量的类型和长度BIT，BYTE，WORD，DWORD，COUNTER <br>
-     * 字节大小：1 <br>
-     * 字节序数：3
+     * Variable type and length BIT, BYTE, WORD, DWORD, COUNTER<br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 3
      */
     private EParamVariableType variableType = EParamVariableType.BYTE;
 
     /**
      * Data length.
-     * 读取长度 <br>
-     * 字节大小：2 <br>
-     * 字节序数：4-5
+     * Read Length <br>
+     * Byte size: 2 <br>
+     * Byte ordinal: 4-5
      */
     private int count = 0x0000;
 
     /**
      * DB number.
-     * 即 DB 编号，如果访问的不是DB区域，此处为0x0000 <br>
-     * 字节大小：2 <br>
-     * 字节序数：6-7
+     * DB number. If the access is not to a DB area, this is 0x0000 <br>
+     * Byte size: 2 <br>
+     * Byte ordinal: 6-7
      */
     private int dbNumber = 0x0000;
 
     /**
      * Area.
-     * 存储区类型DB存储区 <br>
-     * 字节大小：1 <br>
-     * 字节序数：8
+     * Storage area type DB storage area <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 8
      */
     private EArea area = EArea.INPUTS;
 
     /**
      * Byte address.
-     * 字节地址，位于开始字节地址address中3个字节，从第4位开始计数 <br>
-     * 字节大小：3 <br>
-     * 字节序数：9-11
+     * Byte address, located 3 bytes into the starting byte address address, counting starts from the 4th bit <br>
+     * Byte size: 3 <br>
+     * Byte ordinal: 9-11
      */
     private int byteAddress = 0;
 
     /**
      * Bit address.
-     * 位地址，位于开始字节地址address中3个字节的最后3位
+     * Bit address, located at the last 3 bits of the 3 bytes in the starting byte address address
      */
     private int bitAddress = 0;
 
@@ -113,14 +113,14 @@ public class RequestItem extends RequestBaseItem {
                 .putShort(this.count)
                 .putShort(this.dbNumber)
                 .putByte(this.area.getCode())
-                // 只有3个字节，因此只取后面的3字节，第一个字节舍弃
+                // There are only 3 bytes, so only the next 3 bytes are taken and the first byte is discarded
                 .putBytes(IntegerUtil.toByteArray((this.byteAddress << 3) + this.bitAddress), 1)
                 .getData();
     }
 
     /**
      * Copy.
-     * 复制一个新对象
+     * Duplicate a new object
      *
      * @return requestItem
      */
@@ -172,14 +172,14 @@ public class RequestItem extends RequestBaseItem {
 
     /**
      * Create request item.
-     * 通过参数创建请求项
+     * Create a request item with parameters
      *
-     * @param variableType variable type 参数类型
-     * @param count        data count 数据个数
-     * @param area         area 区域
-     * @param dbNumber     db number DB块编号
-     * @param byteAddress  byte address 字节地址
-     * @param bitAddress   bit address 位地址
+     * @param variableType variable type parameter type
+     * @param count data count number of data
+     * @param area area
+     * @param dbNumber db number DB block number
+     * @param byteAddress byte address byte address
+     * @param bitAddress bit address bit address
      * @return request item
      */
     public static RequestItem createByParams(EParamVariableType variableType, int count, EArea area, int dbNumber, int byteAddress, int bitAddress) {

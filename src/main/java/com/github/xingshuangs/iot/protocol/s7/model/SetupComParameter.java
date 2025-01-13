@@ -34,7 +34,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * Setup communicate parameter.
- * 设置通信参数
+ * Set the communication parameters
  *
  * @author xingshuang
  */
@@ -46,33 +46,33 @@ public class SetupComParameter extends Parameter implements IObjectByteArray {
 
     /**
      * Reserved.
-     * 预留 <br>
-     * 字节大小：1 <br>
-     * 字节序数：1
+     * Reserved <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 1
      */
     private byte reserved = (byte) 0x00;
 
     /**
-     * Max amq caller.
-     * Ack队列的大小（主叫）（大端）<br>
-     * 字节大小：2 <br>
-     * 字节序数：2-3
+     * Max amq callers.
+     * Ack queue size (caller) (big endian)<br>
+     * Byte size: 2 <br>
+     * Byte ordinal: 2-3
      */
     private int maxAmqCaller = 0x0001;
 
     /**
      * Max amq callee
-     * Ack队列的大小（被叫）（大端）<br>
-     * 字节大小：2 <br>
-     * 字节序数：4-5
+     * Size of the Ack queue (called) (big endian)<br>
+     * Byte size: 2 <br>
+     * Byte ordinal: 4-5
      */
     private int maxAmqCallee = 0x0001;
 
     /**
      * PDU length.
-     * PDU长度（大端）<br>
-     * 字节大小：2 <br>
-     * 字节序数：6-7
+     * PDU length (big endian)<br>
+     * Byte size: 2 <br>
+     * Byte ordinal: 6-7
      */
     private int pduLength = 0x0000;
 
@@ -111,7 +111,7 @@ public class SetupComParameter extends Parameter implements IObjectByteArray {
 
     /**
      * Create default setup parameter.
-     * 创建默认的设置通信参数，默认最大PDU长度240
+     * Create a default communication parameter that sets the maximum PDU length to 240
      *
      * @param pduLength PDU length
      * @return SetupComParameter
@@ -122,7 +122,7 @@ public class SetupComParameter extends Parameter implements IObjectByteArray {
         parameter.reserved = (byte) 0x00;
         parameter.maxAmqCaller = 1;
         parameter.maxAmqCallee = 1;
-        // 默认最大PDU长度240
+        // The default maximum PDU length is 240
         parameter.pduLength = pduLength;
         return parameter;
     }

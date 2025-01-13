@@ -32,7 +32,7 @@ import lombok.Data;
 
 /**
  * Return item.
- * 返回项
+ * Return items
  *
  * @author xingshuang
  */
@@ -41,9 +41,9 @@ public class ReturnItem implements IObjectByteArray {
 
     /**
      * Return code.
-     * 返回码 <br>
-     * 字节大小：1 <br>
-     * 字节序数：0
+     * Return code <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 0
      */
     protected EReturnCode returnCode = EReturnCode.SUCCESS;
 
@@ -73,7 +73,7 @@ public class ReturnItem implements IObjectByteArray {
 
     /**
      * Create default return item.
-     * 获取默认数据返回
+     * Get the default data returned
      *
      * @param returnCode return code
      * @return return item

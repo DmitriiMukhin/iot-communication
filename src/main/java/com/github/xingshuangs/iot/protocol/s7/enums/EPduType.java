@@ -30,39 +30,39 @@ import java.util.Map;
 
 /**
  * PDU type.
- * PDU类型（CRConnect Request 连接请求）
+ * PDU type（CRConnect Request Connection Request)
  *
  * @author xingshuang
  */
 public enum EPduType {
 
     /**
-     * 连接请求
+     * Connection request
      */
     CONNECT_REQUEST((byte) 0xE0),
 
     /**
-     * 连接确认
+     * Connection confirmation
      */
     CONNECT_CONFIRM((byte) 0xD0),
 
     /**
-     * 断开请求
+     * Disconnect request
      */
     DISCONNECT_REQUEST((byte) 0x80),
 
     /**
-     * 断开确认
+     * Disconnect confirmation
      */
     DISCONNECT_CONFIRM((byte) 0xC0),
 
     /**
-     * 拒绝
+     * reject
      */
     REJECT((byte) 0x50),
 
     /**
-     * 数据
+     * data
      */
     DT_DATA((byte) 0xF0),
     ;

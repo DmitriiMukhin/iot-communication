@@ -34,7 +34,7 @@ import java.util.List;
 
 /**
  * PLC control, insert parameter block.
- * PLC控制参数块，插入功能
+ * PLC control parameter block, insert function
  *
  * @author xingshuang
  */

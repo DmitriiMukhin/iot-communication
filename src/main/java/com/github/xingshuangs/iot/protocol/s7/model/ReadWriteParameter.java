@@ -40,7 +40,7 @@ import java.util.List;
 
 /**
  * Read and write parameter.
- * 读写参数
+ * Read and write parameters
  *
  * @author xingshuang
  */
@@ -50,21 +50,21 @@ public class ReadWriteParameter extends Parameter implements IObjectByteArray {
 
     /**
      * Item count.
-     * Request Item结构的数量 <br>
-     * 字节大小：1 <br>
-     * 字节序数：1
+     * Number of Request Item structures <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 1
      */
     private int itemCount = 0x00;
 
     /**
      * Request items.
-     * (可重复的请求项)
+     * (repeatable request)
      */
     private List<RequestBaseItem> requestItems = new ArrayList<>();
 
     /**
      * Add item.
-     * (添加请求项)
+     * (Add request item)
      *
      * @param item request item
      */
@@ -75,7 +75,7 @@ public class ReadWriteParameter extends Parameter implements IObjectByteArray {
 
     /**
      * Add item list.
-     * (添加请求项列表)
+     * (Add request item list)
      *
      * @param items request item list
      */
@@ -109,7 +109,7 @@ public class ReadWriteParameter extends Parameter implements IObjectByteArray {
      */
     public static ReadWriteParameter fromBytes(final byte[] data) {
         if (data.length < 2) {
-            // Parameter解析有误，parameter字节数组长度 < 2
+            // Parameter parsing error, parameter byte array length < 2
             throw new S7CommException("Parameter parsing error, parameter byte array length < 2");
         }
         ByteReadBuff buff = new ByteReadBuff(data);
@@ -119,7 +119,7 @@ public class ReadWriteParameter extends Parameter implements IObjectByteArray {
         if (readWriteParameter.itemCount == 0) {
             return readWriteParameter;
         }
-        // 读写返回时，只有功能码和个数
+        // When reading and writing, only the function code and number are returned
         if (data.length == 2) {
             return readWriteParameter;
         }
@@ -134,9 +134,9 @@ public class ReadWriteParameter extends Parameter implements IObjectByteArray {
 
     /**
      * Parses byte array and converts it to object.
-     * (解析字节数组数据)
+     * (parse byte array data)
      *
-     * @param data   byte array
+     * @param data byte array
      * @param offset index offset
      * @return RequestBaseItem
      */
@@ -150,14 +150,14 @@ public class ReadWriteParameter extends Parameter implements IObjectByteArray {
             case NCK:
                 return RequestNckItem.fromBytes(data, offset);
             default:
-                // 无法解析RequestBaseItem对应的类型
+                // The type of RequestBaseItem could not be resolved
                 throw new S7CommException("Unable to resolve the corresponding type of RequestBaseItem");
         }
     }
 
     /**
      * Create request parameter.
-     * (创建默认的请求参数)
+     * (Create Default Request Parameters)
      *
      * @param functionCode function code
      * @param requestItems request items
@@ -172,7 +172,7 @@ public class ReadWriteParameter extends Parameter implements IObjectByteArray {
 
     /**
      * Create ack parameter
-     * (创建响应参数)
+     * (Create Response Parameter)
      *
      * @param request request parameter
      * @return new read and write parameter

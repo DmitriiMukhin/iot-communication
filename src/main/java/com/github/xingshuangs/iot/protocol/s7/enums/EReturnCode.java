@@ -30,49 +30,49 @@ import java.util.Map;
 
 /**
  * Return code.
- * 操作的返回值，0xff信号成功。在“ 写入请求”消息中，此字段始终设置为零。
+ * The return value of the operation, 0xff signal success. In the Write Request message, this field is always set to zero.
  *
  * @author xingshuang
  */
 public enum EReturnCode {
 
     /**
-     * 未定义，预留
+     * Undefined, Reserved
      */
     RESERVED((byte) 0x00, "reserved"),
 
     /**
-     * 硬件错误
+     * Hardware error
      */
     HARDWARE_ERROR((byte) 0x01, "hardware error"),
 
     /**
-     * 对象不允许访问
+     * The object is not allowed to be accessed
      */
     ACCESSING_THE_OBJECT_NOT_ALLOWED((byte) 0x03, "accessing the object not allowed"),
 
     /**
-     * 无效地址，所需的地址超出此PLC的极限
+     * Invalid address, the address required is beyond the limits of this PLC
      */
     INVALID_ADDRESS((byte) 0x05, "invalid address"),
 
     /**
-     * 数据类型不支持
+     * Data types are not supported
      */
     DATA_TYPE_NOT_SUPPORTED((byte) 0x06, "data type not supported"),
 
     /**
-     * 数据类型不一致
+     * The data types are inconsistent
      */
     DATA_TYPE_INCONSISTENT((byte) 0x07, "data type inconsistent"),
 
     /**
-     * 对象不存在
+     * The object does not exist
      */
     OBJECT_DOES_NOT_EXIST((byte) 0x0A, "object does not exist"),
 
     /**
-     * 成功
+     * Success
      */
     SUCCESS((byte) 0xFF, "success"),
 

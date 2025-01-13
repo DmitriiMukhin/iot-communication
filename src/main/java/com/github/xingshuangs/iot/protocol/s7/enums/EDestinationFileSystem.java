@@ -30,24 +30,24 @@ import java.util.Map;
 
 /**
  * Destination file system.
- * (目标文件系统)
+ * (target file system)
  *
  * @author xingshuang
  */
 public enum EDestinationFileSystem {
 
     /**
-     * 对应0x50，（Passive (copied, but not chained) module)：被动文件系统
+     * Corresponding to 0x50, (Passive (copied, but not chained) module): passive file system
      */
     P((byte) 0x50),
 
     /**
-     * 对应0x41，(Active embedded module)：主动文件系统
+     * Corresponding to 0x41, (Active embedded module): active file system
      */
     A((byte) 0x41),
 
     /**
-     * 对应0x42，(Active as well as passive module)：既主既被文件系统种
+     * Corresponding to 0x42 (Active as well as passive module): both the main and passive file system
      */
     B((byte) 0x42),
     ;

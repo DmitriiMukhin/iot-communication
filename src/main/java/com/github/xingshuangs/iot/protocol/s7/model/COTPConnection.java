@@ -35,7 +35,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * COTP connection class.
- * COTP连接部分
+ * COTP connection part
  *
  * @author xingshuang
  */
@@ -47,92 +47,92 @@ public class COTPConnection extends COTP implements IObjectByteArray {
 
     /**
      * Destination reference, used to uniquely identify the target.
-     * 目标引用，用来唯一标识目标 <br>
-     * 字节大小：2 <br>
-     * 字节序数：2-3
+     * Target reference, used to uniquely identify the target <br>
+     * Byte size: 2 <br>
+     * Byte ordinal: 2-3
      */
     private int destinationReference = 0x0000;
 
     /**
      * Source reference.
-     * 源引用 <br>
-     * 字节大小：2 <br>
-     * 字节序数：4-5
+     * Source reference <br>
+     * Byte size: 2 <br>
+     * Byte ordinal: 4-5
      */
     private int sourceReference = 0x0001;
 
     /**
      * Extended format/flow control.
-     * 扩展格式/流控制  前四位标识Class，  倒数第二位Extended formats，  倒数第一位No explicit flow control <br>
-     * 字节大小：1 <br>
-     * 字节序数：6
+     * Extended formats/flow control The first four bits identify Class, the second to last bit is Extended formats, and the last to last bit is No explicit flow control <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 6
      */
     private byte flags = (byte) 0x00;
 
     /**
      * Parameter code tpdu size.
-     * 参数代码TPDU-Size <br>
-     * 字节大小：1 <br>
-     * 字节序数：7
+     * Parameter code TPDU-Size <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 7
      */
     private byte parameterCodeTpduSize = (byte) 0xC0;
 
     /**
      * Tpdu size byte length.
-     * 参数长度 <br>
-     * 字节大小：1 <br>
-     * 字节序数：8
+     * Parameter length <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 8
      */
     private int parameterLength1 = (byte) 0x01;
 
     /**
-     * TPDU大小 TPDU Size (2^10 = 1024) <br>
-     * 字节大小：1 <br>
-     * 字节序数：9
+     * TPDU Size TPDU Size (2^10 = 1024) <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 9
      */
     private int tpduSize = (byte) 0x0A;
 
     /**
-     * 参数代码SRC-TASP <br>
-     * 字节大小：1 <br>
-     * 字节序数：10
+     * Parameter code SRC-TASP <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 10
      */
     private byte parameterCodeSrcTsap = (byte) 0xC1;
 
     /**
      * Source tsap byte length.
-     * 参数长度 <br>
-     * 字节大小：1 <br>
-     * 字节序数：11
+     * Parameter length <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 11
      */
     private int parameterLength2 = (byte) 0x02;
 
     /**
      * SourceTSAP/Rack <br>
-     * 字节大小：2 <br>
-     * 字节序数：12-13
+     * Byte size: 2 <br>
+     * Byte ordinal: 12-13
      */
     private int sourceTsap = 0x0100;
 
     /**
-     * 参数代码DST-TASP <br>
-     * 字节大小：1 <br>
-     * 字节序数：14
+     * Parameter code DST-TASP <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 14
      */
     private byte parameterCodeDstTsap = (byte) 0xC2;
 
     /**
      * Destination tsap byte length.
-     * 参数长度 <br>
-     * 字节大小：1 <br>
-     * 字节序数：15
+     * Parameter length <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 15
      */
     private int parameterLength3 = (byte) 0x02;
 
     /**
      * DestinationTSAP/Slot <br>
-     * 字节大小：2 <br>
-     * 字节序数：16-17
+     * Byte size: 2 <br>
+     * Byte ordinal: 16-17
      */
     private int destinationTsap = 0x0100;
 

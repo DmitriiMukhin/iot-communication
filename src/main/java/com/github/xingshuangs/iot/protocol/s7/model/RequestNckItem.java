@@ -35,7 +35,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * NCK request item.
- * NCK请求项
+ * NCK request item
  *
  * @author xingshuang
  */
@@ -66,49 +66,49 @@ public class RequestNckItem extends RequestBaseItem {
 
     /**
      * NCK area.
-     * NCK区域 <br>
-     * 字节大小：1 <br>
-     * 字节序数：3
+     * NCK Area <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 3
      */
     private ENckArea area = ENckArea.N_NCK;
 
     /**
      * unit number.
-     * 通道编号 <br>
-     * 字节大小：1 <br>
-     * 字节序数：4
+     * Channel Number <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 4
      */
     private int unit = 0x0000;
 
     /**
      * Column number.
-     * 列编号 <br>
-     * 字节大小：2 <br>
-     * 字节序数：5
+     * Column Number <br>
+     * Byte size: 2 <br>
+     * Byte ordinal: 5
      */
     private int columnNumber = 0x0000;
 
     /**
      * Line number.
-     * 行编号 <br>
-     * 字节大小：2 <br>
-     * 字节序数：7
+     * Line Number <br>
+     * Byte size: 2 <br>
+     * Byte ordinal: 7
      */
     private int lineNumber = 0x0000;
 
     /**
      * Module name.
-     * 模块名 <br>
-     * 字节大小：1 <br>
-     * 字节序数：8
+     * Module Name <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 8
      */
     private ENckModule module = ENckModule.S;
 
     /**
      * Line count.
-     * 行个数 <br>
-     * 字节大小：1 <br>
-     * 字节序数：9
+     * Number of rows <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 9
      */
     private int lineCount = 1;
 
@@ -135,7 +135,7 @@ public class RequestNckItem extends RequestBaseItem {
 
     /**
      * Copy.
-     * 复制一个新对象
+     * Duplicate a new object
      *
      * @return requestItem
      */

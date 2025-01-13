@@ -38,7 +38,7 @@ import java.util.List;
 
 /**
  * Read write data.
- * 读写数据
+ * Read and write data
  *
  * @author xingshuang
  */
@@ -48,7 +48,7 @@ public class ReadWriteDatum extends Datum {
 
     /**
      * Return items.
-     * (数据项)
+     * (data item)
      */
     private final List<ReturnItem> returnItems = new ArrayList<>();
 
@@ -61,7 +61,7 @@ public class ReadWriteDatum extends Datum {
         for (int i = 0; i < this.returnItems.size(); i++) {
             int length = this.returnItems.get(i).byteArrayLength();
             sum += length;
-            // 当数据不是最后一个的时候，如果数据长度为奇数，S7协议会多填充一个字节，使其数量保持为偶数（最后一个奇数长度数据不需要填充）
+            // When the data is not the last one, if the data length is an odd number, the S7 protocol will fill one more byte to keep its number to an even number (the last odd-length data does not need to be filled)
             if (i != this.returnItems.size() - 1
                     && length % 2 == 1
                     && this.returnItems.get(i) instanceof DataItem) {
@@ -80,7 +80,8 @@ public class ReadWriteDatum extends Datum {
         for (int i = 0; i < this.returnItems.size(); i++) {
             int length = this.returnItems.get(i).byteArrayLength();
             buff.putBytes(this.returnItems.get(i).toByteArray());
-            // 当数据不是最后一个的时候，如果数据长度为奇数，S7协议会多填充一个字节，使其数量保持为偶数（最后一个奇数长度数据不需要填充）
+            // When the data is not the last, if the data length is odd, the S7 protocol will pad one more byte
+            // to keep the number even (the last odd-length data does not need to be filled)
             if (i != this.returnItems.size() - 1
                     && length % 2 == 1
                     && this.returnItems.get(i) instanceof DataItem) {
@@ -92,7 +93,7 @@ public class ReadWriteDatum extends Datum {
 
     /**
      * Add item.
-     * (添加数据项)
+     * (Add Data Item)
      *
      * @param item item
      */
@@ -102,7 +103,7 @@ public class ReadWriteDatum extends Datum {
 
     /**
      * Add items.
-     * (批量添加数据项)
+     * (Add data items in bulk)
      *
      * @param items item list
      */
@@ -112,11 +113,11 @@ public class ReadWriteDatum extends Datum {
 
     /**
      * Parses byte array and converts it to object.
-     * (根据消息类型和功能码，对字节数组数据进行解析)
+     * (Byte array data is parsed according to message type and function code)
      *
-     * @param data         byte array 字节数组数据
-     * @param messageType  message type 头部的消息类型
-     * @param functionCode function code 参数部分的功能码
+     * @param data         byte array Byte array data
+     * @param messageType  message type The type of message in the header
+     * @param functionCode function code The function code of the parameter section
      * @return ReadWriteDatum
      */
     public static ReadWriteDatum fromBytes(final byte[] data, EMessageType messageType, EFunctionCode functionCode) {
@@ -128,7 +129,7 @@ public class ReadWriteDatum extends Datum {
         byte[] remain = data;
         while (true) {
             ReturnItem dataItem;
-            // 对写操作的响应结果进行特殊处理
+            // Special processing is performed on the response results of write operations
             if (EMessageType.ACK_DATA == messageType && EFunctionCode.WRITE_VARIABLE == functionCode) {
                 dataItem = ReturnItem.fromBytes(remain);
                 datum.returnItems.add(dataItem);
@@ -137,7 +138,8 @@ public class ReadWriteDatum extends Datum {
                 dataItem = DataItem.fromBytes(remain);
                 datum.returnItems.add(dataItem);
                 offset += dataItem.byteArrayLength();
-                // 当数据不是最后一个的时候，如果数据长度为奇数，S7协议会多填充一个字节，使其数量保持为偶数（最后一个奇数长度数据不需要填充）
+                // When the data is not the last, if the data length is odd, the S7 protocol will pad one more byte
+                // to keep the number even (the last odd-length data does not need to be filled)
                 if (dataItem.byteArrayLength() % 2 == 1) {
                     offset++;
                 }
@@ -152,7 +154,7 @@ public class ReadWriteDatum extends Datum {
 
     /**
      * Create read and write data.
-     * (创建数据Datum)
+     * (Create Data Datum)
      *
      * @param dataItems data items
      * @return Datum

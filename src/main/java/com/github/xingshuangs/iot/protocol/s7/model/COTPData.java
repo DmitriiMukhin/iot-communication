@@ -35,7 +35,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * COTP数据部分Describes a COTP TPDU (Transport protocol data unit)
+ * COTP data sectionDescribes a COTP TPDU (Transport protocol data unit)
  *
  * @author xingshuang
  */
@@ -47,17 +47,17 @@ public class COTPData extends COTP implements IObjectByteArray {
 
     /**
      * TPDU number.
-     * TPDU编号 <br>
-     * 字节大小：1，后面7位 <br>
-     * 字节序数：2
+     * TPDU Number <br>
+     * Byte size: 1, followed by 7 bits <br>
+     * Byte ordinal: 2
      */
     private int tpduNumber = 0x00;
 
     /**
      * Whether the last data unit.
-     * 是否最后一个数据单元 <br>
-     * 字节大小：1，最高位，7位 <br>
-     * 字节序数：2
+     * Is it the last data unit? <br>
+     * Byte size: 1, most significant bit, 7 bits <br>
+     * Byte ordinal: 2
      */
     private boolean lastDataUnit = true;
 
@@ -71,21 +71,21 @@ public class COTPData extends COTP implements IObjectByteArray {
         return ByteWriteBuff.newInstance(BYTE_LENGTH)
                 .putByte(this.length)
                 .putByte(this.pduType.getCode())
-                // TPDU编号和是否最后一个数据单元组合成一个字节，最高位表示是否最后一个
+                // The TPDU number and whether it is the last data unit are combined into one byte, and the highest bit indicates whether it is the last
                 .putByte((byte) (BooleanUtil.setBit((byte) 0x00, 7, this.lastDataUnit) | (this.tpduNumber & 0xFF)))
                 .getData();
     }
 
     /**
      * Parses byte array and converts it to object.
-     * 通过字节数组转换为COTPData对象
+     * Convert the byte array to a COTPData object
      *
      * @param data byte array
      * @return COTPData
      */
     public static COTPData fromBytes(final byte[] data) {
         if (data.length < BYTE_LENGTH) {
-            // COTPData数据字节长度不够，无法解析
+            // COTPData data byte length is not enough and cannot be parsed
             throw new S7CommException("COTPData Data byte length is not enough to parse");
         }
         ByteReadBuff buff = new ByteReadBuff(data);

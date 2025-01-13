@@ -31,7 +31,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * Group item.
- * (合并项)
+ * (Consolidation)
  *
  * @author xingshuang
  */
@@ -42,43 +42,43 @@ public class S7ComItem {
 
     /**
      * Data index.
-     * 数据索引
+     * Data indexing
      */
     private int index;
 
     /**
      * Raw data size.
-     * (原始数据大小)
+     * (Raw data size)
      */
     private int rawSize;
 
     /**
      * Split index offset.
-     * (分割点，即数据偏移索引)
+     * (Split point, i.e., data offset index)
      */
     private int splitOffset;
 
     /**
      * Ripe data size after split.
-     * (分割后的数据大小)
+     * (Split data size)
      */
     private int ripeSize;
 
     /**
      * Extra data size.
-     * (额外需要的数据大小)
+     * (Additional required data size)
      */
     private int extraSize;
 
     /**
      * Threshold.
-     * (阀值)
+     * (Threshold)
      */
     private int threshold = 0;
 
     /**
      * Get total length of item.
-     * (整个长度)
+     * (Entire length)
      *
      * @return total length
      */

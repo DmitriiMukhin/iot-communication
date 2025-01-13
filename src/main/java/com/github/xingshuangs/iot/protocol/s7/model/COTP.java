@@ -40,17 +40,17 @@ public class COTP implements IObjectByteArray {
 
     /**
      * Length, exclude this length field.
-     * 长度（但并不包含length这个字段）<br>
-     * 字节大小：1 <br>
-     * 字节序数：0
+     * Length (but does not include the length field)<br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 0
      */
     protected int length = 0x00;
 
     /**
      * PDU type.
-     * PDU类型（CRConnect Request 连接请求）<br>
-     * 字节大小：1 <br>
-     * 字节序数：1
+     * PDU type (CRConnect Request connection request)<br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 1
      */
     protected EPduType pduType = EPduType.CONNECT_REQUEST;
 

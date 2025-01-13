@@ -34,7 +34,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * Ack header.
- * 响应头
+ * Response headers
  *
  * @author xingshuang
  */
@@ -46,17 +46,17 @@ public class AckHeader extends Header {
 
     /**
      * Error class.
-     * 错误类型 <br>
-     * 字节大小：1 <br>
-     * 字节序数：10
+     * Error Type <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 10
      */
     private EErrorClass errorClass = EErrorClass.NO_ERROR;
 
     /**
      * Error code.
-     * 错误码，本来是1个字节的，但本质上errorCode（真正） = errorClass + errorCode（原） <br>
-     * 字节大小：2 <br>
-     * 字节序数：10-11
+     * Error code, originally 1 byte, but essentially errorCode (real) = errorClass + errorCode (original) <br>
+     * Byte size: 2 <br>
+     * Byte ordinal: 10-11
      */
     private int errorCode = 0x0000;
 
@@ -99,11 +99,11 @@ public class AckHeader extends Header {
 
     /**
      * Create default header.
-     * 创建默认的头header
+     * Create a default header
      *
-     * @param request    request header
+     * @param request request header
      * @param errorClass error class
-     * @param errorCode  error code
+     * @param errorCode error code
      * @return Header object
      */
     public static AckHeader createDefault(Header request, EErrorClass errorClass, int errorCode) {

@@ -31,7 +31,7 @@ import com.github.xingshuangs.iot.common.buff.ByteWriteBuff;
 import lombok.Getter;
 
 /**
- * TPKT protocol.
+ *TPKT protocol.
  *
  * @author xingshuang
  */
@@ -42,25 +42,25 @@ public class TPKT implements IObjectByteArray {
 
     /**
      * Version.
-     * 版本号，常量0x03 <br>
-     * 字节大小：1 <br>
-     * 字节序数：0
+     * Version number, constant 0x03 <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 0
      */
     private byte version = 0x03;
 
     /**
      * Reserved.
-     * 预留，默认值0x00 <br>
-     * 字节大小：1 <br>
-     * 字节序数：1
+     * Reserved, default value 0x00 <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 1
      */
     private byte reserved = 0x00;
 
     /**
-     * The value includes payload+ version number + reserved + length
-     * 长度，包括后面负载payload+版本号+预留+长度 <br>
-     * 字节大小：2 <br>
-     * 字节序数：2-3
+     * The value includes payload + version number + reserved + length
+     * Length, including the following payload + version number + reserved + length <br>
+     * Byte size: 2 <br>
+     * Byte ordinal: 2-3
      */
     private int length = 0x0000;
 

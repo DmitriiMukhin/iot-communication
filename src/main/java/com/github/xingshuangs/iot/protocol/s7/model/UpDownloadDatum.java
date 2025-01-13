@@ -34,7 +34,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * Upload and download data.
- * 上传下载数据
+ * Upload and download data
  *
  * @author xingshuang
  */
@@ -44,19 +44,19 @@ public class UpDownloadDatum extends Datum {
 
     /**
      * Length.
-     * 长度，2个字节
+     * Length, 2 bytes
      */
     private int length = 0;
 
     /**
      * Unknown bytes
-     * 未知，2个字节
+     * Unknown, 2 bytes
      */
     private int unknownBytes = 0;
 
     /**
      * Data, byte array
-     * 数据部分
+     * Data part
      */
     private byte[] data = new byte[0];
 
@@ -77,7 +77,7 @@ public class UpDownloadDatum extends Datum {
     /**
      * Parses byte array and converts it to object.
      *
-     * @param data        byte array
+     * @param data byte array
      * @param messageType message type
      * @return UpDownloadDatum
      */
@@ -89,14 +89,14 @@ public class UpDownloadDatum extends Datum {
     /**
      * Parses byte array and converts it to object.
      *
-     * @param data        byte array
-     * @param offset      index offset
+     * @param data byte array
+     * @param offset index offset
      * @param messageType message type
      * @return UpDownloadDatum
      */
     public static UpDownloadDatum fromBytes(byte[] data, int offset, EMessageType messageType) {
         if (EMessageType.ACK_DATA != messageType) {
-            // 不是响应数据
+            // Not response data
             throw new S7CommException("Not response data");
         }
         UpDownloadDatum res = new UpDownloadDatum();
@@ -109,7 +109,7 @@ public class UpDownloadDatum extends Datum {
 
     /**
      * Create download data.
-     * 根据字节数据创建下载数据结构
+     * Create a download data structure based on byte data
      *
      * @param data data
      * @return UpDownloadDatum
@@ -119,7 +119,7 @@ public class UpDownloadDatum extends Datum {
             throw new IllegalArgumentException("data");
         }
         UpDownloadDatum res = new UpDownloadDatum();
-        // 这里长度最长是0xD0，即208，对应最长是240
+        // The longest length here is 0xD0, which is 208, and the longest corresponding length is 240
         res.length = data.length;
         res.unknownBytes = 0x00FB;
         res.data = data;

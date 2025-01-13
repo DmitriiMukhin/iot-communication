@@ -30,7 +30,7 @@ import java.util.Map;
 
 /**
  * Nck module.
- * NCK的模块
+ * Modules of NCK
  *
  * @author xingshuang
  */

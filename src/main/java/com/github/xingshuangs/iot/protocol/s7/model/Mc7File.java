@@ -32,7 +32,7 @@ import lombok.Data;
 
 /**
  * MC7 file content class.
- * mc7文件内容
+ * mc7 file content
  *
  * @author xingshuang
  */
@@ -41,31 +41,31 @@ public class Mc7File {
 
     /**
      * Source data.
-     * 源数据
+     * Source data
      */
     private byte[] data = new byte[0];
 
     /**
      * Block type.
-     * 块类型
+     * Block type
      */
     private EFileBlockType blockType;
 
     /**
      * Block number.
-     * 块编号
+     * Block number
      */
     private int blockNumber;
 
     /**
      * MC7 code length.
-     * mc7代码长度
+     * mc7 code length
      */
     private int mC7CodeLength;
 
     /**
      * Byte array total length.
-     * 字节数组总长度
+     * Total length of byte array
      *
      * @return length
      */
@@ -75,7 +75,7 @@ public class Mc7File {
 
     /**
      * Parses byte array and converts it to object.
-     * 字节转换为对象
+     * Convert bytes to objects
      *
      * @param data byte array
      * @return Mc7File

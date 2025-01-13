@@ -48,7 +48,7 @@ import java.util.stream.Collectors;
 
 /**
  * S7 serializer tool class.
- * (S7序列化工具)
+ * (S7 Serialization Tool)
  *
  * @author xingshuang
  */
@@ -62,7 +62,7 @@ public class S7Serializer implements IPLCSerializable {
 
     /**
      * Static method for creating instance object.
-     * 静态方法实例对象
+     * Static method instance object
      *
      * @param s7PLC plc object
      * @return serializer object
@@ -73,7 +73,7 @@ public class S7Serializer implements IPLCSerializable {
 
     /**
      * Convert to parsed data according to the S7Variable annotation.
-     * 将类根据S7Variable注解转换为解析数据
+     * Converts the class to parse data based on the S7Variable annotation
      *
      * @param targetClass target object class
      * @return result data list
@@ -98,7 +98,7 @@ public class S7Serializer implements IPLCSerializable {
 
     /**
      * Create S7ParseData list by S7Parameter list.
-     * (解析参数)
+     * (Analytical Parameter)
      *
      * @param parameters parameter list
      * @return List<S7ParseData>
@@ -108,7 +108,7 @@ public class S7Serializer implements IPLCSerializable {
             List<S7ParseData> s7ParseDataList = new ArrayList<>();
             for (final S7Parameter p : parameters) {
                 if (p == null) {
-                    // parameters列表中存在null
+                    // parameters null present in the list
                     throw new S7CommException("null exists in the parameters list");
                 }
                 S7ParseData s7ParseData = this.createS7ParseData(p, p.getClass().getDeclaredField("value"));
@@ -122,51 +122,52 @@ public class S7Serializer implements IPLCSerializable {
 
     /**
      * Check that the data of the S7Variable meets the rule requirements.
-     * (校验S7Variable的数据是否满足规则要求)
+     * (Check whether the data of S7Variable meets the requirements of the rule)
      *
      * @param parameter parameter
      */
     private void checkS7Variable(final S7Parameter parameter) {
         if (parameter.getAddress().isEmpty()) {
-            // S7参数中[address]不能为空
+            // S7 parameter [address] It can't be empty
             throw new S7CommException("[address] in the S7 parameter cannot be empty");
         }
         if (parameter.getCount() < 0) {
-            // S7参数中[count]不能为负数
+            // S7 parameter[count] it cannot be negative
             throw new S7CommException("[count] in the S7 parameter cannot be negative");
         }
         if (parameter.getDataType() == EDataType.STRING && parameter.getCount() > 254) {
-            // S7参数中字符串类型类型数据的[count]不能大于254
+            // S7 parameter [count] it cannot be greater than 254
             throw new S7CommException("The [count] value of the string type in the S7 parameter cannot be greater than 254");
         }
 //        if (parameter.getDataType() != EDataType.BYTE && parameter.getDataType() != EDataType.STRING && parameter.getCount() > 1) {
-//            // S7参数中只有[type]=字节和字符串类型数据的[count]才能大于1，其他必须等于1
+//            // S7 parameters [type]= byte and string type data[count] in order to be greater than 1,
+//            // the others must be equal to 1
 //            throw new S7CommException("In the S7 parameter, only [type]= bytes and [count] of string type data can be greater than 1, and the rest must be equal to 1");
 //        }
     }
 
     /**
      * Read the data according to the condition.
-     * (根据条件读取数据)
+     * (Read data according to conditions)
      *
      * @param s7ParseDataList condition
      */
     private void readDataByCondition(List<S7ParseData> s7ParseDataList) {
         if (s7ParseDataList.isEmpty()) {
-            // 解析出的注解数据个数为空，无法读取数据
+            // The number of annotation data parsed is empty and cannot be read
             throw new S7CommException("The number of parsed annotation data is empty, and the data cannot be read");
         }
 
-        // 读取PLC数据
+        // Read PLC data
         List<RequestItem> requestItems = s7ParseDataList.stream().map(S7ParseData::getRequestItem).collect(Collectors.toList());
         List<DataItem> dataItems = this.s7PLC.readS7Data(requestItems);
 
         if (s7ParseDataList.size() != dataItems.size()) {
-            // 所需的字段解析项个数与返回的数据项数量不一致，错误
+            // The number of required field resolution items is inconsistent with the number of returned data items, which is incorrect
             throw new S7CommException("The number of field parsing items required is inconsistent with the number of data items returned");
         }
 
-        // 提取数据
+        // Extract data
         for (int i = 0; i < dataItems.size(); i++) {
             s7ParseDataList.get(i).setDataItem(dataItems.get(i));
         }
@@ -174,7 +175,7 @@ public class S7Serializer implements IPLCSerializable {
 
     /**
      * Build the S7ParseData data.
-     * (构建S7ParseData数据)
+     * (Constructing S7ParseData data)
      *
      * @param p     S7Parameter data
      * @param field target field
@@ -182,7 +183,7 @@ public class S7Serializer implements IPLCSerializable {
      */
     private S7ParseData createS7ParseData(S7Parameter p, Field field) {
         this.checkS7Variable(p);
-        // 组装S7解析数据
+        // Assemble the S7 to parse the data
         S7ParseData s7ParseData = new S7ParseData();
         s7ParseData.setDataType(p.getDataType());
         s7ParseData.setCount(p.getCount());
@@ -191,9 +192,13 @@ public class S7Serializer implements IPLCSerializable {
             s7ParseData.setRequestItem(AddressUtil.parseBit(p.getAddress()));
         } else if (p.getDataType() == EDataType.STRING) {
             RequestItem requestItem = AddressUtil.parseByte(p.getAddress(), 1 + p.getCount() * p.getDataType().getByteLength());
-            // 为什么字节索引+1，为了避免修改PLC中string[60]类型的第一个字节数据，该数据为字符串的允许最大长度
-            // S1200（非S200Smart）:数据类型为 string 的操作数可存储多个字符，最多可包括 254 个字符。字符串中的第一个字节为总长度，第二个字节为有效字符数量。
-            // S200SMART:字符串由变量存储时，字符串长度为0至254个字符，最长为255个字节，其中第一个字符为长度字节
+            // Why byte index +1, in order to avoid modifying the first byte data of type string[60] in the PLC,
+            // which is the maximum allowable length of the string
+            // S1200 (non-S200Smart): An operand with a data type string can store multiple characters and can include
+            // up to 254 characters. The first byte in the string is the total length, and the second byte is
+            // the number of valid characters.
+            // S200SMART: When a string is stored by a variable, the string length is 0 to 254 characters, and
+            // the longest is 255 bytes, of which the first character is a byte of length
             int offset = this.s7PLC.getPlcType() == EPlcType.S200_SMART ? 0 : 1;
             requestItem.setByteAddress(requestItem.getByteAddress() + offset);
             s7ParseData.setRequestItem(requestItem);
@@ -214,7 +219,7 @@ public class S7Serializer implements IPLCSerializable {
 
     /**
      * Read data, fill value.
-     * (读取数据)
+     * (Read Data)
      *
      * @param parameters parameter list
      * @return S7Parameter list
@@ -228,7 +233,7 @@ public class S7Serializer implements IPLCSerializable {
 
     /**
      * Fill value of field.
-     * (提取数据)
+     * (Extract Data)
      *
      * @param targetClass     target class
      * @param s7ParseDataList S7ParseData list
@@ -250,7 +255,7 @@ public class S7Serializer implements IPLCSerializable {
 
     /**
      * Fill value of field.
-     * (填充数据)
+     * (Populate Data)
      *
      * @param parameters      parameter list
      * @param s7ParseDataList List<S7ParseData>
@@ -269,7 +274,7 @@ public class S7Serializer implements IPLCSerializable {
 
     /**
      * Fill value of field.
-     * 填充字段数据
+     * Populate the field data
      *
      * @param result target object
      * @param item   S7ParseData
@@ -346,18 +351,18 @@ public class S7Serializer implements IPLCSerializable {
     // region write
     @Override
     public <T> void write(T targetBean) {
-        // 解析参数
+        // Parsing parameters
         List<S7ParseData> s7ParseDataList = this.parseBean(targetBean.getClass());
 
         if (s7ParseDataList.isEmpty()) {
-            // 解析出的注解数据个数为空，无法读取数据
+            // The number of annotation data parsed is empty and cannot be read
             throw new S7CommException("The number of parsed annotation data is empty, and the data cannot be read");
         }
 
-        // 填充字节数据
+        // Populate byte data
         s7ParseDataList = this.extractData(targetBean, s7ParseDataList);
 
-        // 写入PLC
+        // Write to the PLC
         List<RequestItem> requestItems = s7ParseDataList.stream().map(S7ParseData::getRequestItem).collect(Collectors.toList());
         List<DataItem> dataItems = s7ParseDataList.stream().map(S7ParseData::getDataItem).collect(Collectors.toList());
         this.s7PLC.writeS7Data(requestItems, dataItems);
@@ -365,23 +370,23 @@ public class S7Serializer implements IPLCSerializable {
 
     /**
      * Write data to plc by parameter list.
-     * (写入数据)
+     * (Write Data)
      *
      * @param parameters parameter list
      */
     public void write(List<S7Parameter> parameters) {
-        // 解析参数
+        // Parsing parameters
         List<S7ParseData> s7ParseDataList = this.parseBean(parameters);
 
         if (s7ParseDataList.size() != parameters.size()) {
-            // 解析出的数据个数与传入的数据个数不一致
+            // The number of parsed data is inconsistent with the number of incoming data
             throw new S7CommException("The number of parsed data is inconsistent with the number of incoming data");
         }
 
-        // 填充字节数据
+        // Populate byte data
         s7ParseDataList = this.extractData(parameters, s7ParseDataList);
 
-        // 写入PLC
+        // Write to the PLC
         List<RequestItem> requestItems = s7ParseDataList.stream().map(S7ParseData::getRequestItem).collect(Collectors.toList());
         List<DataItem> dataItems = s7ParseDataList.stream().map(S7ParseData::getDataItem).collect(Collectors.toList());
         this.s7PLC.writeS7Data(requestItems, dataItems);
@@ -389,7 +394,7 @@ public class S7Serializer implements IPLCSerializable {
 
     /**
      * Extract data.
-     * (提取数据)
+     * (Extract Data)
      *
      * @param targetBean      target object
      * @param s7ParseDataList List<S7ParseData>
@@ -408,14 +413,14 @@ public class S7Serializer implements IPLCSerializable {
             }
             return s7ParseDataList.stream().filter(x -> x.getDataItem() != null).collect(Collectors.toList());
         } catch (Exception e) {
-            // 序列化填充字节数据错误
+            // Serialization padding byte data error
             throw new S7CommException("Serialized fill byte data error:" + e.getMessage(), e);
         }
     }
 
     /**
      * Extract data.
-     * (提取数据)
+     * (Extract Data)
      *
      * @param parameters      parameter list
      * @param s7ParseDataList List<S7ParseData>
@@ -433,14 +438,14 @@ public class S7Serializer implements IPLCSerializable {
             }
             return s7ParseDataList.stream().filter(x -> x.getDataItem() != null).collect(Collectors.toList());
         } catch (Exception e) {
-            // 序列化填充字节数据错误
+            // Serialization padding byte data error
             throw new S7CommException("Serialized fill byte data error:" + e.getMessage(), e);
         }
     }
 
     /**
      * Extract value of data to S7ParseData
-     * (提取字段数)
+     * (Number of Extracted Fields)
      *
      * @param item S7ParseData
      * @param data data source
@@ -490,11 +495,12 @@ public class S7Serializer implements IPLCSerializable {
                 targetBytes[0] = (byte) actualLength;
                 System.arraycopy(bytes, 0, targetBytes, 1, actualLength);
                 item.setDataItem(DataItem.createReqByByte(targetBytes));
-                // 根据实际情况获取最小字符串长度+1，重新更新待写入的数据长度
+                // Obtain the minimum string length +1 based on the actual situation, and update the length of
+                // the data to be written
                 item.getRequestItem().setCount(targetBytes.length);
                 break;
             case DATE:
-                // TODO: 后面时间采用工具类
+                // TODO: Later time to adopt the tool class
                 LocalDate start = LocalDate.of(1990, 1, 1);
                 long date = ((LocalDate) data).toEpochDay() - start.toEpochDay();
                 item.setDataItem(DataItem.createReqByByte(ByteWriteBuff.newInstance(2)
@@ -520,7 +526,7 @@ public class S7Serializer implements IPLCSerializable {
                 item.setDataItem(DataItem.createReqByByte(dateTimeData));
                 break;
             default:
-                // 无法识别数据类型
+                // The data type is not recognized
                 throw new S7CommException("Data type can not be recognized");
         }
     }

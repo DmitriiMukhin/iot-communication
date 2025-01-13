@@ -36,22 +36,22 @@ import java.util.Map;
 public enum EParamVariableType {
 
     /**
-     * 位
+     * bit
      */
     BIT((byte) 0x01),
 
     /**
-     * 字节
+     * byte
      */
     BYTE((byte) 0x02),
 
     /**
-     * 字符
+     * char
      */
     CHAR((byte) 0x03),
 
     /**
-     * 字
+     * word
      */
     WORD((byte) 0x04),
 
@@ -61,7 +61,7 @@ public enum EParamVariableType {
     INT((byte) 0x05),
 
     /**
-     * 双字
+     * double word
      */
     DWORD((byte) 0x06),
 
@@ -71,12 +71,12 @@ public enum EParamVariableType {
     DINT((byte) 0x07),
 
     /**
-     * 浮点
+     * float
      */
     REAL((byte) 0x08),
 
     /**
-     * 日期
+     * date
      */
     DATE((byte) 0x09),
 
@@ -86,7 +86,7 @@ public enum EParamVariableType {
     TOD((byte) 0x0A),
 
     /**
-     * 时间
+     * time
      */
     TIME((byte) 0x0B),
 
@@ -96,17 +96,17 @@ public enum EParamVariableType {
     S5TIME((byte) 0x0C),
 
     /**
-     * 日期和时间
+     * date and time
      */
     DATE_AND_TIME((byte) 0x0F),
 
     /**
-     * 计数器
+     * counter
      */
     COUNTER((byte) 0x1C),
 
     /**
-     * 定时器
+     * timer
      */
     TIMER((byte) 0x1D),
 

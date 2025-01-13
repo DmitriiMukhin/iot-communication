@@ -34,7 +34,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * Upload parameter.
- * 上传参数
+ * Upload parameters
  *
  * @author xingshuang
  */
@@ -44,13 +44,13 @@ public class UploadParameter extends UploadAckParameter {
 
     /**
      * Unknown bytes.
-     * 未知字节，2个字节
+     * Unknown byte, 2 bytes
      */
     protected byte[] errorCode = new byte[]{0x00, 0x00};
 
     /**
      * Download id.
-     * 下载的Id，4个字节（没用）
+     * Download ID, 4 bytes (not used)
      */
     protected long id = 0x00000000;
 
@@ -86,13 +86,13 @@ public class UploadParameter extends UploadAckParameter {
     /**
      * Parses byte array and converts it to object.
      *
-     * @param data   byte array
+     * @param data byte array
      * @param offset index offset
      * @return UploadParameter
      */
     public static UploadParameter fromBytes(final byte[] data, final int offset) {
         if (data.length < 8) {
-            throw new IndexOutOfBoundsException("UploadParameter时, data length < 8");
+            throw new IndexOutOfBoundsException("UploadParameter, data length < 8");
         }
         ByteReadBuff buff = new ByteReadBuff(data, offset);
         UploadParameter res = new UploadParameter();
@@ -107,7 +107,7 @@ public class UploadParameter extends UploadAckParameter {
 
     /**
      * Create upload parameter.
-     * 创建上传参数
+     * Create upload parameters
      *
      * @param uploadId upload Id
      * @return UploadParameter

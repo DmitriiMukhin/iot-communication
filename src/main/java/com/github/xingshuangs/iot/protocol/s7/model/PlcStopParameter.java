@@ -35,7 +35,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * PLC stop parameter.
- * 停止参数
+ * Stop parameter
  *
  * @author xingshuang
  */
@@ -45,23 +45,23 @@ public class PlcStopParameter extends Parameter implements IObjectByteArray {
 
     /**
      * Unknown bytes.
-     * 未知字节，固定参数 <br>
-     * 字节大小：5 <br>
-     * 字节序数：1-5
+     * Unknown byte, fixed parameter <br>
+     * Byte size: 5 <br>
+     * Byte ordinal: 1-5
      */
     private byte[] unknownBytes = new byte[]{(byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00};
 
     /**
      * Service name length.
-     * 服务名长度，后续字节长度，不包含自身 <br>
-     * 字节大小：1 <br>
-     * 字节序数：6
+     * Service name length, subsequent byte length, excluding itself <br>
+     * Byte size: 1 <br>
+     * Byte ordinal: 6
      */
     private int lengthPart = 0;
 
     /**
      * Service name.
-     * 程序调用的服务名
+     * The service name called by the program
      */
     private String piService = "";
 
@@ -97,7 +97,7 @@ public class PlcStopParameter extends Parameter implements IObjectByteArray {
      */
     public static PlcStopParameter fromBytes(final byte[] data) {
         if (data.length < 7) {
-            // StopParameter解析有误，StopParameter字节数组长度 < 7
+            // StopParameter There was an error in parsing，StopParameter The length of the byte array < 7
             throw new S7CommException("The StopParameter resolution is incorrect. The StopParameter byte array length is less than 7");
         }
         ByteReadBuff buff = new ByteReadBuff(data);
@@ -111,7 +111,7 @@ public class PlcStopParameter extends Parameter implements IObjectByteArray {
 
     /**
      * Create default stop parameter.
-     * 创建默认对象
+     * Create a default object
      *
      * @return PlcStopParameter
      */

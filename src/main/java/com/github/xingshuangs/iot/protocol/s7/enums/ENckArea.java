@@ -30,7 +30,7 @@ import java.util.Map;
 
 /**
  * Nck area.
- * NCK的Area
+ * NCK Target Area
  *
  * @author xingshuang
  */

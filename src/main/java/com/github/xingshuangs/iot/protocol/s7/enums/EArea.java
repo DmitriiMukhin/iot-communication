@@ -30,89 +30,89 @@ import java.util.Map;
 
 /**
  * Data area.
- * 数据的区域
+ * Data area
  *
  * @author xingshuang
  */
 public enum EArea {
 
     /**
-     * 200系列系统信息
+     * 200 series system information
      */
-    SYSTEM_INFO_OF_200_FAMILY((byte) 0x03),
+    SYSTEM_INFO_OF_200_FAMILY ((byte) 0x03),
 
     /**
-     * family	200系列系统标志
+     * Family 200 series system logo
      */
-    SYSTEM_FLAGS_OF_200_FAMILY((byte) 0x05),
+    SYSTEM_FLAGS_OF_200_FAMILY ((byte) 0x05),
 
     /**
-     * 200系列模拟量输入
+     * 200 series analog input
      */
-    ANALOG_INPUTS_OF_200_FAMILY((byte) 0x06),
+    ANALOG_INPUTS_OF_200_FAMILY ((byte) 0x06),
 
     /**
-     * 200系统模式量输出
+     * 200 system mode output
      */
-    ANALOG_OUTPUTS_OF_200_FAMILY((byte) 0x07),
+    ANALOG_OUTPUTS_OF_200_FAMILY ((byte) 0x07),
 
     /**
-     * 直接访问外设
+     * Direct access to peripherals
      */
-    DIRECT_PERIPHERAL_ACCESS((byte) 0x80),
+    DIRECT_PERIPHERAL_ACCESS ((byte) 0x80),
 
     /**
-     * 输入（I）
+     * Input (I)
      */
     INPUTS((byte) 0x81),
 
     /**
-     * 输出（Q）
+     * Output (Q)
      */
     OUTPUTS((byte) 0x82),
 
     /**
-     * 内部标志（M）
+     * Internal logo (M)
      */
     FLAGS((byte) 0x83),
 
     /**
-     * 数据块（DB）
+     * Data Block (DB)
      */
     DATA_BLOCKS((byte) 0x84),
 
     /**
-     * 背景数据块（DI）
+     * Background data block (DI)
      */
-    INSTANCE_DATA_BLOCKS((byte) 0x85),
+    INSTANCE_DATA_BLOCKS ((byte) 0x85),
 
     /**
-     * 局部变量（L)
+     * Local variables (L)
      */
     LOCAL_DATA((byte) 0x86),
 
     /**
-     * 全局变量（V）
+     * Global variables (V)
      */
     UNKNOWN_YET((byte) 0x87),
 
     /**
-     * S7计数器（C）
+     * S7 Counter (C)
      */
     S7_COUNTERS((byte) 0x1C),
 
     /**
-     * S7定时器（T）
+     * S7 Timer (T)
      */
     S7_TIMERS((byte) 0x1D),
 
     /**
-     * IEC计数器（200系列）
+     * IEC counter (200 series)
      */
     IEC_COUNTERS((byte) 0x1E),
 
     /**
-     * IEC定时器（200系列）
+     * IEC Timer (200 Series)
      */
     IEC_TIMERS((byte) 0x1F),
 

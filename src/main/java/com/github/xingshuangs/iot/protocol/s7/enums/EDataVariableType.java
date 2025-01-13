@@ -30,14 +30,14 @@ import java.util.Map;
 
 /**
  * Data variable type of request data.
- * 数据返回Transport size in data Transport size (variable Type) 变量的类型和长度
+ * Data returns Transport size in data Transport size (variable Type) Variable type and length
  *
  * @author xingshuang
  */
 public enum EDataVariableType {
 
     /**
-     * 无
+     * none
      */
     NULL((byte) 0x00),
 

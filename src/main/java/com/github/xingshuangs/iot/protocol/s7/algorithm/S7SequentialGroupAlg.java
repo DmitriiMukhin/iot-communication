@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 
 /**
  * Sequential grouping algorithm.
- * 顺序分组算法
+ * Sequential grouping algorithm
  *
  * @author xingshuang
  */
@@ -43,16 +43,16 @@ public class S7SequentialGroupAlg {
 
     /**
      * Write recombination function.
-     * 重组，按照目标最大值进行顺序分组，超过最大值则进行分割
-     * 示例：
-     * 目标值：226 ，额外数据大小：5
+     * Reorganize, group sequentially according to the target maximum, and split if the maximum value is exceeded
+     * Example:
+     * Target: 226 , additional data size: 5
      * 1,50,65,200,   322,    99,500,        44
      * |1,50,65,90|110,106|216|99,117|221|162,44|
-     * 第一      第二      第三 第四   第五 第六
+     * |first | second | third | fourth | fifth | sixth |
      *
-     * @param src        data source 数据源
-     * @param targetSize target size 目标值
-     * @param extraSize  extra size of every item 每个数据额外占用的数据大小
+     * @param src        data source Data sources
+     * @param targetSize target size Target value
+     * @param extraSize  extra size of every item The amount of additional data consumed by each piece of data
      * @return group result
      */
     public static List<S7ComGroup> writeRecombination(List<Integer> src, int targetSize, int extraSize) {
@@ -86,15 +86,15 @@ public class S7SequentialGroupAlg {
 
     /**
      * Read recombination function.
-     * 重组，按照目标最大值进行顺序分组，超过最大值则进行分割
-     * 示例：
-     * 目标值：226 ，额外数据大小：5，阀值数据大小：12
+     * Reorganize, group sequentially according to the target maximum, and split if the maximum value is exceeded
+     * example
+     * Target: 226 , extra data size: 5, threshold data size: 12
      * 1, 9, 102, 33, 2, 4, 8, 326, 2, 2, 2, 2, 2,         400, 2, 2, 2, 2, 2, 2, 2, 2,        2, 2, 2, 99
      * 1, 9, 102, 33, 2, 4, 8, 13| 221| 92, 2, 2, 2, 2, 2, 64|221|115, 2, 2, 2, 2, 2, 2, 2, 2| 2, 2, 2, 99
      *
-     * @param src        data source 数据源
-     * @param targetSize target size 目标值
-     * @param extraSize  extra size of every item 每个数据额外占用的数据大小
+     * @param src        data source Data sources
+     * @param targetSize target size Target value
+     * @param extraSize  extra size of every item The amount of additional data consumed by each piece of data
      * @param threshold  data threshold 阀值
      * @return group result
      */

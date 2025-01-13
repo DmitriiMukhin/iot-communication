@@ -31,7 +31,7 @@ import com.github.xingshuangs.iot.utils.BooleanUtil;
 
 /**
  * End upload parameter.
- * 上传参数
+ * Upload parameters
  *
  * @author xingshuang
  */
@@ -60,7 +60,7 @@ public class EndUploadParameter extends UploadParameter {
     /**
      * Parses byte array and converts it to object.
      *
-     * @param data   byte array
+     * @param data byte array
      * @param offset index offset
      * @return UploadParameter
      */
